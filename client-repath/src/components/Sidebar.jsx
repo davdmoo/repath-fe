@@ -18,18 +18,24 @@ function Sidebar() {
 
     return (
         <div>
-
             <ListIcon style={{ width: '45px', height: '45px' }} sx={{ color: red[50] }} onClick={handleShow} />
+    
             <Offcanvas style={{ marginLeft: '350px', width: '260px', background: '#dc2626' }} show={show} onHide={handleClose}>
-
+       
                 <Offcanvas.Header style={{ justifyContent: 'center' }} >
-                    <Avatar alt="Lemy Sharp" src="/static/images/avatar/1.jpg" />
-                    {/* <h6 sx={{ color: red[50] }}>
-                        Example Username 
-                    </h6> */}
-                   
+                    <Avatar alt="Zemy Sharp" src="/static/images/avatar/1.jpg" />
+                    <div className="d-flex flex row">
+                    <text style={{ color: "#f5f5f5", fontSize: 16, fontWeight: "bolder", justifyContent: 'flex-end', marginLeft: '20px'}}>
+                        Username
+                    </text>
+
+                    <text style={{ color: "#f5f5f5", fontSize: 14, marginLeft: '20px'}}>
+                        Email
+                    </text>
+                    </div>
+
                 </Offcanvas.Header>
-            
+
 
                 <Button variant="outline-light" style={{ border: '0px', marginTop: '5px' }}>
                     <HomeIcon style={{ marginRight: '10px' }} />Home</Button>{' '}
