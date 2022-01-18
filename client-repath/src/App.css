@@ -47,3 +47,14 @@ html {
 .navbar {
   background-color: #dc2626;
 }
+
+.MuiFormLabel-root.Mui-focused {
+  color: white !important;
+}
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: white !important;
+}
+
+.MuiInput-underline:after {
+  border-bottom-color: white,
+}
