@@ -6,6 +6,7 @@ html {
 .App {
   text-align: center;
   width: 640px;
+  background-color: #fef2f2;
 }
 
 .App-logo {
@@ -46,11 +47,11 @@ html {
 /* HEADER */
 
 .dot-header {
-  height: 25px;
-  width: 25px;
+  height: 15px;
+  width: 15px;
   background-color: #9ca3af;
   border-radius: 50%;
-  border: 2px solid white;
+  border: 1px solid white;
   display: inline-block;
   margin-right: 370px;
   margin-top: 10px;
@@ -58,16 +59,16 @@ html {
 
 .vl-header {
   border-left: 2px solid #9ca3af;
-  height: 15px;
+  height: 25px;
   position: relative;
   bottom: 6px;
   left: 134px;
 }
 
-/* CARD */
+/* CARD-MUSIC */
 .card-container {
   display: flex;
-  border-bottom: 1px solid #d1d5db;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .card-left-side {
@@ -87,6 +88,116 @@ html {
 .content-text {
   width: 250px;
   text-align: left;
+}
+
+.album-title {
+  color: #9ca3af;
+  font-size: 15px;
+}
+
+.content-image-album {
+  padding-top: 10px;
+}
+
+.rounded-likes {
+  border-radius: 30px;
+  border: 1px solid #9ca3af;
+  width: 60px;
+  height: 42px;
+  margin-left: 30px;
+  margin-top: 5px;
+}
+
+.dot-card-music {
+  height: 35px;
+  width: 35px;
+  background-color: #eab308;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: inline-block;
+  position: relative;
+  left: 38px;
+  top: 25px;
+}
+
+/* CARD-LOCATION */
+.dot-card-location {
+  height: 35px;
+  width: 35px;
+  background-color: #22c55e;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: inline-block;
+  position: relative;
+  left: 38px;
+  top: 18px;
+}
+
+.location-title {
+  padding-top: 13px;
+}
+
+.rounded-likes-location {
+  border-radius: 30px;
+  border: 1px solid #9ca3af;
+  width: 60px;
+  height: 42px;
+  margin-left: 90px;
+  margin-top: 6px;
+}
+
+.content-location {
+  margin-top: 0px;
+}
+
+/* CARD-POST-IMAGE */
+.avatar-card-textImage {
+  margin: 15px 0px 10px 10px;
+}
+
+.rounded-likes-textImage {
+  border-radius: 30px;
+  border: 1px solid #9ca3af;
+  width: 60px;
+  height: 42px;
+  margin-left: 5px;
+  margin-top: 20px;
+}
+
+.content-text-button {
+  width: 130px;
+  height: 50px;
+}
+
+.postText-description {
+  margin-left: 10px;
+  margin-top: 10px;
+  padding-right: 10px;
+}
+
+.postText-container {
+  width: 350px;
+  text-align: left;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.content-text {
+  width: 470px;
+  text-align: left;
+}
+
+.dot-card-textImage {
+  height: 35px;
+  width: 35px;
+  background-color: #e11d48;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: inline-block;
+  position: relative;
+  left: 117px;
+  top: 18px;
 }
 
 /* NAVBAR */
