@@ -43,6 +43,52 @@ html {
   }
 }
 
+/* HEADER */
+
+.dot-header {
+  height: 25px;
+  width: 25px;
+  background-color: #9ca3af;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: inline-block;
+  margin-right: 370px;
+  margin-top: 10px;
+}
+
+.vl-header {
+  border-left: 2px solid #9ca3af;
+  height: 15px;
+  position: relative;
+  bottom: 6px;
+  left: 134px;
+}
+
+/* CARD */
+.card-container {
+  display: flex;
+  border-bottom: 1px solid #d1d5db;
+}
+
+.card-left-side {
+  width: 136px;
+  border-right: 2px solid #9ca3af;
+}
+
+.card-right-side {
+  margin: 10px 0px 10px 30px;
+  width: 475px;
+}
+
+.avatar-card {
+  margin: 15px 0px 10px 30px;
+}
+
+.content-text {
+  width: 250px;
+  text-align: left;
+}
+
 /* NAVBAR */
 .navbar {
   background-color: #dc2626;
