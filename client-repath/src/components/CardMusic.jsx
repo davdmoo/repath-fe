@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Avatar, Checkbox, IconButton } from '@mui/material/';
+import { Avatar, Checkbox, IconButton, Badge } from '@mui/material/';
 import { FavoriteBorder, Favorite, MusicNote, Delete } from '@mui/icons-material/';
 import { red } from '@mui/material/colors';
 import { Card } from 'react-bootstrap';
+import CardLikedPost from './CardLikedPost';
+import CardCommentPost from './CardCommentPost';
 
 function CardMusic() {
   return (
@@ -18,15 +20,16 @@ function CardMusic() {
                 </span>
               </div>
             </div>
-            <div className="card-right-side d-flex flex-row">
+            <div className="card-right-side d-flex flex-row ">
               <div className="content-text" style={{ width: '250px', textAlign: 'left' }}>
                 <div className="song-title">
                   Listening to Grenade by <span className="fw-bold"> Bruno Mars</span>
                 </div>
                 <div className="album-title">Album Song - Sigle, 2016</div>
+                <CardLikedPost />
+                <CardCommentPost />
               </div>
               <div className="content-image-album d-flex flex-row" style={{ width: '200px' }}>
-                {' '}
                 <Avatar alt="Bruno Mars" src="https://upload.wikimedia.org/wikipedia/en/thumb/3/36/BrunoMarsGrenade.jpg/220px-BrunoMarsGrenade.jpg" sx={{ width: 60, height: 60 }} variant="rounded"></Avatar>
                 <div className="rounded-likes">
                   <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />

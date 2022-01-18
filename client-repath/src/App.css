@@ -68,7 +68,7 @@ html {
 /* CARD-MUSIC */
 .card-container {
   display: flex;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 2px solid #e5e7eb;
 }
 
 .card-left-side {
@@ -200,6 +200,35 @@ html {
   top: 18px;
 }
 
+/* LIKES CARD ON POST */
+.likes-section {
+  width: 330px;
+  text-align: left;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+.avatar-card-likes-section {
+  margin: 10px 5px 10px 0px;
+}
+
+/* COMMENT CARD ON POST */
+.comment-card-container {
+  width: 330px;
+  text-align: left;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.comment-section-description {
+  margin-left: 10px;
+  margin-top: 10px;
+  padding-right: 10px;
+}
+
 /* NAVBAR */
 .navbar {
   background-color: #dc2626;
@@ -213,5 +242,5 @@ html {
 }
 
 .MuiInput-underline:after {
-  border-bottom-color: white,
+  border-bottom-color: white;
 }
