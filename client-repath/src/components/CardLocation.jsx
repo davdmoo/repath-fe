@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Avatar, Checkbox, IconButton } from '@mui/material/';
+import { Avatar, Checkbox, IconButton, Badge } from '@mui/material/';
 import { FavoriteBorder, Favorite, LocationOn, Delete } from '@mui/icons-material/';
 import { red } from '@mui/material/colors';
 import { Card } from 'react-bootstrap';
+import CardLikedPost from './CardLikedPost';
+import CardCommentPost from './CardCommentPost';
 
 function CardLocation() {
   return (
@@ -23,15 +25,19 @@ function CardLocation() {
                 <div className="location-title">
                   Arrived in <span className="fw-bold">Bandung</span>
                 </div>
+                <CardLikedPost />
+                <CardCommentPost />
               </div>
               <div className="content-location d-flex flex-row" style={{ width: '200px' }}>
                 <div className="rounded-likes-location">
                   <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />
                 </div>
 
-                <IconButton>
-                  <Delete sx={{ color: red[500] }} />
-                </IconButton>
+                <div style={{ paddingTop: '5px' }}>
+                  <IconButton>
+                    <Delete sx={{ color: red[500] }} />
+                  </IconButton>
+                </div>
               </div>
             </div>
           </div>
