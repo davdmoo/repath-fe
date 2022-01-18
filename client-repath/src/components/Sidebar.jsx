@@ -23,7 +23,7 @@ function Sidebar() {
             <Offcanvas style={{ marginLeft: '350px', width: '260px', background: '#dc2626' }} show={show} onHide={handleClose}>
        
                 <Offcanvas.Header style={{ justifyContent: 'center' }} >
-                    <Avatar alt="Lemy Sharp" src="/static/images/avatar/1.jpg" />
+                    <Avatar alt="Zemy Sharp" src="/static/images/avatar/1.jpg" />
                     <div className="d-flex flex row">
                     <text style={{ color: "#f5f5f5", fontSize: 16, fontWeight: "bolder", justifyContent: 'flex-end', marginLeft: '20px'}}>
                         Username
