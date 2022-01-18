@@ -18,10 +18,10 @@ function Sidebar() {
 
     return (
         <div>
-
             <ListIcon style={{ width: '45px', height: '45px' }} sx={{ color: red[50] }} onClick={handleShow} />
+    
             <Offcanvas style={{ marginLeft: '350px', width: '260px', background: '#dc2626' }} show={show} onHide={handleClose}>
-
+       
                 <Offcanvas.Header style={{ justifyContent: 'center' }} >
                     <Avatar alt="Lemy Sharp" src="/static/images/avatar/1.jpg" />
                     <div className="d-flex flex row">
