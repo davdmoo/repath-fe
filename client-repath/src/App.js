@@ -9,6 +9,7 @@ import Register from './views/Register';
 import FriendListPage from './views/FriendListPage';
 import AddFriendPage from './views/AddFriendPage';
 import PostContent from "./views/PostContent";
+import PostSearchMusic from "./views/PostSearchMusic";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/friendlist" element={<FriendListPage />} />
         <Route path="/addfriend" element={<AddFriendPage />} />
-         <Route path="/content" element={<PostContent />} />
+        <Route path="/content" element={<PostContent />} />
+        <Route path="/music" element={<PostSearchMusic />} />
       </Routes>
     </div>
   );

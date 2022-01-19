@@ -14,7 +14,7 @@ export default function NavbarContent() {
 						height: 50,
 					}}
 				>
-					<ArrowBackOutlinedIcon />
+					<ArrowBackOutlinedIcon color="action"/>
 				</IconButton>
 				<div
 					style={{
