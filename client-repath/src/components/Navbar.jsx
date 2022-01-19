@@ -11,7 +11,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light px-5">
+    <nav className="navbar navbar-expand-lg navbar-light px-5 position-fixed" style={{ width: '640px', zIndex: '100' }}>
       <Sidebar></Sidebar>
       <div
         style={{

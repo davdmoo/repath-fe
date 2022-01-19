@@ -1,19 +1,52 @@
 import React, { useState, Component } from 'react';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 import { Button } from 'react-bootstrap';
+import TextField from '@mui/material/TextField';
 import { red } from '@mui/material/colors';
+import { setLogin } from '../store/actionCreators/userCreator';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Login() {
+  const [loginForm, setLoginForm] = useState({
+    email: '',
+    password: '',
+  });
+
+  const changeLoginFormInput = (e) => {
+    const value = e.target.value;
+    const field = e.target.name;
+    setLoginForm({
+      ...loginForm,
+      [field]: value,
+    });
+  };
+
+  const dispatch = useDispatch();
+
+  const doLogin = () => {
+    console.log('GO TO LOGIN <<<<<<<<<<<<<<<<<<<<<<');
+
+    dispatch(setLogin(loginForm)).then(() => {
+      console.log('BACK TO LOGIN AFTER RESOLVE <<<<<<<<<<<<<<<<<<<<<<');
+    });
+    //   .catch((err) => {
+    // 	console.log(err);
+    // 	if (err == 'Error: Bad Request') {
+    // 	  errorAlert(err, 'Please input field data');
+    // 	} else {
+    // 	  errorAlert(err, 'Invalid email/password');
+    // 	}
+    //   });
+  };
+
   return (
     <>
       <div
         style={{
-          className: 'container',
           background: '#DC2626',
           flex: 1,
           flexDirection: 'row',
-          height: 982,
+          height: '100vh',
           width: 640,
         }}
       >
@@ -31,18 +64,18 @@ function Login() {
           ></img>
         </div>
         <div style={{ marginBottom: 50 }}>
-          <text
+          <p
             style={{
               color: '#f5f5f5',
             }}
           >
             Share your wonderful moments with us
-          </text>
+          </p>
         </div>
         <Box
           component="form"
           sx={{
-            '& > :not(style)': { m: 1, width: '25ch' },
+            '& > :not(style)': { m: 1, width: '52ch', mb: 3 },
             defaultValue: {
               color: red[50],
             },
@@ -50,73 +83,63 @@ function Login() {
           noValidate
           autoComplete="off"
         >
-          <div
-            style={{
-              flexDirection: 'column',
-              margin: 'auto',
-              marginBottom: 1,
-              width: '70%',
+          <TextField
+            name="email"
+            onChange={changeLoginFormInput}
+            label="email"
+            variant="filled"
+            margin="normal"
+            sx={{
+              input: {
+                color: red[50],
+              },
             }}
-          >
-            <TextField
-              id="outlined-basic"
-              label="username"
-              variant="filled"
-              margin="normal"
-              fullWidth="300 px"
-              sx={{
-                input: {
-                  color: red[50],
-                },
-              }}
-            ></TextField>
-          </div>
-          <div
-            style={{
-              flexDirection: 'column',
-              margin: 'auto',
-              marginBottom: 20,
-              width: '70%',
+          ></TextField>
+
+          <TextField
+            name="password"
+            onChange={changeLoginFormInput}
+            type="password"
+            label="password"
+            variant="filled"
+            margin="normal"
+            sx={{
+              input: {
+                color: red[50],
+              },
             }}
-          >
-            <TextField
-              id="outlined-basic"
-              label="password"
-              variant="filled"
-              margin="normal"
-              fullWidth="300 px"
-              sx={{
-                input: {
-                  color: red[50],
-                },
-              }}
-            />
-          </div>
-          <Button
-            style={{
-              backgroundColor: '#FEE2E2',
-              color: '#B91C1C',
-              fontWeight: 'bold',
-              border: '1px solid blue',
-              borderColor: '#FEE2E2',
-            }}
-          >
-            Login
-          </Button>
+          />
         </Box>
+        <Button
+          style={{
+            backgroundColor: '#FEE2E2',
+            color: '#B91C1C',
+            fontWeight: 'bold',
+            border: '1px solid blue',
+            borderColor: '#FEE2E2',
+            width: 230,
+          }}
+          onClick={(el) => {
+            el.preventDefault();
+            doLogin();
+            // console.log(loginForm);
+          }}
+        >
+          Login
+        </Button>
         <div
           style={{
             marginTop: 10,
           }}
         >
-          <text
+          <p
             style={{
               color: '#f5f5f5',
               fontWeight: 'bold',
             }}
           >
             Doesn’t have an account yet ?
-          </text>
+          </p>
         </div>
         <div
           style={{
