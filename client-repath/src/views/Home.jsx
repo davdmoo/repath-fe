@@ -21,8 +21,7 @@ function Home() {
       <CardTextImage />
       {/* <CardLocation /> */}
       {/* <CardTextImage /> */}
-      <ButtonPopUp/>
-
+      <ButtonPopUp />
     </>
   );
 }

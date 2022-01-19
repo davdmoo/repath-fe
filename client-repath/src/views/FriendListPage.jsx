@@ -10,6 +10,23 @@ function FriendListPage() {
         <h1 className="pt-2 pb-3">Friend List</h1>
         <CardFriendList />
         <CardFriendList />
+        <CardFriendList />
+        <CardFriendList />
+        <CardFriendList />
+        <CardFriendList />
+        <CardFriendList />
+        <CardFriendList />
+
+        <CardFriendList />
+        <CardFriendList />
+        <CardFriendList />
+        <CardFriendList />
+        <CardFriendList />
+        <CardFriendList />
+        <CardFriendList />
+        <CardFriendList />
+        <CardFriendList />
+        <CardFriendList />
       </div>
     </>
   );
