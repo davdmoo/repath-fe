@@ -7,6 +7,7 @@ import Home from "./views/Home";
 import Login from "./views/Login";
 import Register from "./views/Register";
 import PostContent from "./views/PostContent";
+import PostSearchMusic from "./views/PostSearchMusic";
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/content" element={<PostContent />} />
+				<Route path="/search-music" element={<PostSearchMusic />} />
 			</Routes>
 		</div>
 	);
