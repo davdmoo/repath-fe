@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Avatar } from '@mui/material/';
 import RowCommentSection from './componentsChild/RowCommentSection';
 
 function CardCommentPost() {
