@@ -16,10 +16,10 @@ function Home() {
       <Header />
       <CardMusic />
       <CardLocation />
-      <CardMusic />
+      {/* <CardMusic /> */}
       <CardTextImage />
-      <CardLocation />
-      <CardTextImage />
+      {/* <CardLocation /> */}
+      {/* <CardTextImage /> */}
     </>
   );
 }
