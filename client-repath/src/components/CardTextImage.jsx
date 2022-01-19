@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Avatar, Checkbox, IconButton, Badge } from '@mui/material/';
-import { FavoriteBorder, Favorite, Delete, FormatQuote, Comment } from '@mui/icons-material/';
+import { Avatar, Checkbox, IconButton } from '@mui/material/';
+import { FavoriteBorder, Favorite, Delete, FormatQuote } from '@mui/icons-material/';
 import { red, blue } from '@mui/material/colors';
 import { Card } from 'react-bootstrap';
 import CardLikedPost from './CardLikedPost';

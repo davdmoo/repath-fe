@@ -13,13 +13,11 @@ function Home() {
   return (
     <>
       <Navbar />
+
       <Header />
       <CardMusic />
       <CardLocation />
-      {/* <CardMusic /> */}
       <CardTextImage />
-      {/* <CardLocation /> */}
-      {/* <CardTextImage /> */}
     </>
   );
 }
