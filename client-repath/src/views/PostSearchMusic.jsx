@@ -1,19 +1,25 @@
 import React, { useState, Component } from "react";
-import Stack from "@mui/material/Stack";
-import NavbarContent from "../components/NavbarContent";
+import Navbar from "../components/Navbar";
+import { Avatar } from "@mui/material/";
+import { Card } from "react-bootstrap";
+import CardSearchMusic from "../components/CardSearchMusic";
 
 function PostSearchMusic() {
 	return (
 		<>
-			<div
-				style={{
-					flex: 1,
-					flexDirection: "row",
-					height: "100vh",
-					width: 640,
-				}}
-			>
-				<NavbarContent></NavbarContent>
+			<Navbar />
+			<div className="friendlist-page" style={{ height: "100vh", backgroundColor: "#fef2f2", paddingTop: "95px" }}>
+				<div className="d-flex justify-content-center">
+					<div class="input-group my-3" style={{ width: "300px", height: "50px" }}>
+						<input type="search" class="form-control rounded" placeholder="Find music..." aria-label="Search people..." aria-describedby="search-addon" />
+						<button type="button" class="btn btn-outline-danger">
+							Search
+						</button>
+					</div>
+				</div>
+				<CardSearchMusic></CardSearchMusic>
+				<CardSearchMusic></CardSearchMusic>
+				<CardSearchMusic></CardSearchMusic>
 			</div>
 		</>
 	);

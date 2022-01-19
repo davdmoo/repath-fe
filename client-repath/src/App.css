@@ -53,7 +53,7 @@ html {
   border-radius: 50%;
   border: 1px solid white;
   display: inline-block;
-  margin-right: 370px;
+  margin-right: 372px;
   margin-top: 10px;
 }
 
@@ -62,7 +62,7 @@ html {
   height: 25px;
   position: relative;
   bottom: 6px;
-  left: 134px;
+  left: 133px;
 }
 
 /* CARD-MUSIC */
@@ -229,6 +229,66 @@ html {
   padding-right: 10px;
 }
 
+/* FRIENDLIST */
+.card-container-friendlist {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.card-container-friendlist:hover {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+  background-color: #fca5a5;
+  color: white !important;
+}
+
+.content-friendlist {
+  width: 470px;
+  text-align: left;
+}
+
+.friendlist-name {
+  /* font-weight: bold; */
+  font-size: 30px;
+}
+
+.friendlist-city {
+  font-size: 20px;
+  color: #6b7280;
+}
+
+.card-left-side-friendlist {
+  width: 115px;
+  /* border-right: 2px solid #9ca3af; */
+}
+
+/* ADD FRIEND */
+.card-container-addfriend {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.content-addfriend {
+  /* width: 470px; */
+  text-align: left;
+}
+
+.addfriend-name {
+  /* font-weight: bold; */
+  font-size: 30px;
+  padding-top: 10px;
+}
+
+.addfriend-city {
+  font-size: 20px;
+  color: #6b7280;
+}
+
+.card-left-side-addfriend {
+  width: 115px;
+  /* border-right: 2px solid #9ca3af; */
+}
+
 /* NAVBAR */
 .navbar {
   background-color: #dc2626;
@@ -243,4 +303,42 @@ html {
 
 .MuiInput-underline:after {
   border-bottom-color: white;
+}
+
+/* Card Search Music */
+.card-container-search-music {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.card-container-search-music:hover {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+  background-color: #e5e7eb;
+  color: black !important;
+}
+
+.content-search-music {
+  width: 470px;
+  text-align: left;
+}
+
+.search-music-title {
+  margin-bottom: -6px;
+  font-size: 30px;
+}
+
+.search-music-artist {
+  font-size: 20px;
+  color: #6b7280;
+}
+
+.search-music-albums {
+  font-size: 15px;
+  color: #94a3b8;
+}
+
+.card-left-side-search-music {
+  width: 115px;
+  /* border-right: 2px solid #9ca3af; */
 }
