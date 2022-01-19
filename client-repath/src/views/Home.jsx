@@ -8,6 +8,7 @@ import { Card } from 'react-bootstrap';
 import CardMusic from '../components/CardMusic';
 import CardLocation from '../components/CardLocation';
 import CardTextImage from '../components/CardTextImage';
+import ButtonPopUp from '../components/componentsChild/ButtonPopUp';
 
 function Home() {
   return (
@@ -18,6 +19,10 @@ function Home() {
       <CardMusic />
       <CardLocation />
       <CardTextImage />
+      {/* <CardLocation /> */}
+      {/* <CardTextImage /> */}
+      <ButtonPopUp/>
+
     </>
   );
 }
