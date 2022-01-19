@@ -18,7 +18,7 @@ function Header() {
             <Avatar alt="Zemy Sharp" src="/static/images/avatar/1.jpg" sx={{ width: 70, height: 70 }} />
           </div>
           <span className="dot-header"></span>
-          <div class="vl-header"></div>
+          <div className="vl-header"></div>
         </div>
       </div>
     </>
