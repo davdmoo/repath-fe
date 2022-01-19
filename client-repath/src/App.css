@@ -305,3 +305,41 @@ html {
 .MuiInput-underline:after {
   border-bottom-color: white;
 }
+
+/* Card Search Music */
+.card-container-search-music {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.card-container-search-music:hover {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+  background-color: #e5e7eb;
+  color: black !important;
+}
+
+.content-search-music {
+  width: 470px;
+  text-align: left;
+}
+
+.search-music-title {
+  margin-bottom: -6px;
+  font-size: 30px;
+}
+
+.search-music-artist {
+  font-size: 20px;
+  color: #6b7280;
+}
+
+.search-music-albums {
+  font-size: 15px;
+  color: #94a3b8;
+}
+
+.card-left-side-search-music {
+  width: 115px;
+  /* border-right: 2px solid #9ca3af; */
+}

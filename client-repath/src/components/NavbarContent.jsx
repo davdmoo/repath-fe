@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 
 export default function NavbarContent() {
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light px-3 d-flex flex-row">
       <Stack direction="row" spacing={'197px'}>
@@ -30,4 +31,5 @@ export default function NavbarContent() {
       </Stack>
     </nav>
   );
+
 }
