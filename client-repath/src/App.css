@@ -72,7 +72,7 @@ html {
 }
 
 .card-left-side {
-  width: 136px;
+  width: 135px;
   border-right: 2px solid #9ca3af;
 }
 
@@ -147,7 +147,7 @@ html {
 }
 
 .content-location {
-  margin-top: 0px;
+  margin-left: 85px;
 }
 
 /* CARD-POST-IMAGE */

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Avatar, Checkbox, IconButton, Badge } from '@mui/material/';
-import { FavoriteBorder, Favorite, Delete, FormatQuote } from '@mui/icons-material/';
-import { red } from '@mui/material/colors';
+import { FavoriteBorder, Favorite, Delete, FormatQuote, Comment } from '@mui/icons-material/';
+import { red, blue } from '@mui/material/colors';
 import { Card } from 'react-bootstrap';
 import CardLikedPost from './CardLikedPost';
 import CardCommentPost from './CardCommentPost';
+import ModalComment from './componentsChild/ModalComment';
 
 function CardTextImage() {
   return (
@@ -43,10 +44,13 @@ function CardTextImage() {
                     </div>
                   </div>
                   <div className="content-text-button d-flex flex-row justify-content-center">
-                    <div className="rounded-likes-textImage d-flex justify-content-center">
+                    <div style={{ marginTop: '8px' }}>
                       <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />
                     </div>
-                    <div style={{ marginTop: '20px' }}>
+                    <div style={{ marginTop: '10px' }}>
+                      <ModalComment />
+                    </div>
+                    <div style={{ marginTop: '10px' }}>
                       <IconButton>
                         <Delete sx={{ color: red[500] }} />
                       </IconButton>
