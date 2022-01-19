@@ -1,15 +1,15 @@
 import React, { useState, Component } from "react";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 import { Button } from "react-bootstrap";
+import TextField from "@mui/material/TextField";
 import { red } from "@mui/material/colors";
+import PersonIcon from "@mui/icons-material/Person";
 
 function Login() {
 	return (
 		<>
 			<div
 				style={{
-					className: "container",
 					background: "#DC2626",
 					flex: 1,
 					flexDirection: "row",
@@ -42,7 +42,7 @@ function Login() {
 				<Box
 					component="form"
 					sx={{
-						"& > :not(style)": { m: 1, width: "25ch" },
+						"& > :not(style)": { m: 1, width: "52ch", mb: 3 },
 						defaultValue: {
 							color: red[50],
 						},
@@ -50,61 +50,42 @@ function Login() {
 					noValidate
 					autoComplete="off"
 				>
-					<div
-						style={{
-							flexDirection: "column",
-							margin: "auto",
-							marginBottom: 1,
-							width: "70%",
+					<TextField
+						id="outlined-basic"
+						label="username"
+						variant="filled"
+						margin="normal"
+						sx={{
+							input: {
+								color: red[50],
+							},
 						}}
-					>
-						<TextField
-							id="outlined-basic"
-							label="username"
-							variant="filled"
-							defaultValue="small"
-							margin="normal"
-							fullWidth="300 px"
-							sx={{
-								input: {
-									color: red[50],
-								},
-							}}
-						></TextField>
-					</div>
-					<div
-						style={{
-							flexDirection: "column",
-							margin: "auto",
-							marginBottom: 20,
-							width: "70%",
+					></TextField>
+
+					<TextField
+						id="outlined-basic"
+						label="password"
+						variant="filled"
+						margin="normal"
+						sx={{
+							input: {
+								color: red[50],
+							},
 						}}
-					>
-						<TextField
-							id="outlined-basic"
-							label="password"
-							variant="filled"
-							margin="normal"
-							fullWidth="300 px"
-							sx={{
-								input: {
-									color: red[50],
-								},
-							}}
-						/>
-					</div>
-					<Button
-						style={{
-							backgroundColor: "#FEE2E2",
-							color: "#B91C1C",
-							fontWeight: "bold",
-							border: "1px solid blue",
-							borderColor: "#FEE2E2",
-						}}
-					>
-						Login
-					</Button>
+					/>
 				</Box>
+				<Button
+					style={{
+						backgroundColor: "#FEE2E2",
+						color: "#B91C1C",
+						fontWeight: "bold",
+						border: "1px solid blue",
+						borderColor: "#FEE2E2",
+						width: 230,
+					}}
+				>
+					Login
+				</Button>
 				<div
 					style={{
 						marginTop: 10,

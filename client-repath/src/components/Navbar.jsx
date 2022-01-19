@@ -16,7 +16,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light px-5">
       <Sidebar></Sidebar>
       <a className="navbar-brand" href="#">
-        <img src="https://ik.imagekit.io/hanakar/Re-Path_D2YBYxVuS2I.png?ik-sdk-version=javascript-1.4.3&updatedAt=1642490213261" height="100px" width="120px" style={{ marginLeft: '200px' }} />
+        <img src="https://ik.imagekit.io/hanakar/Re-Path_D2YBYxVuS2I.png?ik-sdk-version=javascript-1.4.3&updatedAt=1642490213261" height="80px" width="120px" style={{ marginLeft: '200px' }} />
       </a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>

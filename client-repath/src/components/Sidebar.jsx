@@ -45,7 +45,7 @@ function Sidebar() {
                     <GroupIcon style={{ marginRight: '10px' }} /> Friend List</Button>{' '}
                 <Button variant="outline-light" style={{ border: '0px', marginTop: '10px' }}>
                     <PersonAddIcon style={{ marginRight: '10px' }} /> Add Friend</Button>{' '}
-                <Button variant="outline-light" style={{ border: '0px', marginTop: '280px' }}>
+                <Button variant="outline-light" style={{ border: '0px', marginTop: '350px' }}>
                     <LogoutIcon style={{ marginRight: '10px' }} /> Sign Out</Button>{' '}
 
             </Offcanvas>
