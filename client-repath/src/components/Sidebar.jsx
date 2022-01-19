@@ -63,6 +63,7 @@ function Sidebar() {
                     <PersonAddIcon style={{ marginRight: '10px' }} /> Add Friend</Button>{' '}
                 <Button variant="outline-light" style={{ border: '0px', marginTop: '280px' }}>
                     <LogoutIcon style={{ marginRight: '10px' }} /> Sign Out</Button>{' '} */}
+
         </Offcanvas>
       </div>
     </div>
