@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Button } from "react-bootstrap";
 import { red } from "@mui/material/colors";
+import { flexbox } from "@mui/system";
 
 function Register() {
 	return (
@@ -44,57 +45,52 @@ function Register() {
 					component="form"
 					sx={{
 						"& > :not(style)": { m: 1, width: "25ch" },
+						flexDirection: "column",
+						alignSelf: "center",
 					}}
 					noValidate
 					autoComplete="off"
 				>
-					<div
-						style={{
-							flexDirection: "column",
-							margin: "auto",
-							marginBottom: 1,
-							width: "100%",
+					<TextField
+						id="outlined-basic"
+						label="first name"
+						variant="filled"
+						// margin="normal"
+						size="small"
+						sx={{
+							input: {
+								color: red[50],
+							},
 						}}
-					>
-						<TextField
-							id="outlined-basic"
-							label="first name"
-							variant="filled"
-							margin="normal"
-							size="small"
-							sx={{
-								input: {
-									color: red[50],
-								},
-							}}
-						></TextField>{" "}
-						<TextField
-							id="outlined-basic"
-							label="last name"
-							variant="filled"
-							margin="normal"
-							size="small"
-							sx={{
-								input: {
-									color: red[50],
-								},
-							}}
-						></TextField>
-					</div>
-					<div
-						style={{
-							flexDirection: "column",
-							margin: "auto",
-							marginBottom: 10,
-							width: "70%",
+					></TextField>
+
+					<TextField
+						id="outlined-basic"
+						label="last name"
+						variant="filled"
+						// margin="normal"
+						size="small"
+						sx={{
+							input: {
+								color: red[50],
+							},
 						}}
+					></TextField>
+					<Box
+						component="form"
+						sx={{
+							"& > :not(style)": {ml: 11, width: "52ch" },
+							flexDirection: "column",
+							alignSelf: "center",
+						}}
+						noValidate
+						autoComplete="off"
 					>
 						<TextField
 							id="outlined-basic"
 							label="username"
 							variant="filled"
 							margin="normal"
-							fullWidth="300 px"
 							size="small"
 							sx={{
 								input: {
@@ -107,7 +103,6 @@ function Register() {
 							label="email"
 							variant="filled"
 							margin="normal"
-							fullWidth="300 px"
 							size="small"
 							sx={{
 								input: {
@@ -120,7 +115,6 @@ function Register() {
 							label="password"
 							variant="filled"
 							margin="normal"
-							fullWidth="300 px"
 							size="small"
 							sx={{
 								input: {
@@ -133,7 +127,6 @@ function Register() {
 							label="phone number"
 							variant="filled"
 							margin="normal"
-							fullWidth="300 px"
 							size="small"
 							sx={{
 								input: {
@@ -146,7 +139,6 @@ function Register() {
 							label="city"
 							variant="filled"
 							margin="normal"
-							fullWidth="300 px"
 							size="small"
 							sx={{
 								input: {
@@ -159,7 +151,6 @@ function Register() {
 							label="address"
 							variant="filled"
 							margin="normal"
-							fullWidth="300 px"
 							size="small"
 							sx={{
 								input: {
@@ -167,15 +158,15 @@ function Register() {
 								},
 							}}
 						/>
-					</div>
+					</Box>
 					<Button
 						style={{
 							backgroundColor: "#FEE2E2",
 							color: "#B91C1C",
 							fontWeight: "bold",
-							border: "1px solid blue",
+							border: "1px",
 							borderColor: "#FEE2E2",
-							marginTop: 10,
+							marginTop: "20px",
 						}}
 					>
 						Create Account

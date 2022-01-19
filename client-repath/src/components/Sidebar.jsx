@@ -53,16 +53,7 @@ function Sidebar() {
             </Button>{' '}
           </div>
 
-          {/* <Button variant="outline-light" style={{ border: '0px', marginTop: '5px' }}>
-                    <HomeIcon style={{ marginRight: '10px' }} />Home</Button>{' '}
-                <Button variant="outline-light" style={{ border: '0px', marginTop: '100px' }}>
-                    <AccountCircleIcon style={{ marginRight: '10px' }} /> Profile</Button>{' '}
-                <Button variant="outline-light" style={{ border: '0px', marginTop: '10px' }}>
-                    <GroupIcon style={{ marginRight: '10px' }} /> Friend List</Button>{' '}
-                <Button variant="outline-light" style={{ border: '0px', marginTop: '10px' }}>
-                    <PersonAddIcon style={{ marginRight: '10px' }} /> Add Friend</Button>{' '}
-                <Button variant="outline-light" style={{ border: '0px', marginTop: '280px' }}>
-                    <LogoutIcon style={{ marginRight: '10px' }} /> Sign Out</Button>{' '} */}
+ 
         </Offcanvas>
       </div>
     </div>
