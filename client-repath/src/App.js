@@ -8,6 +8,7 @@ import Login from './views/Login';
 import Register from './views/Register';
 import FriendListPage from './views/FriendListPage';
 import AddFriendPage from './views/AddFriendPage';
+import PostContent from "./views/PostContent";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/friendlist" element={<FriendListPage />} />
         <Route path="/addfriend" element={<AddFriendPage />} />
+         <Route path="/content" element={<PostContent />} />
       </Routes>
     </div>
   );
