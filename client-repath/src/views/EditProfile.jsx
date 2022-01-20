@@ -49,29 +49,9 @@ function EditProfile() {
 							noValidate
 							autoComplete="off"
 						>
-							<TextField
-								name="firstName"
-								label="first name"
-								variant="filled"
-								size="small"
-								sx={{
-									input: {
-										color: red[50],
-									},
-								}}
-							></TextField>
+							<TextField name="firstName" label="first name" variant="filled" size="small"></TextField>
 
-							<TextField
-								name="lastName"
-								label="last name"
-								variant="filled"
-								size="small"
-								sx={{
-									input: {
-										color: red[50],
-									},
-								}}
-							></TextField>
+							<TextField name="lastName" label="last name" variant="filled" size="small"></TextField>
 							<Box
 								sx={{
 									"& > :not(style)": { width: "52ch" },
@@ -81,92 +61,13 @@ function EditProfile() {
 								noValidate
 								autoComplete="off"
 							>
-								<TextField
-									name="imageUrl"
-									label="profile picture url"
-									variant="filled"
-									margin="normal"
-									size="small"
-									sx={{
-										input: {
-											color: red[50],
-										},
-									}}
-								></TextField>
-								<TextField
-									name="headerUrl"
-									label="header background url"
-									variant="filled"
-									margin="normal"
-									size="small"
-									sx={{
-										input: {
-											color: red[50],
-										},
-									}}
-								></TextField>
-								<TextField
-									name="username"
-									label="username"
-									variant="filled"
-									margin="normal"
-									size="small"
-									sx={{
-										input: {
-											color: red[50],
-										},
-									}}
-								/>
-								<TextField
-									type="email"
-									name="email"
-									label="email"
-									variant="filled"
-									margin="normal"
-									size="small"
-									sx={{
-										input: {
-											color: red[50],
-										},
-									}}
-								/>
-								<TextField
-									name="password"
-									type="password"
-									label="password"
-									variant="filled"
-									margin="normal"
-									size="small"
-									sx={{
-										input: {
-											color: red[50],
-										},
-									}}
-								/>
-								<TextField
-									name="phoneNumber"
-									label="phone number"
-									variant="filled"
-									margin="normal"
-									size="small"
-									sx={{
-										input: {
-											color: red[50],
-										},
-									}}
-								/>
-								<TextField
-									name="city"
-									label="city"
-									variant="filled"
-									margin="normal"
-									size="small"
-									sx={{
-										input: {
-											color: red[50],
-										},
-									}}
-								/>
+								<TextField name="imageUrl" label="profile picture url" variant="filled" margin="normal" size="small"></TextField>
+								<TextField name="headerUrl" label="header background url" variant="filled" margin="normal" size="small"></TextField>
+								<TextField name="username" label="username" variant="filled" margin="normal" size="small" />
+								<TextField type="email" name="email" label="email" variant="filled" margin="normal" size="small" />
+								<TextField name="password" type="password" label="password" variant="filled" margin="normal" size="small" />
+								<TextField name="phoneNumber" label="phone number" variant="filled" margin="normal" size="small" />
+								<TextField name="city" label="city" variant="filled" margin="normal" size="small" />
 							</Box>
 							<Button
 								variant="contained"
