@@ -7,7 +7,7 @@ import CardLikedPost from './CardLikedPost';
 import CardCommentPost from './CardCommentPost';
 import ModalComment from './componentsChild/ModalComment';
 
-function CardMusic() {
+function CardMusic(props) {
   return (
     <>
       <Card style={{ border: '0px' }}>
@@ -24,14 +24,14 @@ function CardMusic() {
             <div className="card-right-side d-flex flex-row ">
               <div className="content-text" style={{ width: '250px', textAlign: 'left' }}>
                 <div className="song-title">
-                  Listening to Grenade by <span className="fw-bold"> Bruno Mars</span>
+                  Listening to {props.post.title} by <span className="fw-bold"> {props.post.artist}</span>
                 </div>
-                <div className="album-title">Album Song - Sigle, 2016</div>
+                <div className="album-title">{props.post.albumName}</div>
                 <CardLikedPost />
                 <CardCommentPost />
               </div>
               <div className="content-image-album d-flex flex-row" style={{ width: '200px' }}>
-                <Avatar alt="Bruno Mars" src="https://upload.wikimedia.org/wikipedia/en/thumb/3/36/BrunoMarsGrenade.jpg/220px-BrunoMarsGrenade.jpg" sx={{ width: 60, height: 60 }} variant="rounded"></Avatar>
+                <Avatar alt={props.post.artist} src={props.post.imageAlbum} sx={{ width: 60, height: 60 }} variant="rounded"></Avatar>
                 <div style={{ paddingTop: '3px', marginLeft: '25px' }}>
                   <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />
                 </div>

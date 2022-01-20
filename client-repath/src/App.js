@@ -7,10 +7,12 @@ import { AuthGuardHome, AuthGuardLogin } from './routes/AuthGuard'
 import Home from './views/Home';
 import Login from './views/Login';
 import Register from './views/Register';
-import FriendListPage from './views/FriendListPage';
-import AddFriendPage from './views/AddFriendPage';
+import EditProfile from './views/EditProfile';
+import FollowingPage from './views/FollowingPage';
+import SearchPeoplePage from './views/SearchPeoplePage';
 import PostContent from "./views/PostContent";
 import PostSearchMusic from "./views/PostSearchMusic";
+import PostSearchLocation from "./views/PostSearchLocation";
 
 
 function App() {
@@ -24,6 +26,7 @@ function App() {
         <Route path="/addfriend" element={<AuthGuardLogin> <AddFriendPage /> </AuthGuardLogin>} />
         <Route path="/content" element={<AuthGuardLogin> <PostContent /> </AuthGuardLogin>} />
         <Route path="/music" element={<AuthGuardLogin> <PostSearchMusic /> </AuthGuardLogin>} />
+
       </Routes>
     </div>
   );

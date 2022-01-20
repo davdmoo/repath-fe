@@ -7,7 +7,7 @@ import CardLikedPost from './CardLikedPost';
 import CardCommentPost from './CardCommentPost';
 import ModalComment from './componentsChild/ModalComment';
 
-function CardLocation() {
+function CardLocation(props) {
   return (
     <>
       <Card style={{ border: '0px' }}>
@@ -24,7 +24,7 @@ function CardLocation() {
             <div className="card-right-side d-flex flex-row">
               <div className="content-text" style={{ width: '250px', textAlign: 'left' }}>
                 <div className="location-title">
-                  Arrived in <span className="fw-bold">Bandung</span>
+                  Arrived in <span className="fw-bold">{props.post.location}</span>
                 </div>
                 <CardLikedPost />
                 <CardCommentPost />
