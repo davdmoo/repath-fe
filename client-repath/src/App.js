@@ -12,6 +12,7 @@ import AddFriendPage from './views/AddFriendPage';
 import PostContent from "./views/PostContent";
 import PostSearchMusic from "./views/PostSearchMusic";
 
+
 function App() {
   return (
     <div className="App">
