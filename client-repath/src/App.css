@@ -1,345 +1,351 @@
 html {
-  display: flex;
-  justify-content: center;
-  overflow: scroll;
+	display: flex;
+	justify-content: center;
+	overflow: scroll;
 }
 
 .App {
-  text-align: center;
-  width: 640px;
-  background-color: #fef2f2;
+	text-align: center;
+	width: 640px;
+	background-color: #fef2f2;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+	height: 40vmin;
+	pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 /* HEADER */
 
 .dot-header {
-  height: 15px;
-  width: 15px;
-  background-color: #9ca3af;
-  border-radius: 50%;
-  border: 1px solid white;
-  display: inline-block;
-  margin-right: 372px;
-  margin-top: 10px;
+	height: 15px;
+	width: 15px;
+	background-color: #9ca3af;
+	border-radius: 50%;
+	border: 1px solid white;
+	display: inline-block;
+	margin-right: 372px;
+	margin-top: 10px;
 }
 
 .vl-header {
-  border-left: 2px solid #9ca3af;
-  height: 25px;
-  position: relative;
-  bottom: 6px;
-  left: 133px;
+	border-left: 2px solid #9ca3af;
+	height: 25px;
+	position: relative;
+	bottom: 6px;
+	left: 133px;
 }
 
 /* CARD-MUSIC */
 .card-container {
-  display: flex;
-  border-bottom: 2px solid #e5e7eb;
+	display: flex;
+	border-bottom: 2px solid #e5e7eb;
 }
 
 .card-left-side {
-  width: 135px;
-  border-right: 2px solid #9ca3af;
+	width: 135px;
+	border-right: 2px solid #9ca3af;
 }
 
 .card-right-side {
-  margin: 10px 0px 10px 30px;
-  width: 475px;
+	margin: 10px 0px 10px 30px;
+	width: 475px;
 }
 
 .avatar-card {
-  margin: 15px 0px 10px 30px;
+	margin: 15px 0px 10px 30px;
 }
 
 .content-text {
-  width: 250px;
-  text-align: left;
+	width: 250px;
+	text-align: left;
 }
 
 .album-title {
-  color: #9ca3af;
-  font-size: 15px;
+	color: #9ca3af;
+	font-size: 15px;
 }
 
 .content-image-album {
-  padding-top: 10px;
+	padding-top: 10px;
 }
 
 .rounded-likes {
-  border-radius: 30px;
-  border: 1px solid #9ca3af;
-  width: 60px;
-  height: 42px;
-  margin-left: 30px;
-  margin-top: 5px;
+	border-radius: 30px;
+	border: 1px solid #9ca3af;
+	width: 60px;
+	height: 42px;
+	margin-left: 30px;
+	margin-top: 5px;
 }
 
 .dot-card-music {
-  height: 35px;
-  width: 35px;
-  background-color: #eab308;
-  border-radius: 50%;
-  border: 2px solid white;
-  display: inline-block;
-  position: relative;
-  left: 38px;
-  top: 25px;
+	height: 35px;
+	width: 35px;
+	background-color: #eab308;
+	border-radius: 50%;
+	border: 2px solid white;
+	display: inline-block;
+	position: relative;
+	left: 38px;
+	top: 25px;
 }
 
 /* CARD-LOCATION */
 .dot-card-location {
-  height: 35px;
-  width: 35px;
-  background-color: #22c55e;
-  border-radius: 50%;
-  border: 2px solid white;
-  display: inline-block;
-  position: relative;
-  left: 38px;
-  top: 18px;
+	height: 35px;
+	width: 35px;
+	background-color: #22c55e;
+	border-radius: 50%;
+	border: 2px solid white;
+	display: inline-block;
+	position: relative;
+	left: 38px;
+	top: 18px;
 }
 
 .location-title {
-  padding-top: 13px;
+	padding-top: 13px;
 }
 
 .rounded-likes-location {
-  border-radius: 30px;
-  border: 1px solid #9ca3af;
-  width: 60px;
-  height: 42px;
-  margin-left: 90px;
-  margin-top: 6px;
+	border-radius: 30px;
+	border: 1px solid #9ca3af;
+	width: 60px;
+	height: 42px;
+	margin-left: 90px;
+	margin-top: 6px;
 }
 
 .content-location {
-  margin-left: 85px;
+	margin-left: 85px;
 }
 
 /* CARD-POST-IMAGE */
 .avatar-card-textImage {
-  margin: 15px 0px 10px 10px;
+	margin: 15px 0px 10px 10px;
 }
 
 .rounded-likes-textImage {
-  border-radius: 30px;
-  border: 1px solid #9ca3af;
-  width: 60px;
-  height: 42px;
-  margin-left: 5px;
-  margin-top: 20px;
+	border-radius: 30px;
+	border: 1px solid #9ca3af;
+	width: 60px;
+	height: 42px;
+	margin-left: 5px;
+	margin-top: 20px;
 }
 
 .content-text-button {
-  width: 130px;
-  height: 50px;
+	width: 130px;
+	height: 50px;
 }
 
 .postText-description {
-  margin-left: 10px;
-  margin-top: 10px;
-  padding-right: 10px;
+	margin-left: 10px;
+	margin-top: 10px;
+	padding-right: 10px;
 }
 
 .postText-container {
-  width: 350px;
-  text-align: left;
-  background-color: white;
-  border-radius: 10px;
-  margin-top: 10px;
+	width: 350px;
+	text-align: left;
+	background-color: white;
+	border-radius: 10px;
+	margin-top: 10px;
 }
 
 .content-text {
-  width: 470px;
-  text-align: left;
+	width: 470px;
+	text-align: left;
 }
 
 .dot-card-textImage {
-  height: 35px;
-  width: 35px;
-  background-color: #e11d48;
-  border-radius: 50%;
-  border: 2px solid white;
-  display: inline-block;
-  position: relative;
-  left: 117px;
-  top: 18px;
+	height: 35px;
+	width: 35px;
+	background-color: #e11d48;
+	border-radius: 50%;
+	border: 2px solid white;
+	display: inline-block;
+	position: relative;
+	left: 117px;
+	top: 18px;
 }
 
 /* LIKES CARD ON POST */
 .likes-section {
-  width: 330px;
-  text-align: left;
-  background-color: white;
-  border-radius: 10px;
-  margin-top: 10px;
-  padding-left: 10px;
+	width: 330px;
+	text-align: left;
+	background-color: white;
+	border-radius: 10px;
+	margin-top: 10px;
+	padding-left: 10px;
 }
 
 .avatar-card-likes-section {
-  margin: 10px 5px 10px 0px;
+	margin: 10px 5px 10px 0px;
 }
 
 /* COMMENT CARD ON POST */
 .comment-card-container {
-  width: 330px;
-  text-align: left;
-  background-color: white;
-  border-radius: 10px;
-  margin-top: 10px;
+	width: 330px;
+	text-align: left;
+	background-color: white;
+	border-radius: 10px;
+	margin-top: 10px;
 }
 
 .comment-section-description {
-  margin-left: 10px;
-  margin-top: 10px;
-  padding-right: 10px;
+	margin-left: 10px;
+	margin-top: 10px;
+	padding-right: 10px;
 }
 
 /* FRIENDLIST */
 .card-container-friendlist {
-  display: flex;
-  border-bottom: 2px solid #e5e7eb;
+	display: flex;
+	border-bottom: 2px solid #e5e7eb;
 }
 
 .card-container-friendlist:hover {
-  display: flex;
-  border-bottom: 2px solid #e5e7eb;
-  background-color: #fca5a5;
-  color: white !important;
+	display: flex;
+	border-bottom: 2px solid #e5e7eb;
+	background-color: #fca5a5;
+	color: white !important;
 }
 
 .content-friendlist {
-  width: 470px;
-  text-align: left;
+	width: 470px;
+	text-align: left;
 }
 
 .friendlist-name {
-  /* font-weight: bold; */
-  font-size: 30px;
+	/* font-weight: bold; */
+	font-size: 30px;
 }
 
 .friendlist-city {
-  font-size: 20px;
-  color: #6b7280;
+	font-size: 20px;
+	color: #6b7280;
 }
 
 .card-left-side-friendlist {
-  width: 115px;
-  /* border-right: 2px solid #9ca3af; */
+	width: 115px;
+	/* border-right: 2px solid #9ca3af; */
 }
 
 /* ADD FRIEND */
 .card-container-addfriend {
-  display: flex;
-  border-bottom: 2px solid #e5e7eb;
+	display: flex;
+	border-bottom: 2px solid #e5e7eb;
 }
 
 .content-addfriend {
-  /* width: 470px; */
-  text-align: left;
+	/* width: 470px; */
+	text-align: left;
 }
 
 .addfriend-name {
-  /* font-weight: bold; */
-  font-size: 30px;
-  padding-top: 10px;
+	/* font-weight: bold; */
+	font-size: 30px;
+	padding-top: 10px;
 }
 
 .addfriend-city {
-  font-size: 20px;
-  color: #6b7280;
+	font-size: 20px;
+	color: #6b7280;
 }
 
 .card-left-side-addfriend {
-  width: 115px;
-  /* border-right: 2px solid #9ca3af; */
+	width: 115px;
+	/* border-right: 2px solid #9ca3af; */
 }
 
 /* NAVBAR */
 .navbar {
-  background-color: #dc2626;
+	background-color: #dc2626;
 }
 
 .MuiFormLabel-root.Mui-focused {
-  color: white !important;
+	color: white !important;
 }
 .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-  border-color: white !important;
+	border-color: white !important;
 }
 
 .MuiInput-underline:after {
-  border-bottom-color: white;
+	border-bottom-color: white;
 }
 
 /* Card Search Music */
 .card-container-search-music {
-  display: flex;
-  border-bottom: 2px solid #e5e7eb;
+	display: flex;
+	border-bottom: 2px solid #e5e7eb;
 }
 
 .card-container-search-music:hover {
-  display: flex;
-  border-bottom: 2px solid #e5e7eb;
-  background-color: #e5e7eb;
-  color: black !important;
+	display: flex;
+	border-bottom: 2px solid #e5e7eb;
+	background-color: #e5e7eb;
+	color: black !important;
 }
 
 .content-search-music {
-  width: 470px;
-  text-align: left;
+	width: 470px;
+	text-align: left;
 }
 
 .search-music-title {
-  margin-bottom: -6px;
-  font-size: 30px;
+	margin-bottom: -6px;
+	font-size: 30px;
 }
 
 .search-music-artist {
-  font-size: 20px;
-  color: #6b7280;
+	font-size: 20px;
+	color: #6b7280;
 }
 
 .search-music-albums {
-  font-size: 15px;
-  color: #94a3b8;
+	font-size: 15px;
+	color: #94a3b8;
 }
 
 .card-left-side-search-music {
-  width: 115px;
-  /* border-right: 2px solid #9ca3af; */
+	width: 115px;
+	/* border-right: 2px solid #9ca3af; */
+}
+
+/* EditProfile */
+.edit-profile-container {
+	flex: 1;
+	flex-direction: "column";
 }

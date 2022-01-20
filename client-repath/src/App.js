@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './views/Home';
 import Login from './views/Login';
 import Register from './views/Register';
+import EditProfile from './views/EditProfile';
 import FriendListPage from './views/FriendListPage';
 import AddFriendPage from './views/AddFriendPage';
 import PostContent from "./views/PostContent";
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<EditProfile />} />
         <Route path="/friendlist" element={<FriendListPage />} />
         <Route path="/addfriend" element={<AddFriendPage />} />
         <Route path="/content" element={<PostContent />} />
