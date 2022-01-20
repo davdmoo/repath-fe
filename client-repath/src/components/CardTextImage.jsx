@@ -7,7 +7,7 @@ import CardLikedPost from './CardLikedPost';
 import CardCommentPost from './CardCommentPost';
 import ModalComment from './componentsChild/ModalComment';
 
-function CardTextImage() {
+function CardTextImage(props) {
   return (
     <>
       <Card style={{ border: '0px' }}>
@@ -21,16 +21,20 @@ function CardTextImage() {
               </div>
             </div>
             <div className="card-right-side d-flex flex-column">
-              <div
-                style={{
-                  height: '250px',
-                  backgroundImage: "url('https://media.istockphoto.com/photos/chinese-millenials-woman-writing-on-her-journal-picture-id1298365824?b=1&k=20&m=1298365824&s=170667a&w=0&h=BapKFTaHPSvHtarx0osGVR1kYV0EtbqS81obxcuQ_nM=')",
-                  backgroundRepeat: 'no-repeat',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  marginRight: '20px',
-                }}
-              ></div>
+              {props.post.imgUrl ? (
+                <div
+                  style={{
+                    height: '250px',
+                    backgroundImage: `url(${props.post.imgUrl})`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    marginRight: '20px',
+                  }}
+                ></div>
+              ) : (
+                <div></div>
+              )}
               <div className="content-section-wrapper d-flex flex-column">
                 <div className="content-text d-flex flex-row">
                   <div className="postText-container d-flex flex-row">
@@ -39,7 +43,8 @@ function CardTextImage() {
                     </div>
                     <div className="postText-description d-flex justify-content-center ">
                       <p className="postText-padding">
-                        <span className="fw-bold">Lila: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sagittis porta aliquam. Aenean pretium luctus.
+                        <span className="fw-bold">Lila: </span>
+                        {props.post.text}
                       </p>
                     </div>
                   </div>
