@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Offcanvas } from "react-bootstrap";
@@ -10,6 +11,7 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ListIcon from "@mui/icons-material/List";
 import { red } from "@mui/material/colors";
+
 
 function Sidebar() {
 	const [show, setShow] = useState(false);
@@ -32,9 +34,18 @@ function Sidebar() {
 		navigate("/login");
 	};
 
-	return (
-		<div role="button">
-			<ListIcon style={{ width: "45px", height: "45px" }} sx={{ color: red[50] }} onClick={handleShow} />
+
+  const navigate = useNavigate()
+
+  const doLogout = () => {
+    localStorage.clear();
+    navigate('/login')
+  }
+
+  return (
+    <div>
+      <ListIcon style={{ width: '45px', height: '45px' }} sx={{ color: red[50] }} onClick={handleShow} />
+
 
 			<div className="sidebar-container d-flex">
 				<Offcanvas style={{ marginLeft: "350px", width: "260px", background: "#dc2626" }} show={show} onHide={handleClose}>
@@ -48,6 +59,7 @@ function Sidebar() {
 							</div>
 						</Offcanvas.Header>
 					</div>
+
 
 					<div className="main-sidebar d-flex flex-column" style={{ height: "75vh" }}>
 						<Button
@@ -98,7 +110,7 @@ function Sidebar() {
 							style={{ border: "0px" }}
 							onClick={(e) => {
 								e.preventDefault();
-								toLogin();
+								doLogout()
 							}}
 						>
 							<LogoutIcon style={{ marginRight: "10px" }} /> Sign Out

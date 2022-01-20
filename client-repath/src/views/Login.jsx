@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import { red } from '@mui/material/colors';
 import { setLogin } from '../store/actionCreators/userCreator';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
   const [loginForm, setLoginForm] = useState({
@@ -21,14 +22,16 @@ function Login() {
     });
   };
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const doLogin = () => {
-    console.log('GO TO LOGIN <<<<<<<<<<<<<<<<<<<<<<');
-
-    dispatch(setLogin(loginForm)).then(() => {
-      console.log('BACK TO LOGIN AFTER RESOLVE <<<<<<<<<<<<<<<<<<<<<<');
-    });
+    // console.log('GO TO LOGIN <<<<<<<<<<<<<<<<<<<<<<');
+    dispatch(setLogin(loginForm))
+      .then(() => {
+        console.log('BACK TO LOGIN AFTER RESOLVE <<<<<<<<<<<<<<<<<<<<<<');
+        navigate('/')
+      });
     //   .catch((err) => {
     // 	console.log(err);
     // 	if (err == 'Error: Bad Request') {
@@ -72,93 +75,103 @@ function Login() {
             Share your wonderful moments with us
           </p>
         </div>
-        <Box
-          component="form"
-          sx={{
-            '& > :not(style)': { m: 1, width: '52ch', mb: 3 },
-            defaultValue: {
-              color: red[50],
-            },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <TextField
-            name="email"
-            onChange={changeLoginFormInput}
-            label="email"
-            variant="filled"
-            margin="normal"
-            sx={{
-              input: {
-                color: red[50],
-              },
-            }}
-          ></TextField>
-
-          <TextField
-            name="password"
-            onChange={changeLoginFormInput}
-            type="password"
-            label="password"
-            variant="filled"
-            margin="normal"
-            sx={{
-              input: {
-                color: red[50],
-              },
-            }}
-          />
-        </Box>
-        <Button
-          style={{
-            backgroundColor: '#FEE2E2',
-            color: '#B91C1C',
-            fontWeight: 'bold',
-            border: '1px solid blue',
-            borderColor: '#FEE2E2',
-            width: 230,
-          }}
-          onClick={(el) => {
+        <form
+          onSubmit={(el) => {
             el.preventDefault();
             doLogin();
-            // console.log(loginForm);
           }}
         >
-          Login
-        </Button>
-        <div
-          style={{
-            marginTop: 10,
-          }}
-        >
-          <p
-            style={{
-              color: '#f5f5f5',
-              fontWeight: 'bold',
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '52ch', mb: 3 },
+              defaultValue: {
+                color: red[50],
+              },
             }}
+            noValidate
+            autoComplete="off"
           >
-            Doesn’t have an account yet ?
-          </p>
-        </div>
-        <div
-          style={{
-            marginTop: 20,
-          }}
-        >
+            <TextField
+              name="email"
+              value={loginForm.email}
+              onChange={changeLoginFormInput}
+              label="email"
+              variant="filled"
+              margin="normal"
+              sx={{
+                input: {
+                  color: red[50],
+                },
+              }}
+            ></TextField>
+
+            <TextField
+              name="password"
+              value={loginForm.password}
+              onChange={changeLoginFormInput}
+              type="password"
+              label="password"
+              variant="filled"
+              margin="normal"
+              sx={{
+                input: {
+                  color: red[50],
+                },
+              }}
+            />
+          </Box>
           <Button
-            variant="outline-light"
             style={{
-              backgroundColor: '#DC2626',
-              outlineColor: '#ffffff',
-              color: '#ffffff',
+              backgroundColor: '#FEE2E2',
+              color: '#B91C1C',
               fontWeight: 'bold',
+              border: '1px solid blue',
+              borderColor: '#FEE2E2',
               width: 230,
             }}
+            type='submit'
+            value='Submit'
+          // onClick={(el) => {
+          //   el.preventDefault();
+          //   doLogin();
+          // }}
           >
-            Register
+            Login
           </Button>
-        </div>
+          <div
+            style={{
+              marginTop: 10,
+            }}
+          >
+            <p
+              style={{
+                color: '#f5f5f5',
+                fontWeight: 'bold',
+              }}
+            >
+              Doesn’t have an account yet ?
+            </p>
+          </div>
+          <div
+            style={{
+              marginTop: 20,
+            }}
+          >
+            <Button
+              variant="outline-light"
+              style={{
+                backgroundColor: '#DC2626',
+                outlineColor: '#ffffff',
+                color: '#ffffff',
+                fontWeight: 'bold',
+                width: 230,
+              }}
+            >
+              Register
+            </Button>
+          </div>
+        </form>
       </div>
     </>
   );
