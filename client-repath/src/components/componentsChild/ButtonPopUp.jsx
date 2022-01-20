@@ -14,6 +14,9 @@ function ButtonPopUp() {
 	const toAddMusicPage = () => {
 		navigate("/music");
 	};
+	const toAddLocationPage = () => {
+		navigate("/location");
+	};
 	return (
 		// <div className='position-fixed'>
 		<nav className="menu ">
@@ -32,7 +35,14 @@ function ButtonPopUp() {
 			>
 				<ChatBubbleIcon sx={{ width: 35, height: 35 }} />{" "}
 			</a>
-			<a href="#" className="menu-item red">
+			<a
+				href="#"
+				className="menu-item red"
+				onClick={(e) => {
+					e.preventDefault();
+					toAddLocationPage();
+				}}
+			>
 				<LocationOnIcon sx={{ width: 35, height: 35 }} />
 			</a>
 			<a
