@@ -1,39 +1,32 @@
-import {
-  LOADING_USER,
-  ERROR_USER,
-  SUCCESS_LOGIN
-} from '../actionTypes';
+import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN } from '../actionTypes';
 
 const baseUrl = 'http://localhost:3000';
 
 export const loadingUser = (payload) => {
   return {
     type: LOADING_USER,
-    payload
-  }
-}
+    payload,
+  };
+};
 
 export const errorUser = (payload) => {
   return {
     type: ERROR_USER,
-    payload
-  }
-}
+    payload,
+  };
+};
 
 export const afterLogin = () => {
   return {
-    type: SUCCESS_LOGIN
-  }
-}
-
+    type: SUCCESS_LOGIN,
+  };
+};
 
 // =========================== LOGIN USER ===========================
 
 export const setLogin = (payload) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      console.log('LOGIN ON CREATORS <<<<<<<<<<<<<<<<<<<<<<');
-      resolve();
       // dispatch(loadingUser(true));
       // dispatch(errorUser(null));
       fetch(`${baseUrl}/users/login`, {
@@ -52,6 +45,7 @@ export const setLogin = (payload) => {
           }
         })
         .then((data) => {
+          console.log(data.access_token, 'INI ACCESS TOKEN DI CREATOR');
           if (data.access_token) {
             localStorage.setItem('access_token', data.access_token);
             resolve();
