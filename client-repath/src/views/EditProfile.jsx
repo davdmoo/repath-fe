@@ -10,7 +10,7 @@ import { red } from "@mui/material/colors";
 function EditProfile() {
 	return (
 		<>
-			<div style={{ height: "125vh" }}>
+			<div style={{ height: "100vh" }}>
 				<NavbarContent />
 				<Stack spacing={1} className="edit-profile-container">
 					<div
@@ -37,7 +37,7 @@ function EditProfile() {
 						className="edit-profile-field"
 						style={{
 							marginTop: "20px",
-							height: "90vh",
+							height: "60vh",
 						}}
 					>
 						<Box
@@ -64,8 +64,6 @@ function EditProfile() {
 								<TextField name="imageUrl" label="profile picture url" variant="filled" margin="normal" size="small"></TextField>
 								<TextField name="headerUrl" label="header background url" variant="filled" margin="normal" size="small"></TextField>
 								<TextField name="username" label="username" variant="filled" margin="normal" size="small" />
-								<TextField type="email" name="email" label="email" variant="filled" margin="normal" size="small" />
-								<TextField name="password" type="password" label="password" variant="filled" margin="normal" size="small" />
 								<TextField name="phoneNumber" label="phone number" variant="filled" margin="normal" size="small" />
 								<TextField name="city" label="city" variant="filled" margin="normal" size="small" />
 							</Box>
