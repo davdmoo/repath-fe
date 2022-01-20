@@ -341,11 +341,59 @@ html {
 
 .card-left-side-search-music {
 	width: 115px;
-	/* border-right: 2px solid #9ca3af; */
 }
 
 /* EditProfile */
 .edit-profile-container {
 	flex: 1;
 	flex-direction: "column";
+}
+
+/* Card Search Location */
+.card-container-search-location {
+	display: flex;
+	border-bottom: 2px solid #e5e7eb;
+}
+
+.card-container-search-location:hover {
+	display: flex;
+	border-bottom: 2px solid #e5e7eb;
+	background-color: #e5e7eb;
+	color: black !important;
+}
+
+.content-search-location {
+	width: 470px;
+	text-align: left;
+}
+
+.search-location-city {
+	font-size: 25px;
+}
+
+.search-location-province {
+	font-size: 20px;
+	color: #6b7280;
+}
+
+.search-location-country {
+	font-size: 18px;
+	color: #6b7280;
+}
+
+.dot-card-search-location {
+	height: 55px;
+	width: 55px;
+	background-color: #22c55e;
+	border-radius: 50%;
+	border: 3px solid white;
+	display: inline-block;
+	position: relative;
+	margin-left: 15px;
+	left: 15px;
+	top: 28px;
+}
+
+.card-left-side-search-location {
+	width: 115px;
 }

@@ -22,18 +22,18 @@ function Sidebar() {
 	const toEditProfile = () => {
 		navigate("/profile");
 	};
-	const toFriendlist = () => {
-		navigate("/friendlist");
+	const toFollowing = () => {
+		navigate("/following");
 	};
-	const toAddfriend = () => {
-		navigate("/addfriend");
+	const toSearchPeople = () => {
+		navigate("/search-people");
 	};
 	const toLogin = () => {
 		navigate("/login");
 	};
 
 	return (
-		<div>
+		<div role="button">
 			<ListIcon style={{ width: "45px", height: "45px" }} sx={{ color: red[50] }} onClick={handleShow} />
 
 			<div className="sidebar-container d-flex">
@@ -76,20 +76,20 @@ function Sidebar() {
 							style={{ border: "0px" }}
 							onClick={(e) => {
 								e.preventDefault();
-								toFriendlist();
+								toFollowing();
 							}}
 						>
-							<GroupIcon style={{ marginRight: "10px" }} /> Friend List
+							<GroupIcon style={{ marginRight: "10px" }} /> Following
 						</Button>{" "}
 						<Button
 							variant="outline-light"
 							style={{ border: "0px" }}
 							onClick={(e) => {
 								e.preventDefault();
-								toAddfriend();
+								toSearchPeople();
 							}}
 						>
-							<PersonAddIcon style={{ marginRight: "10px" }} /> Add Friend
+							<PersonAddIcon style={{ marginRight: "10px" }} /> Search People
 						</Button>{" "}
 					</div>
 					<div className="footer-sidebar d-flex flex-column" style={{ height: "10vh" }}>

@@ -5,7 +5,7 @@ import { Card } from 'react-bootstrap';
 import { PersonAdd } from '@mui/icons-material/';
 import { blue } from '@mui/material/colors';
 
-function CardAddFriend() {
+function CardAddPeople() {
   return (
     <>
       <Card style={{ border: '0px' }}>
@@ -33,4 +33,4 @@ function CardAddFriend() {
   );
 }
 
-export default CardAddFriend;
+export default CardAddPeople;
