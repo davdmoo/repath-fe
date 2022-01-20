@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Offcanvas } from 'react-bootstrap';
 import { Button, Badge } from 'react-bootstrap';
 import Avatar from '@mui/material/Avatar';
@@ -10,10 +12,18 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ListIcon from '@mui/icons-material/List';
 import { red } from '@mui/material/colors';
 
+
 function Sidebar() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const navigate = useNavigate()
+
+  const doLogout = () => {
+    localStorage.clear();
+    navigate('/login')
+  }
 
   return (
     <div>
@@ -48,13 +58,15 @@ function Sidebar() {
             </Button>{' '}
           </div>
           <div className="footer-sidebar d-flex flex-column" style={{ height: '10vh' }}>
-            <Button variant="outline-light" style={{ border: '0px' }}>
+
+            <Button onClick={(e) => {
+              e.preventDefault()
+              doLogout()
+            }}
+              variant="outline-light" style={{ border: '0px' }}>
               <LogoutIcon style={{ marginRight: '10px' }} /> Sign Out
             </Button>{' '}
           </div>
-
-
- 
 
         </Offcanvas>
       </div>

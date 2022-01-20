@@ -5,24 +5,27 @@ import { Button } from 'react-bootstrap';
 import { red } from '@mui/material/colors';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRegister } from '../store/actionCreators/userCreator';
+import { useNavigate } from 'react-router-dom'
 
 function Register() {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const [registerForm, setRegisterForm] = useState({
     firstName: '',
     lastName: '',
     username: '',
-    email: 'admin',
+    email: '',
     password: '',
     phoneNumber: '',
     city: '',
-    address: '',
+    // address: '',
   });
 
   const changeRegisterFormInput = (e) => {
     const value = e.target.value;
     const field = e.target.name;
+    // console.log('form input<<<<<<');
     setRegisterForm({
       ...registerForm,
       [field]: value,
@@ -30,9 +33,10 @@ function Register() {
   };
 
   const toRegister = () => {
-    console.log('GO TO REGISTER <<<<<<<<<<<<<<<<<<<<<<');
+    // console.log('GO TO REGISTER <<<<<<<<<<<<<<<<<<<<<<');
     dispatch(setRegister(registerForm)).then(() => {
-      console.log('BACK TO REGISTER AFTER RESOLVE <<<<<<<<<<<<<<<<<<<<<<');
+      // console.log(setRegister, 'BACK TO REGISTER AFTER RESOLVE <<<<<<<<<<<<<<<<<<<<<<');
+      navigate('/login')
     });
   };
 
@@ -71,47 +75,16 @@ function Register() {
             Register Account
           </p>
         </div>
-        <Box
-          //   component="form"
-          sx={{
-            '& > :not(style)': { m: 1, width: '25ch' },
-            flexDirection: 'column',
-            alignSelf: 'center',
+        <form
+          onSubmit={(el) => {
+            el.preventDefault();
+            toRegister();
           }}
-          noValidate
-          autoComplete="off"
         >
-          <TextField
-            name="firstName"
-            onChange={changeRegisterFormInput}
-            label="first name"
-            variant="filled"
-            // margin="normal"
-            size="small"
-            sx={{
-              input: {
-                color: red[50],
-              },
-            }}
-          ></TextField>
-
-          <TextField
-            name="lastName"
-            onChange={changeRegisterFormInput}
-            label="last name"
-            variant="filled"
-            // margin="normal"
-            size="small"
-            sx={{
-              input: {
-                color: red[50],
-              },
-            }}
-          ></TextField>
           <Box
-            // component="form"
+            //   component="form"
             sx={{
-              '& > :not(style)': { ml: 11, width: '52ch' },
+              '& > :not(style)': { m: 1, width: '25ch' },
               flexDirection: 'column',
               alignSelf: 'center',
             }}
@@ -119,73 +92,117 @@ function Register() {
             autoComplete="off"
           >
             <TextField
-              name="username"
+              name="firstName"
+              value={registerForm.firstName}
               onChange={changeRegisterFormInput}
-              label="username"
+              label="first name"
               variant="filled"
-              margin="normal"
+              // margin="normal"
               size="small"
               sx={{
                 input: {
                   color: red[50],
                 },
               }}
-            />
+            ></TextField>
+
             <TextField
-              type="email"
-              name="email"
+              name="lastName"
+              value={registerForm.lastName}
               onChange={changeRegisterFormInput}
-              label="email"
+              label="last name"
               variant="filled"
-              margin="normal"
+              // margin="normal"
               size="small"
               sx={{
                 input: {
                   color: red[50],
                 },
               }}
-            />
-            <TextField
-              name="password"
-              onChange={changeRegisterFormInput}
-              type="password"
-              label="password"
-              variant="filled"
-              margin="normal"
-              size="small"
+            ></TextField>
+            <Box
+              // component="form"
               sx={{
-                input: {
-                  color: red[50],
-                },
+                '& > :not(style)': { ml: 11, width: '52ch' },
+                flexDirection: 'column',
+                alignSelf: 'center',
               }}
-            />
-            <TextField
-              name="phoneNumber"
-              onChange={changeRegisterFormInput}
-              label="phone number"
-              variant="filled"
-              margin="normal"
-              size="small"
-              sx={{
-                input: {
-                  color: red[50],
-                },
-              }}
-            />
-            <TextField
-              name="city"
-              onChange={changeRegisterFormInput}
-              label="city"
-              variant="filled"
-              margin="normal"
-              size="small"
-              sx={{
-                input: {
-                  color: red[50],
-                },
-              }}
-            />
-            <TextField
+              noValidate
+              autoComplete="off"
+            >
+              <TextField
+                name="username"
+                value={registerForm.username}
+                onChange={changeRegisterFormInput}
+                label="username"
+                variant="filled"
+                margin="normal"
+                size="small"
+                sx={{
+                  input: {
+                    color: red[50],
+                  },
+                }}
+              />
+              <TextField
+                type="email"
+                name="email"
+                value={registerForm.email}
+                onChange={changeRegisterFormInput}
+                label="email"
+                variant="filled"
+                margin="normal"
+                size="small"
+                sx={{
+                  input: {
+                    color: red[50],
+                  },
+                }}
+              />
+              <TextField
+                name="password"
+                value={registerForm.password}
+                onChange={changeRegisterFormInput}
+                type="password"
+                label="password"
+                variant="filled"
+                margin="normal"
+                size="small"
+                sx={{
+                  input: {
+                    color: red[50],
+                  },
+                }}
+              />
+              <TextField
+                name="phoneNumber"
+                value={registerForm.phoneNumber}
+                onChange={changeRegisterFormInput}
+                label="phone number"
+                variant="filled"
+                margin="normal"
+                size="small"
+                sx={{
+                  input: {
+                    color: red[50],
+                  },
+                }}
+              />
+              <TextField
+                name="city"
+                value={registerForm.city}
+                onChange={changeRegisterFormInput}
+                label="city"
+                variant="filled"
+                margin="normal"
+                size="small"
+                sx={{
+                  input: {
+                    color: red[50],
+                  },
+                }}
+              />
+              {/* <TextField
               name="address"
               onChange={changeRegisterFormInput}
               label="address"
@@ -197,57 +214,60 @@ function Register() {
                   color: red[50],
                 },
               }}
-            />
+            /> */}
+            </Box>
+            <Button
+              type='submit'
+              value='Submit'
+              // onClick={(el) => {
+              //   el.preventDefault();
+              //   toRegister();
+              // }}
+              style={{
+                backgroundColor: '#FEE2E2',
+                color: '#B91C1C',
+                fontWeight: 'bold',
+                border: '1px',
+                borderColor: '#FEE2E2',
+                marginTop: '20px',
+              }}
+            >
+              Create Account
+            </Button>
           </Box>
-          <Button
-            onClick={(el) => {
-              el.preventDefault();
-              toRegister();
-            }}
+          <div
             style={{
-              backgroundColor: '#FEE2E2',
-              color: '#B91C1C',
-              fontWeight: 'bold',
-              border: '1px',
-              borderColor: '#FEE2E2',
-              marginTop: '20px',
+              marginTop: 10,
             }}
           >
-            Create Account
-          </Button>
-        </Box>
-        <div
-          style={{
-            marginTop: 10,
-          }}
-        >
-          <p
+            <p
+              style={{
+                color: '#f5f5f5',
+                fontWeight: 'bold',
+              }}
+            >
+              Have an account ?
+            </p>
+          </div>
+          <div
             style={{
-              color: '#f5f5f5',
-              fontWeight: 'bold',
+              marginTop: 20,
             }}
           >
-            Have an account ?
-          </p>
-        </div>
-        <div
-          style={{
-            marginTop: 20,
-          }}
-        >
-          <Button
-            variant="outline-light"
-            style={{
-              backgroundColor: '#DC2626',
-              outlineColor: '#ffffff',
-              color: '#ffffff',
-              fontWeight: 'bold',
-              width: 230,
-            }}
-          >
-            Back to REGISTER
-          </Button>
-        </div>
+            <Button
+              variant="outline-light"
+              style={{
+                backgroundColor: '#DC2626',
+                outlineColor: '#ffffff',
+                color: '#ffffff',
+                fontWeight: 'bold',
+                width: 230,
+              }}
+            >
+              Back to Login
+            </Button>
+          </div>
+        </form>
       </div>
     </>
   );
