@@ -10,7 +10,9 @@ import { red } from "@mui/material/colors";
 function EditProfile() {
 	return (
 		<>
-			<div style={{ height: "100vh" }}>
+			<div style={{ 
+        height: "100vh" 
+        }}>
 				<NavbarContent />
 				<Stack spacing={1} className="edit-profile-container">
 					<div
