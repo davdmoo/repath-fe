@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import { Avatar, Checkbox, IconButton } from '@mui/material/';
 import { FavoriteBorder, Favorite, LocationOn, Delete, FormatQuote } from '@mui/icons-material/';
@@ -9,18 +9,26 @@ import CardMusic from '../components/CardMusic';
 import CardLocation from '../components/CardLocation';
 import CardTextImage from '../components/CardTextImage';
 import ButtonPopUp from '../components/componentsChild/ButtonPopUp';
+import { fetchPosts } from '../store/actionCreators/postCreator';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Home() {
+  const { posts, postsLoading, postsError } = useSelector((state) => state.postReducer);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, []);
+
   return (
     <>
       <Navbar />
-
       <Header />
-      <CardMusic />
-      <CardLocation />
-      <CardTextImage />
-      {/* <CardLocation /> */}
-      {/* <CardTextImage /> */}
+      {posts.map((post) => {
+        return post.type === 'location' ? <CardLocation key={post._id} post={post} /> : post.type === 'text' ? <CardTextImage key={post._id} post={post} /> : <CardMusic key={post._id} post={post} />;
+        // return <TableRow key={post.id} post={post} />;
+      })}
+
       <ButtonPopUp />
     </>
   );
