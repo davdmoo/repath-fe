@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function Home() {
   const { posts, postsLoading, postsError } = useSelector((state) => state.postReducer);
+  console.log(posts);
 
   const dispatch = useDispatch();
   useEffect(() => {
