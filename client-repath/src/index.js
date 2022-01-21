@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/store';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 ReactDOM.render(
   <React.StrictMode>
