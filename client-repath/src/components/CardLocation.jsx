@@ -30,16 +30,15 @@ function CardLocation(props) {
                 <div className="location-title">
                   Arrived in <span className="fw-bold">{props.post.location}</span>
                 </div>
-                {props.post.likes.length > 0 ? <CardLikedPost /> : <div></div>}
-                {props.post.comments.length > 0 ? (
+                {props.post.likes.length > 0 ? <CardLikedPost key={props.post._id} likes={props.post.likes} /> : <div></div>}
+                {props.post.comments.length > 0 ? <CardCommentPost key={props.post._id} comments={props.post.comments} /> : <div></div>}
+                {/* {props.post.comments.length > 0 ? (
                   props.post.comments.map((comment) => {
                     return <CardCommentPost key={comment._id} comment={comment} />;
                   })
                 ) : (
                   <div></div>
-                )}
-                {/* <CardLikedPost /> */}
-                {/* <CardCommentPost /> */}
+                )} */}
               </div>
               <div className="content-location d-flex flex-row" style={{ width: '200px' }}>
                 <div style={{ paddingTop: '3px' }}>

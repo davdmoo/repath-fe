@@ -3,14 +3,14 @@ import RowCommentSection from './componentsChild/RowCommentSection';
 import { Avatar } from '@mui/material/';
 
 function CardCommentPost(props) {
-  console.log(props.comment, 'PROPS.COMMENT ON COMMENT <<<<<<<<<<<<<');
+  console.log(props.comments, 'PROPS.COMMENT ON COMMENT <<<<<<<<<<<<<');
   return (
     <div className="comment-card-container d-flex flex-column shadow">
-      {/* {props.comment.map((rowComment) => {
+      {props.comments.map((rowComment) => {
         return <RowCommentSection key={rowComment._id} rowComment={rowComment} />;
-      })} */}
+      })}
       {/* <RowCommentSection key={props.comment._id} rowComment={props.comment}/> */}
-      <div className=" d-flex flex-row ">
+      {/* <div className=" d-flex flex-row ">
         <div className="comment-section-pict">
           {props.comment.userId.firstName.imgUrl ? (
             <Avatar className="avatar-card-textImage" alt={props.comment.userId.firstName} src={props.comment.userId.imgUrl} sx={{ width: 40, height: 40 }} variant="rounded"></Avatar>
@@ -24,7 +24,7 @@ function CardCommentPost(props) {
             {props.comment.content}
           </p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
