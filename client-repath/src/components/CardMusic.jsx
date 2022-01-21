@@ -42,25 +42,14 @@ function CardMusic(props) {
                   <div></div>
                 )} */}
 
-                {props.post.comments.length > 0 ? (
+                {props.post.comments.length > 0 ? <CardCommentPost key={props.post._id} comments={props.post.comments} /> : <div></div>}
+                {/* {props.post.comments.length > 0 ? (
                   props.post.comments.map((comment) => {
                     return <CardCommentPost key={comment._id} comment={comment} />;
                   })
                 ) : (
                   <div></div>
-                )}
-
-                {/* {props.post.comments.map((comment) => {
-                  return <CardCommentPost key={comment._id} comment={comment} />;
-                })} */}
-
-                {/* {props.post.comments.map((comment) => {
-                  return post.type === 'location' ? <CardLocation key={comment._id} comment={comment} /> : <div></div>;
-                })} */}
-
-                {/* {posts.map((post) => {
-                  return post.type === 'location' ? <CardLocation key={post._id} post={post} /> : post.type === 'text' ? <CardTextImage key={post._id} post={post} /> : <CardMusic key={post._id} post={post} />;
-                })} */}
+                )} */}
               </div>
               <div className="content-image-album d-flex flex-row" style={{ width: '200px' }}>
                 <Avatar alt={props.post.artist} src={props.post.imageAlbum} sx={{ width: 60, height: 60 }} variant="rounded"></Avatar>
