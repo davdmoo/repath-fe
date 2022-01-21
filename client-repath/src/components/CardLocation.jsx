@@ -14,7 +14,11 @@ function CardLocation(props) {
         <Card.Body style={{ backgroundColor: '#fef2f2', padding: '0px' }}>
           <div className="card-container">
             <div className="card-left-side d-flex">
-              <Avatar className="avatar-card" alt="Zemy Sharp" src="/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+              {props.post.userId.imgUrl ? (
+                <Avatar className="avatar-card" alt="David" src={props.post.userId.imgUrl} sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+              ) : (
+                <Avatar className="avatar-card" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+              )}
               <div>
                 <span className="dot-card-location">
                   <LocationOn sx={{ color: red[50] }} />
@@ -26,8 +30,16 @@ function CardLocation(props) {
                 <div className="location-title">
                   Arrived in <span className="fw-bold">{props.post.location}</span>
                 </div>
-                <CardLikedPost />
-                <CardCommentPost />
+                {props.post.likes.length > 0 ? <CardLikedPost /> : <div></div>}
+                {props.post.comments.length > 0 ? (
+                  props.post.comments.map((comment) => {
+                    return <CardCommentPost key={comment._id} comment={comment} />;
+                  })
+                ) : (
+                  <div></div>
+                )}
+                {/* <CardLikedPost /> */}
+                {/* <CardCommentPost /> */}
               </div>
               <div className="content-location d-flex flex-row" style={{ width: '200px' }}>
                 <div style={{ paddingTop: '3px' }}>

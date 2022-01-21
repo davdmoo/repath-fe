@@ -21,7 +21,7 @@ function CardTextImage(props) {
               </div>
             </div>
             <div className="card-right-side d-flex flex-column">
-              {props.post.imgUrl ? (
+              {props.post.imgUrl !== '[object Object]' ? (
                 <div
                   style={{
                     height: '250px',
@@ -39,11 +39,15 @@ function CardTextImage(props) {
                 <div className="content-text d-flex flex-row">
                   <div className="postText-container d-flex flex-row">
                     <div className="comment-section-pict">
-                      <Avatar className="avatar-card-textImage" alt="Zemy Sharp" src="/static/images/avatar/1.jpg" sx={{ width: 40, height: 40 }} variant="rounded"></Avatar>
+                      {props.post.userId.imgUrl ? (
+                        <Avatar className="avatar-card-textImage" alt={props.post.userId.firstName} src={props.post.userId.imgUrl} sx={{ width: 40, height: 40 }} variant="rounded"></Avatar>
+                      ) : (
+                        <Avatar className="avatar-card-textImage" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 40, height: 40 }} variant="rounded"></Avatar>
+                      )}
                     </div>
                     <div className="postText-description d-flex justify-content-center ">
                       <p className="postText-padding">
-                        <span className="fw-bold">Lila: </span>
+                        <span className="fw-bold">{props.post.userId.firstName}: </span>
                         {props.post.text}
                       </p>
                     </div>
@@ -62,8 +66,15 @@ function CardTextImage(props) {
                     </div>
                   </div>
                 </div>
-                <CardLikedPost />
-                <CardCommentPost />
+                {props.post.likes.length > 0 ? <CardLikedPost /> : <div></div>}
+                {/* <CardCommentPost /> */}
+                {props.post.comments.length > 0 ? (
+                  props.post.comments.map((comment) => {
+                    return <CardCommentPost key={comment._id} comment={comment} />;
+                  })
+                ) : (
+                  <div></div>
+                )}
               </div>
             </div>
           </div>

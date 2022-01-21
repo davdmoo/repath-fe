@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Avatar } from '@mui/material/';
 
-function RowCommentSection() {
+function RowCommentSection(props) {
+  console.log(props.rowComment, '<<<<<<<<< INI ROW COMMENT');
   return (
     <div className=" d-flex flex-row ">
       <div className="comment-section-pict">

@@ -8,13 +8,19 @@ import CardCommentPost from './CardCommentPost';
 import ModalComment from './componentsChild/ModalComment';
 
 function CardMusic(props) {
+  console.log(props.post.comments, 'PROPS.COMMENTS ON CARD MUSIC <<<<<<<<<<<<<');
+  console.log(props.post.likes, 'PROPS.LIKES ON CARD MUSIC <<<<<<<<<<<<<');
   return (
     <>
       <Card style={{ border: '0px' }}>
         <Card.Body style={{ backgroundColor: '#fef2f2', padding: '0px' }}>
           <div className="card-container">
             <div className="card-left-side d-flex">
-              <Avatar className="avatar-card" alt="Zemy Sharp" src="/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+              {props.post.userId.imgUrl ? (
+                <Avatar className="avatar-card" alt="David" src={props.post.userId.imgUrl} sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+              ) : (
+                <Avatar className="avatar-card" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+              )}
               <div>
                 <span className="dot-card-music">
                   <MusicNote sx={{ color: red[50] }} />
@@ -27,8 +33,34 @@ function CardMusic(props) {
                   Listening to {props.post.title} by <span className="fw-bold"> {props.post.artist}</span>
                 </div>
                 <div className="album-title">{props.post.albumName}</div>
-                <CardLikedPost />
-                <CardCommentPost />
+                {props.post.likes.length > 0 ? <CardLikedPost key={props.post._id} likes={props.post.likes} /> : <div></div>}
+                {/* {props.post.likes.length > 0 ? (
+                  props.post.likes.map((like) => {
+                    return <CardLikedPost key={like._id} like={like} />;
+                  })
+                ) : (
+                  <div></div>
+                )} */}
+
+                {props.post.comments.length > 0 ? (
+                  props.post.comments.map((comment) => {
+                    return <CardCommentPost key={comment._id} comment={comment} />;
+                  })
+                ) : (
+                  <div></div>
+                )}
+
+                {/* {props.post.comments.map((comment) => {
+                  return <CardCommentPost key={comment._id} comment={comment} />;
+                })} */}
+
+                {/* {props.post.comments.map((comment) => {
+                  return post.type === 'location' ? <CardLocation key={comment._id} comment={comment} /> : <div></div>;
+                })} */}
+
+                {/* {posts.map((post) => {
+                  return post.type === 'location' ? <CardLocation key={post._id} post={post} /> : post.type === 'text' ? <CardTextImage key={post._id} post={post} /> : <CardMusic key={post._id} post={post} />;
+                })} */}
               </div>
               <div className="content-image-album d-flex flex-row" style={{ width: '200px' }}>
                 <Avatar alt={props.post.artist} src={props.post.imageAlbum} sx={{ width: 60, height: 60 }} variant="rounded"></Avatar>
