@@ -17,35 +17,6 @@ const Input = styled('input')({
 });
 
 function PostContent() {
-  // submitFile() {
-  // 	let newNews = new FormData();
-  // 	newNews.append('title', this.dataNews.title);
-  // 	newNews.append('content', this.dataNews.content);
-  // 	newNews.append('categoryId', this.dataNews.categoryId);
-  // 	// for (const [key, value] of newNews) {
-  // 	//   console.log(key, value);
-  // 	// }
-  // 	// console.log(newNews);
-  // 	if (this.file) {
-  // 	  newNews.append('image', this.file);
-  // 	} else {
-  // 	  this.dataNews.imgUrl = this.editId.imgUrl;
-  // 	  newNews.append('imgUrl', this.dataNews.imgUrl);
-  // 	}
-
-  // 	if (!this.editId) {
-  // 	  this.$emit('addNews', newNews);
-  // 	} else {
-  // 	  const idNews = this.dataNews.id;
-  // 	  this.$emit('editNews', newNews, idNews);
-  // 	}
-  //   },
-  // const [addTextImageForm, setaddTextImageForm] = useState({
-  //   type: 'text',
-  //   text: '',
-  //   imgUrl: '',
-  // });
-
   const [type, setType] = useState('text');
   const [text, setText] = useState('');
   const [selectedFile, setSelectedFile] = useState({});
