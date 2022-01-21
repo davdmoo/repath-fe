@@ -1,6 +1,6 @@
 
 import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS } from '../actionTypes';
-=======
+
 
 const baseUrl = 'http://localhost:3000';
 
