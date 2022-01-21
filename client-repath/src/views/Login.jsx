@@ -28,10 +28,10 @@ function Login() {
   const doLogin = () => {
     // console.log('GO TO LOGIN <<<<<<<<<<<<<<<<<<<<<<');
     dispatch(setLogin(loginForm)).then(() => {
-      console.log('BACK TO LOGIN AFTER RESOLVE <<<<<<<<<<<<<<<<<<<<<<');
-      console.log(localStorage.getItem('access_token'), '<<<<<<<<<<<<< INI ACCESS TOKEN');
+      // console.log('BACK TO LOGIN AFTER RESOLVE <<<<<<<<<<<<<<<<<<<<<<');
+      // console.log(localStorage.getItem('access_token'), '<<<<<<<<<<<<< INI ACCESS TOKEN');
       navigate('/');
-      console.log('SUDAH NAVIGATE <<<<<<<<<<<<<<<<<<<<<<');
+      // console.log('SUDAH NAVIGATE <<<<<<<<<<<<<<<<<<<<<<');
     });
     //   .catch((err) => {
     // 	console.log(err);
@@ -42,6 +42,10 @@ function Login() {
     // 	}
     //   });
   };
+
+  const toRegister = () => {
+    navigate('/register')
+  }
 
   return (
     <>
@@ -156,6 +160,10 @@ function Login() {
         >
           <Button
             variant="outline-light"
+            onClick={(e) => {
+              e.preventDefault();
+              toRegister();
+            }}
             style={{
               backgroundColor: '#DC2626',
               outlineColor: '#ffffff',

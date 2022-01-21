@@ -19,7 +19,6 @@ function Register() {
     password: '',
     phoneNumber: '',
     city: '',
-    // address: '',
   });
 
   const changeRegisterFormInput = (e) => {
@@ -32,13 +31,17 @@ function Register() {
     });
   };
 
-  const toRegister = () => {
+  const doRegister = () => {
     // console.log('GO TO REGISTER <<<<<<<<<<<<<<<<<<<<<<');
     dispatch(setRegister(registerForm)).then(() => {
       // console.log(setRegister, 'BACK TO REGISTER AFTER RESOLVE <<<<<<<<<<<<<<<<<<<<<<');
       navigate('/login')
     });
   };
+
+  const toLogin = () =>{
+    navigate('/login')
+  }
 
   return (
     <>
@@ -78,7 +81,7 @@ function Register() {
         <form
           onSubmit={(el) => {
             el.preventDefault();
-            toRegister();
+            doRegister();
           }}
         >
           <Box
@@ -202,27 +205,10 @@ function Register() {
                   },
                 }}
               />
-              {/* <TextField
-              name="address"
-              onChange={changeRegisterFormInput}
-              label="address"
-              variant="filled"
-              margin="normal"
-              size="small"
-              sx={{
-                input: {
-                  color: red[50],
-                },
-              }}
-            /> */}
             </Box>
             <Button
               type='submit'
               value='Submit'
-              // onClick={(el) => {
-              //   el.preventDefault();
-              //   toRegister();
-              // }}
               style={{
                 backgroundColor: '#FEE2E2',
                 color: '#B91C1C',
@@ -256,6 +242,10 @@ function Register() {
           >
             <Button
               variant="outline-light"
+              onClick={(e) => {
+                e.preventDefault();
+                toLogin();
+              }}
               style={{
                 backgroundColor: '#DC2626',
                 outlineColor: '#ffffff',
