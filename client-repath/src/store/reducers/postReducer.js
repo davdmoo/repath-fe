@@ -1,4 +1,4 @@
-import { POSTS_FETCH_SUCCESS } from '../actionTypes';
+import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS } from '../actionTypes';
 
 const initialState = {
   posts: [],
@@ -14,13 +14,13 @@ function postReducer(state = initialState, action) {
         posts: action.payload,
       };
 
-    // case PRODUCTS_DELETE_SUCCESS:
-    //   const id = action.payload;
-    //   const productsAfterDelete = state.products.filter((product) => product.id !== id);
-    //   return {
-    //     ...state,
-    //     products: productsAfterDelete,
-    //   };
+    case POSTS_DELETE_SUCCESS:
+      const id = action.payload;
+      const postAfterDelete = state.products.filter((post) => post.id !== id);
+      return {
+        ...state,
+        posts: postAfterDelete,
+      };
 
     // case PRODUCTS_ADD_SUCCESS:
     //   const newProduct = action.payload;

@@ -1,4 +1,4 @@
-import { POSTS_FETCH_SUCCESS } from '../actionTypes';
+import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS } from '../actionTypes';
 const baseUrl = 'http://localhost:3000';
 
 // =========================== LOGIN USER ===========================
@@ -9,6 +9,13 @@ export const setPosts = (payload) => {
     payload,
   };
 };
+
+export const setDeletePost = (payload) => {
+  return {
+    type: POSTS_DELETE_SUCCESS,
+    payload,
+  }
+}
 
 export const fetchPosts = (payload) => {
   return (dispatch, getState) => {
@@ -121,3 +128,40 @@ export const addPostTextImage = (payloadFormData) => {
     });
   };
 };
+
+
+export const deletePost = (id) => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      // dispatch(loadingPost(true));
+      // dispatch(errorPost(null));
+      fetch(`${baseUrl}/posts/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          access_token: localStorage.getItem('access_token')
+        }
+      })
+        .then((data) => {
+          if (data.ok) {
+            return data.json()
+          } else {
+            throw new Error('failed delete post')
+          }
+        })
+        .then((data) => {
+          // console.log(data, 'success deleted post');
+          // dispatch(setDeletePost(id))
+          resolve()
+        })
+        .catch((err) => {
+          // console.log(err, 'failed delete post');
+          // dispatch(setErrorPost(err))
+          reject(err)
+        })
+        .finally(() => {
+          // dispatch(setLoadingPost(false))
+        })
+    })
+  }
+}

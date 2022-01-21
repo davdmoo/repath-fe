@@ -43,6 +43,10 @@ function Login() {
     //   });
   };
 
+  const toRegister = () => {
+    navigate('/register')
+  }
+
   return (
     <>
       <div
@@ -156,6 +160,10 @@ function Login() {
         >
           <Button
             variant="outline-light"
+            onClick={(el) => {
+              el.preventDefault();
+              toRegister();
+            }}
             style={{
               backgroundColor: '#DC2626',
               outlineColor: '#ffffff',
