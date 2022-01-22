@@ -1,5 +1,5 @@
 
-import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS } from '../actionTypes';
+import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, POSTS_LIKE_SUCCESS } from '../actionTypes';
 import axios from 'axios';
 
 
@@ -35,7 +35,7 @@ export const setDeletePost = (payload) => {
   };
 };
 
-export const fetchPosts = (payload) => {
+export const fetchPosts = () => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       dispatch(loadingPosts(true));
@@ -64,6 +64,35 @@ export const fetchPosts = (payload) => {
         .finally(() => {
           dispatch(loadingPosts(false));
         });
+    });
+  };
+};
+
+export const fetchPostsAfterLikeUnlike = () => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      dispatch(errorPosts(null));
+      fetch(`${baseUrl}/posts`, {
+        method: 'GET',
+        headers: {
+          access_token: localStorage.getItem('access_token'),
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Something went wrong');
+          }
+        })
+        .then((data) => {
+          dispatch(setPosts(data));
+          resolve();
+        })
+        .catch((err) => {
+          dispatch(errorPosts(err));
+          reject();
+        })
     });
   };
 };
@@ -213,6 +242,48 @@ export const postLocation = (payload) => {
         .finally(() => {
           // dispatch(loadingProducts(false));
         });
+    });
+  };
+};
+
+export const likePost = (id) => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: "POST",
+        url: `${baseUrl}/likes/${id}`,
+        headers: {
+          access_token: localStorage.access_token
+        }
+      })
+        .then((data) => {
+          dispatch(fetchPostsAfterLikeUnlike());
+          resolve();
+        })
+        .catch((err) => {
+          reject(err);
+        })
+    });
+  };
+};
+
+export const unlikePost = (id) => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: "DELETE",
+        url: `${baseUrl}/likes/${id}`,
+        headers: {
+          access_token: localStorage.access_token
+        }
+      })
+        .then((data) => {
+          dispatch(fetchPostsAfterLikeUnlike());
+          resolve();
+        })
+        .catch((err) => {
+          reject(err);
+        })
     });
   };
 };
