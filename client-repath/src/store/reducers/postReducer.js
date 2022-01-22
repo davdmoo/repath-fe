@@ -1,4 +1,4 @@
-import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS } from '../actionTypes';
+import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS } from '../actionTypes';
 
 const initialState = {
   posts: [],
@@ -48,17 +48,17 @@ function postReducer(state = initialState, action) {
     //     products: temp,
     //   };
 
-    // case LOADING_PRODUCTS:
-    //   return {
-    //     ...state,
-    //     productsLoading: action.payload,
-    //   };
+    case LOADING_POSTS:
+      return {
+        ...state,
+        postsLoading: action.payload,
+      };
 
-    // case ERROR_PRODUCTS:
-    //   return {
-    //     ...state,
-    //     productsError: action.payload,
-    //   };
+    case ERROR_POSTS:
+      return {
+        ...state,
+        postsError: action.payload,
+      };
 
     default:
       return state;

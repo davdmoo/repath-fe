@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { Route, Routes } from 'react-router-dom';
 import { AuthGuardHome, AuthGuardLogin } from './routes/AuthGuard.js';
 import Home from './views/Home';
