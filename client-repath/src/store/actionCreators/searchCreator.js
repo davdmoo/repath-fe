@@ -25,7 +25,6 @@ export const fetchMusicListSuccess = (payload) => {
 };
 
 export const fetchMusicSearch = (payload) => {
-  console.log(payload, 'INI PAYLOAD');
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       dispatch(loadingSearch(true));
@@ -39,7 +38,6 @@ export const fetchMusicSearch = (payload) => {
         body: JSON.stringify(payload),
       })
         .then((response) => {
-          console.log(response);
           if (response.ok) {
             return response.json();
           } else {
@@ -49,7 +47,6 @@ export const fetchMusicSearch = (payload) => {
         .then((data) => {
           dispatch(fetchMusicListSuccess(data));
 
-          // dispatch(setPosts(data));
           resolve(data);
         })
 

@@ -1,22 +1,75 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Avatar, Checkbox, IconButton } from '@mui/material/';
 import { FavoriteBorder, Favorite, MusicNote, Delete } from '@mui/icons-material/';
-import { red } from '@mui/material/colors';
+import { red, deepOrange } from '@mui/material/colors';
 import { Card } from 'react-bootstrap';
 import CardLikedPost from './CardLikedPost';
 import CardCommentPost from './CardCommentPost';
 import ModalComment from './componentsChild/ModalComment';
-import { useDispatch } from 'react-redux'
-import { deletePost } from '../store/actionCreators/postCreator'
+import { useDispatch } from 'react-redux';
+import { deletePost, likePost, unlikePost } from '../store/actionCreators/postCreator';
+import ModalConfirmDelete from './componentsChild/ModalConfirmDelete';
 
 function CardMusic(props) {
-  console.log(props.post.comments, 'PROPS.COMMENTS ON CARD MUSIC <<<<<<<<<<<<<');
-  console.log(props.post.likes, 'PROPS.LIKES ON CARD MUSIC <<<<<<<<<<<<<');
-
+  // console.log(props.post.comments, 'PROPS.COMMENTS ON CARD MUSIC <<<<<<<<<<<<<');
+  // console.log(props.post.likes, 'PROPS.LIKES ON CARD MUSIC <<<<<<<<<<<<<');
   const dispatch = useDispatch();
-  const doDelete = (postId) => {
-    dispatch(deletePost(postId))
+  const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    if (props.post.likes) {
+      for (let i = 0; i < props.post.likes.length; i++) {
+        const like = props.post.likes[i];
+
+        if (like.userId._id === localStorage.id) {
+          setChecked(true);
+          break;
+        } else {
+          setChecked(false);
+        }
+      }
+    } else {
+      setChecked(false);
+    }
+  }, []);
+
+  const handleLike = (id) => {
+    dispatch(likePost(id))
+      .then(() => {
+        setChecked(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const unlike = (likeId) => {
+    dispatch(unlikePost(likeId))
+      .then(() => {
+        setChecked(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  function likeIdReturner(userId) {
+    if (props.post.likes) {
+      for (let i = 0; i < props.post.likes.length; i++) {
+        const like = props.post.likes[i];
+
+        if (like.userId._id === userId) {
+          return like._id;
+        }
+      }
+    } else {
+      return false;
+    }
   }
+
+  const doDelete = (postId) => {
+    dispatch(deletePost(postId));
+  };
 
   return (
     <>
@@ -35,17 +88,19 @@ function CardMusic(props) {
                 </span>
               </div>
             </div>
-            <div className="card-right-side d-flex flex-row ">
-              <div className="content-text" style={{ width: '250px', textAlign: 'left' }}>
-                <div className="song-title" style={{ width: '200px' }}>
+            <div className="card-right-side d-flex flex-row mt-3">
+              <div className="content-text-music" style={{ width: '250px', textAlign: 'left' }}>
+                <div className="song-title" style={{ width: '250px', paddingRight: '20px' }}>
                   Listening to {props.post.title} by <span className="fw-bold"> {props.post.artist}</span>
                 </div>
 
                 <div className="album-title" style={{ width: '200px' }}>
                   {props.post.albumName}
                 </div>
-
-                {props.post.likes.length > 0 ? <CardLikedPost likes={props.post.likes} /> : <div></div>}
+                <div style={{ marginTop: '10px' }}>
+                  {props.post.likes.length > 0 ? <CardLikedPost likes={props.post.likes} /> : <div></div>}
+                  {props.post.comments.length > 0 ? <CardCommentPost comments={props.post.comments} /> : <div></div>}
+                </div>
                 {/* {props.post.likes.length > 0 ? (
                   props.post.likes.map((like) => {
                     return <CardLikedPost key={like._id} like={like} />;
@@ -53,8 +108,6 @@ function CardMusic(props) {
                 ) : (
                   <div></div>
                 )} */}
-
-                {props.post.comments.length > 0 ? <CardCommentPost comments={props.post.comments} /> : <div></div>}
                 {/* {props.post.comments.length > 0 ? (
                   props.post.comments.map((comment) => {
                     return <CardCommentPost key={comment._id} comment={comment} />;
@@ -63,19 +116,38 @@ function CardMusic(props) {
                   <div></div>
                 )} */}
               </div>
+              <div style={{ height: '60px' }}>
+                <div style={{ marginBottom: '30px' }}>
+                  <Avatar alt={props.post.artist} src={props.post.imageAlbum} sx={{ width: 60, height: 60 }} variant="rounded"></Avatar>
+                </div>
+              </div>
               <div className="content-image-album d-flex flex-row" style={{ width: '200px' }}>
-                <Avatar alt={props.post.artist} src={props.post.imageAlbum} sx={{ width: 60, height: 60 }} variant="rounded"></Avatar>
-                <div style={{ paddingTop: '3px', marginLeft: '25px' }}>
-                  <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />
+                {/* <Avatar alt={props.post.artist} src={props.post.imageAlbum} sx={{ width: 60, height: 60 }} variant="rounded"></Avatar> */}
+                <div style={{ paddingTop: '4px' }}>
+                  {checked ? (
+                    <Checkbox checked={checked} onChange={() => unlike(likeIdReturner(localStorage.id))} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} sx={{ padding: '0px 3px' }} />
+                  ) : (
+                    <Checkbox checked={checked} onChange={() => handleLike(props.post._id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} sx={{ padding: '0px 3px' }} />
+                  )}
                 </div>
                 <div style={{ paddingTop: '5px' }}>
-                  <ModalComment />
+                  <ModalComment post={props.post} />
                 </div>
-                <div style={{ paddingTop: '5px' }}>
-                  <IconButton onClick={() => doDelete(props.post._id)}>
+                {props.post.userId._id == localStorage.id ? (
+                  <div style={{ paddingTop: '5px' }}>
+                    {/* <IconButton onClick={() => doDelete(props.post._id)} sx={{ padding: '0px 3px' }}>
+                      <Delete sx={{ color: deepOrange[900] }} />
+                    </IconButton> */}
+                    <ModalConfirmDelete id={props.post._id} />
+                  </div>
+                ) : (
+                  <div></div>
+                )}
+                {/* <div style={{ paddingTop: '5px' }}>
+                  <IconButton onClick={() => doDelete(props.post._id)} sx={{ padding: '0px 3px' }}>
                     <Delete sx={{ color: red[500] }} />
                   </IconButton>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

@@ -1,0 +1,55 @@
+import React, { useState } from 'react';
+import { IconButton, TextField, Button } from '@mui/material/';
+import { Modal } from 'react-bootstrap';
+// import { Comment, Send, Button } from '@mui/icons-material/';
+import { useDispatch } from 'react-redux';
+import { Delete } from '@mui/icons-material/';
+import { deepOrange } from '@mui/material/colors';
+import { deletePost } from '../../store/actionCreators/postCreator';
+import { warnToastAlert } from '../../hooks/errorToastAlert';
+
+function ModalConfirmDelete({ id }) {
+  const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const doDelete = (postId) => {
+    dispatch(deletePost(postId)).then(() => {
+      warnToastAlert('Success deleted post!', 'top-center', 3000, false);
+    });
+  };
+
+  return (
+    <>
+      <IconButton onClick={handleShow} sx={{ padding: '0px 3px' }}>
+        <Delete sx={{ color: deepOrange[900] }} />
+      </IconButton>
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete post</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure want to delete your selected post?</Modal.Body>
+        <Modal.Footer>
+          <Button onClick={handleClose} variant="outlined" sx={{ marginRight: '10px' }} color="warning">
+            Cancel
+          </Button>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              doDelete(id);
+            }}
+            variant="contained"
+            color="error"
+            startIcon={<Delete />}
+          >
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}
+
+export default ModalConfirmDelete;

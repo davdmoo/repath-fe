@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import { red } from '@mui/material/colors';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRegister } from '../store/actionCreators/userCreator';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
   const dispatch = useDispatch();
@@ -207,8 +207,8 @@ function Register() {
               />
             </Box>
             <Button
-              type='submit'
-              value='Submit'
+              type="submit"
+              value="Submit"
               // onClick={(el) => {
               //   el.preventDefault();
               //   doRegister();
@@ -245,10 +245,10 @@ function Register() {
             }}
           >
             <Button
-             onClick={(e) => {
-              e.preventDefault();
-              toLogin();
-            }}
+              onClick={(e) => {
+                e.preventDefault();
+                toLogin();
+              }}
               variant="outline-light"
               style={{
                 backgroundColor: '#DC2626',
