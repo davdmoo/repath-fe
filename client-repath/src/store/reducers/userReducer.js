@@ -1,7 +1,8 @@
-import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN } from "../actionTypes";
+import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN , FETCH_USER_SUCCESS} from "../actionTypes";
 
 const initialState = {
     user: [],
+    users: [],
     userLoading: true,
     userError: null
 }
@@ -24,6 +25,12 @@ function userReducer(state = initialState, action) {
         return {
             ...state,
             user: action.payload
+        }
+
+        case FETCH_USER_SUCCESS: 
+        return {
+            ...state,
+            users: action.payload
         }
   
       default:

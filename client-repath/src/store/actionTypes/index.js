@@ -9,5 +9,9 @@ export const ERROR_POSTS = 'postsError/error';
 
 export const SEARCH_MUSIC_LIST_SUCCESS = 'musicslist/fetchSuccess';
 export const SEARCH_LOCATION_LIST_SUCCESS = 'locationList/fetchSuccess';
+
 export const LOADING_SEARCH = 'searchLoading/loading';
 export const ERROR_SEARCH = 'searchError/error';
+
+export const FETCH_USER_SUCCESS = 'users/fetchSuccess';
+
