@@ -9,7 +9,6 @@ export default function CardSearchMusic(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toPostMusic = (payload) => {
-    console.log(payload, '<<<<<<<<<<< INI HASIL POST');
     dispatch(postMusic(payload)).then(() => {
       navigate('/');
     });

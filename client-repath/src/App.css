@@ -89,6 +89,10 @@ html {
 .content-text {
   width: 250px;
   text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .album-title {
@@ -135,7 +139,7 @@ html {
 }
 
 .location-title {
-  padding-top: 13px;
+  padding-top: 0px;
 }
 
 .rounded-likes-location {
@@ -380,6 +384,7 @@ html {
 .search-location-country {
   font-size: 18px;
   color: #6b7280;
+  width: 300px;
 }
 
 .dot-card-search-location {

@@ -11,24 +11,35 @@ import CardTextImage from '../components/CardTextImage';
 import ButtonPopUp from '../components/componentsChild/ButtonPopUp';
 import { fetchPosts } from '../store/actionCreators/postCreator';
 import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../components/componentsChild/Loader';
+import ErrorGlobal from '../components/componentsChild/ErrorGlobal';
 
 function Home() {
   const { posts, postsLoading, postsError } = useSelector((state) => state.postReducer);
-  console.log(posts);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPosts());
   }, []);
 
+  if (postsError) {
+    return <ErrorGlobal />;
+  }
+
   return (
     <>
       <Navbar />
       <Header />
-      {posts.map((post) => {
-        return post.type === 'location' ? <CardLocation key={post._id} post={post} /> : post.type === 'text' ? <CardTextImage key={post._id} post={post} /> : <CardMusic key={post._id} post={post} />;
-        // return <TableRow key={post.id} post={post} />;
-      })}
+
+      {postsLoading ? (
+        <div>
+          <Loader />
+        </div>
+      ) : (
+        posts.map((post) => {
+          return post.type === 'location' ? <CardLocation key={post._id} post={post} /> : post.type === 'text' ? <CardTextImage key={post._id} post={post} /> : <CardMusic key={post._id} post={post} />;
+        })
+      )}
 
       <ButtonPopUp />
     </>

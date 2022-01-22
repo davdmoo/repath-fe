@@ -1,10 +1,10 @@
-import { SEARCH_MUSIC_LIST_SUCCESS, SEARCH_LOCATION_LIST_SUCCESS } from '../actionTypes';
+import { SEARCH_MUSIC_LIST_SUCCESS, SEARCH_LOCATION_LIST_SUCCESS, LOADING_SEARCH, ERROR_SEARCH } from '../actionTypes';
 
 const initialState = {
   musicList: [],
   locationList: [],
-  //   postsLoading: true,
-  //   postsError: null,
+  searchLoading: true,
+  searchError: null,
 };
 
 function searchReducer(state = initialState, action) {
@@ -55,17 +55,17 @@ function searchReducer(state = initialState, action) {
     //     products: temp,
     //   };
 
-    // case LOADING_PRODUCTS:
-    //   return {
-    //     ...state,
-    //     productsLoading: action.payload,
-    //   };
+    case LOADING_SEARCH:
+      return {
+        ...state,
+        searchLoading: action.payload,
+      };
 
-    // case ERROR_PRODUCTS:
-    //   return {
-    //     ...state,
-    //     productsError: action.payload,
-    //   };
+    case ERROR_SEARCH:
+      return {
+        ...state,
+        searchError: action.payload,
+      };
 
     default:
       return state;
