@@ -12,6 +12,9 @@ import { addPostTextImage } from '../store/actionCreators/postCreator';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import LittleLoader from '../components/componentsChild/LittleLoader';
+import { byteFormatter } from '../hooks/byteFormatter';
+import { errorToastAlert } from '../hooks/errorToastAlert';
 
 const Input = styled('input')({
   display: 'none',
@@ -38,7 +41,8 @@ function PostContent() {
           <h2>Image Details:</h2>
           <p style={{ margin: '0px' }}>Image Name: {selectedFile.name}</p>
           <p style={{ margin: '0px' }}>File Type: {selectedFile.type}</p>
-          <p style={{ marginBottom: '10px' }}>Last Modified: {selectedFile.lastModifiedDate.toDateString()}</p>
+          <p style={{ marginBottom: '0px' }}>Last Modified: {selectedFile.lastModifiedDate.toDateString()}</p>
+          <p style={{ marginBottom: '10px' }}>Size: {byteFormatter(selectedFile.size, 2)}</p>
         </div>
       );
     } else {
@@ -63,20 +67,11 @@ function PostContent() {
 
     dispatch(addPostTextImage(newPostTextImage))
       .then(() => {
-        console.log('SUCCESS ADD POST AFTER RESOLVE <<<<<<<<<<<<<<<<<<<<<<');
         navigate('/');
       })
       .catch((err) => {
-        toast.error('Please input text field and file type must be image with maximum size 3MB', {
-          position: 'bottom-center',
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        console.log(err, 'error di wawwwwwwwww');
+        if (err.message == 'Please fill all input fields') errorToastAlert('Please fill text input');
+        else errorToastAlert(err.message);
       });
   };
 
@@ -85,6 +80,8 @@ function PostContent() {
   //   success: 'Promise resolved 👌',
   //   error: 'Promise rejected 🤯',
   // });
+
+  const { afterPostLoading } = useSelector((state) => state.postReducer);
 
   return (
     <>
@@ -132,11 +129,16 @@ function PostContent() {
             >
               Post
             </Button>
+
+            {afterPostLoading ? (
+              <div>
+                <LittleLoader />
+              </div>
+            ) : (
+              <div></div>
+            )}
           </Box>
         </form>
-        {/* <Stack direction="row" justifyContent="center"> */}
-
-        {/* </Stack> */}
       </div>
     </>
   );

@@ -95,6 +95,15 @@ html {
   flex-direction: column;
 }
 
+.content-text-music {
+  width: 250px;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
 .album-title {
   color: #9ca3af;
   font-size: 15px;
@@ -184,8 +193,8 @@ html {
   width: 350px;
   text-align: left;
   background-color: white;
-  border-radius: 10px;
-  margin-top: 10px;
+  /* border-radius: 10px; */
+  /* margin-top: 10px; */
 }
 
 .content-text {
