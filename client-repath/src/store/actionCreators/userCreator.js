@@ -1,6 +1,5 @@
-
 import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, USER_EDIT_SUCCESS, FETCH_USER_SUCCESS } from '../actionTypes';
-
+import axios from 'axios'
 
 const baseUrl = 'http://localhost:3000';
 
@@ -42,46 +41,45 @@ export const setUsers = (payload) => {
 // =========================== LOGIN USER ===========================
 
 export const setLogin = (payload) => {
+  console.log(payload, 'payload>>>>>');
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       // dispatch(loadingUser(true));
       // dispatch(errorUser(null));
-      fetch(`${baseUrl}/users/login`, {
+      axios(`${baseUrl}/users/login`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
+        // headers: {
+        //   'Content-Type': 'application/json',
+        // },
+        data: payload,
       })
-        .then((data) => {
-          if (data.ok) {
-            return data.json();
-          } else {
-            // console.log(data.statusText);
-            throw new Error(data.statusText);
-          }
-        })
-        .then((data) => {
-
+        // .then((data) => {
+        //   if (data.ok) {
+        //     return data.json();
+        //   } else {
+        //     // console.log(data.statusText);
+        //     throw new Error(data.statusText);
+        //   }
+        // })
+        .then(({data}) => {
           console.log(data, 'INI DATA <<<<<<<<<<<<<<<');
           if (data.access_token) {
             localStorage.setItem('access_token', data.access_token);
             localStorage.setItem('first_name', data.payloadClient.firstName);
             localStorage.setItem('last_name', data.payloadClient.lastName);
             localStorage.setItem('email', data.payloadClient.email);
-
             localStorage.setItem('id', data.payloadClient.id);
-
             resolve();
           }
         })
         .catch((err) => {
           // dispatch(errorUser(err));
+          console.log(err.response.data.message, 'error<<<');
           reject(err);
         })
-        .finally(() => {
-          // dispatch(loadingUser(false));
-        });
+      .finally(() => {
+      //   // dispatch(loadingUser(false));
+      });
     });
   };
 };
@@ -91,26 +89,26 @@ export const setLogin = (payload) => {
 export const setRegister = (payload) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      console.log('REGISTER ON CREATORS <<<<<<<<<<<<<<<<<<<<<<');
-      resolve();
-      dispatch(loadingUser(true));
-      dispatch(errorUser(null));
-      fetch(`${baseUrl}/users/register`, {
+      // console.log('REGISTER ON CREATORS <<<<<<<<<<<<<<<<<<<<<<');
+      // resolve();
+      // dispatch(loadingUser(true));
+      // dispatch(errorUser(null));
+      axios(`${baseUrl}/users/register`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/json',
           access_token: localStorage.getItem('access_token'),
         },
-        body: JSON.stringify(payload),
+        data: payload,
       })
-        .then((data) => {
-          if (data.ok) {
-            return data.json();
-          } else {
-            // console.log(data.statusText);
-            throw new Error(data.statusText);
-          }
-        })
+        // .then((data) => {
+        //   if (data.ok) {
+        //     return data.json();
+        //   } else {
+        // console.log(data.statusText);
+        // throw new Error(data.statusText);
+        //   }
+        // })
         .then((data) => {
           // console.log(data, '<<<<<<<<<<<<<<<<<<<<<< INI DATA SETELAH REGISTER');
 
@@ -120,11 +118,11 @@ export const setRegister = (payload) => {
           // console.log('OK ADD NEW PRODUCT');
         })
         .catch((err) => {
-          dispatch(errorUser(err));
+          // dispatch(errorUser(err));
           reject(err);
         })
         .finally(() => {
-          dispatch(loadingUser(false));
+          // dispatch(loadingUser(false));
         });
     });
   };

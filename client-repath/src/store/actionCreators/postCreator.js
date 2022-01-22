@@ -1,4 +1,3 @@
-
 import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS } from '../actionTypes';
 import axios from 'axios';
 
