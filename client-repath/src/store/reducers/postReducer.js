@@ -17,7 +17,7 @@ function postReducer(state = initialState, action) {
 
     case POSTS_DELETE_SUCCESS:
       const id = action.payload;
-      const postAfterDelete = state.products.filter((post) => post.id !== id);
+      const postAfterDelete = state.posts.filter((post) => post._id !== id);
       return {
         ...state,
         posts: postAfterDelete,

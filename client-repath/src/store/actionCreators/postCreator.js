@@ -124,7 +124,6 @@ export const addPostTextImage = (payloadFormData) => {
         //   }
         // })
         .then((data) => {
-          console.log(data, '<<<<<<<<<<<<<<<<<<<<<< INI DATA SETELAH NGE-POST');
           // if (!data.message) {
           dispatch(loadingAfterPost(false));
           resolve();
@@ -163,7 +162,7 @@ export const deletePost = (id) => {
         })
         .then((data) => {
           // console.log(data, 'success deleted post');
-          // dispatch(setDeletePost(id))
+          dispatch(setDeletePost(id));
           resolve();
         })
         .catch((err) => {
@@ -301,7 +300,6 @@ export const unlikePost = (id) => {
 };
 
 export const commentPost = ({ id, content }) => {
-  console.log(content);
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       axios({
@@ -313,7 +311,7 @@ export const commentPost = ({ id, content }) => {
         data: { content },
       })
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           dispatch(fetchPostsAfterLikeUnlike());
           resolve();
         })

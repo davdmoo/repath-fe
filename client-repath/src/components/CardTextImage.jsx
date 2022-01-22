@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { Avatar, Checkbox, IconButton } from '@mui/material/';
+import { Avatar, Checkbox, IconButton, Button } from '@mui/material/';
 import { FavoriteBorder, Favorite, Delete, FormatQuote } from '@mui/icons-material/';
-import { red, blue } from '@mui/material/colors';
+import { red, deepOrange } from '@mui/material/colors';
 import { Card } from 'react-bootstrap';
 import CardLikedPost from './CardLikedPost';
 import CardCommentPost from './CardCommentPost';
 import ModalComment from './componentsChild/ModalComment';
 import { deletePost, likePost, unlikePost } from '../store/actionCreators/postCreator';
 import { useDispatch } from 'react-redux';
+import { Modal } from 'react-bootstrap';
+import ModalConfirmDelete from './componentsChild/ModalConfirmDelete';
+import { errorToastAlert2 } from '../hooks/errorToastAlert';
 
 function CardTextImage(props) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     if (props.post.likes) {
@@ -64,9 +71,9 @@ function CardTextImage(props) {
     }
   }
 
-  const doDelete = (postId) => {
-    dispatch(deletePost(postId));
-  };
+  // const doDelete = (postId) => {
+  //   dispatch(deletePost(postId));
+  // };
 
   return (
     <>
@@ -113,21 +120,32 @@ function CardTextImage(props) {
                     </div>
                   </div>
                   <div className="content-text-button d-flex flex-row justify-content-center">
-                    <div style={{ marginTop: '8px' }}>
+                    <div style={{ marginTop: '9px' }}>
                       {checked ? (
-                        <Checkbox checked={checked} onChange={() => unlike(likeIdReturner(localStorage.id))} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />
+                        <Checkbox checked={checked} onChange={() => unlike(likeIdReturner(localStorage.id))} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[400] }} />} sx={{ padding: '0px 3px' }} />
                       ) : (
-                        <Checkbox checked={checked} onChange={() => handleLike(props.post._id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />
+                        <Checkbox checked={checked} onChange={() => handleLike(props.post._id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[400] }} />} sx={{ padding: '0px 3px' }} />
                       )}
                     </div>
                     <div style={{ marginTop: '10px' }}>
                       <ModalComment post={props.post} />
                     </div>
-                    <div style={{ marginTop: '10px' }}>
-                      <IconButton onClick={() => doDelete(props.post._id)}>
+                    {props.post.userId._id == localStorage.id ? (
+                      <div style={{ marginTop: '10px' }}>
+                        {/* <IconButton onClick={() => doDelete(props.post._id)} sx={{ padding: '0px 3px' }}> */}
+                        {/* <IconButton onClick={handleShow} sx={{ padding: '0px 3px' }}>
+                          <Delete sx={{ color: deepOrange[900] }} />
+                        </IconButton> */}
+                        <ModalConfirmDelete id={props.post._id} />
+                      </div>
+                    ) : (
+                      <div></div>
+                    )}
+                    {/* <div style={{ marginTop: '10px' }}>
+                      <IconButton onClick={() => doDelete(props.post._id)} sx={{ padding: '0px 3px' }}>
                         <Delete sx={{ color: red[500] }} />
                       </IconButton>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 {props.post.likes.length > 0 ? <CardLikedPost likes={props.post.likes} /> : <div></div>}
@@ -144,6 +162,21 @@ function CardTextImage(props) {
           </div>
         </Card.Body>
       </Card>
+
+      {/* <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete post</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure want to delete your selected post?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="outlined" sx={{ marginRight: '10px' }} color="warning">
+            Cancel
+          </Button>
+          <Button variant="contained" color="error" startIcon={<Delete />}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal> */}
     </>
   );
 }

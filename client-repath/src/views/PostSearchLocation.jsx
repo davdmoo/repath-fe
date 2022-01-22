@@ -56,18 +56,19 @@ function PostSearchLocation() {
   };
 
   const doSearchLocation = () => {
-    dispatch(fetchLocationSearch(searchLocationForm)).then((data) => {
-      //   if (map.current) return; // initialize map only once
-      if (data[0]) {
-        console.log('HALOOOOOOO');
-        map.current = new mapboxgl.Map({
-          container: mapContainer.current,
-          style: 'mapbox://styles/mapbox/streets-v11',
-          center: [data[0].center[0], data[0].center[1]],
-          zoom: zoom,
-        });
-      }
-    });
+    if (searchLocationForm.location.length > 0) {
+      dispatch(fetchLocationSearch(searchLocationForm)).then((data) => {
+        //   if (map.current) return; // initialize map only once
+        if (data[0]) {
+          map.current = new mapboxgl.Map({
+            container: mapContainer.current,
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [data[0].center[0], data[0].center[1]],
+            zoom: zoom,
+          });
+        }
+      });
+    }
   };
 
   if (searchError) {

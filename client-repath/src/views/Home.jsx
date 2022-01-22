@@ -13,6 +13,7 @@ import { fetchPosts } from '../store/actionCreators/postCreator';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/componentsChild/Loader';
 import ErrorGlobal from '../components/componentsChild/ErrorGlobal';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Home() {
   const { posts, postsLoading, postsError } = useSelector((state) => state.postReducer);
@@ -28,6 +29,9 @@ function Home() {
 
   return (
     <>
+      <div>
+        <ToastContainer />
+      </div>
       <Navbar />
       <Header />
 

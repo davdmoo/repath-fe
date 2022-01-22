@@ -11,3 +11,15 @@ export const errorToastAlert = (message) => {
     progress: undefined,
   });
 };
+
+export const warnToastAlert = (message, position, autoClose, hideProgressBar) => {
+  return toast.warn(`${message}`, {
+    position,
+    autoClose,
+    hideProgressBar,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+};

@@ -21,7 +21,6 @@ const Input = styled('input')({
 });
 
 function PostContent() {
-  const notify = () => toast('Wow so easy!');
   const [type, setType] = useState('text');
   const [text, setText] = useState('');
   const [selectedFile, setSelectedFile] = useState({});

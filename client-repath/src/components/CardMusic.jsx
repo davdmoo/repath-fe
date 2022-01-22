@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Avatar, Checkbox, IconButton } from '@mui/material/';
 import { FavoriteBorder, Favorite, MusicNote, Delete } from '@mui/icons-material/';
-import { red } from '@mui/material/colors';
+import { red, deepOrange } from '@mui/material/colors';
 import { Card } from 'react-bootstrap';
 import CardLikedPost from './CardLikedPost';
 import CardCommentPost from './CardCommentPost';
 import ModalComment from './componentsChild/ModalComment';
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost, unlikePost } from '../store/actionCreators/postCreator';
+import ModalConfirmDelete from './componentsChild/ModalConfirmDelete';
 
 function CardMusic(props) {
   // console.log(props.post.comments, 'PROPS.COMMENTS ON CARD MUSIC <<<<<<<<<<<<<');
@@ -70,7 +71,6 @@ function CardMusic(props) {
     dispatch(deletePost(postId));
   };
 
-
   return (
     <>
       <Card style={{ border: '0px' }}>
@@ -123,21 +123,31 @@ function CardMusic(props) {
               </div>
               <div className="content-image-album d-flex flex-row" style={{ width: '200px' }}>
                 {/* <Avatar alt={props.post.artist} src={props.post.imageAlbum} sx={{ width: 60, height: 60 }} variant="rounded"></Avatar> */}
-                <div style={{ paddingTop: '3px', marginLeft: '25px' }}>
+                <div style={{ paddingTop: '4px' }}>
                   {checked ? (
-                    <Checkbox checked={checked} onChange={() => unlike(likeIdReturner(localStorage.id))} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />
+                    <Checkbox checked={checked} onChange={() => unlike(likeIdReturner(localStorage.id))} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} sx={{ padding: '0px 3px' }} />
                   ) : (
-                    <Checkbox checked={checked} onChange={() => handleLike(props.post._id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />
+                    <Checkbox checked={checked} onChange={() => handleLike(props.post._id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} sx={{ padding: '0px 3px' }} />
                   )}
                 </div>
                 <div style={{ paddingTop: '5px' }}>
                   <ModalComment post={props.post} />
                 </div>
-                <div style={{ paddingTop: '5px' }}>
-                  <IconButton onClick={() => doDelete(props.post._id)}>
+                {props.post.userId._id == localStorage.id ? (
+                  <div style={{ paddingTop: '5px' }}>
+                    {/* <IconButton onClick={() => doDelete(props.post._id)} sx={{ padding: '0px 3px' }}>
+                      <Delete sx={{ color: deepOrange[900] }} />
+                    </IconButton> */}
+                    <ModalConfirmDelete id={props.post._id} />
+                  </div>
+                ) : (
+                  <div></div>
+                )}
+                {/* <div style={{ paddingTop: '5px' }}>
+                  <IconButton onClick={() => doDelete(props.post._id)} sx={{ padding: '0px 3px' }}>
                     <Delete sx={{ color: red[500] }} />
                   </IconButton>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

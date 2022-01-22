@@ -111,6 +111,7 @@ html {
 
 .content-image-album {
   padding-top: 10px;
+  margin-left: 53px;
 }
 
 .rounded-likes {
@@ -161,7 +162,7 @@ html {
 }
 
 .content-location {
-  margin-left: 85px;
+  margin-left: 113px;
 }
 
 /* CARD-POST-IMAGE */
@@ -273,6 +274,7 @@ html {
 
 .card-left-side-friendlist {
   width: 115px;
+  height: 115px;
   /* border-right: 2px solid #9ca3af; */
 }
 
@@ -288,14 +290,17 @@ html {
 }
 
 .addfriend-name {
-  /* font-weight: bold; */
-  font-size: 30px;
-  padding-top: 10px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.addfriend-firstName {
+  font-size: 18px;
 }
 
 .addfriend-city {
-  font-size: 20px;
-  color: #6b7280;
+  font-size: 16px;
+  color: #9ca3af;
 }
 
 .card-left-side-addfriend {
