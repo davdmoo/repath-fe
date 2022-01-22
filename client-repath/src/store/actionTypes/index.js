@@ -7,3 +7,5 @@ export const POSTS_DELETE_SUCCESS = 'posts/delete'
 
 export const SEARCH_MUSIC_LIST_SUCCESS = 'musicslist/fetchSuccess';
 export const SEARCH_LOCATION_LIST_SUCCESS = 'locationList/fetchSuccess';
+
+export const FETCH_USER_SUCCESS = 'users/fetchSuccess';

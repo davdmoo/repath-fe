@@ -1,4 +1,4 @@
-import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN } from '../actionTypes';
+import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, FETCH_USER_SUCCESS } from '../actionTypes';
 
 const baseUrl = 'http://localhost:3000';
 
@@ -19,6 +19,13 @@ export const errorUser = (payload) => {
 export const afterLogin = () => {
   return {
     type: SUCCESS_LOGIN,
+  };
+};
+
+export const setUsers = (payload) => {
+  return {
+    type: FETCH_USER_SUCCESS,
+    payload
   };
 };
 
@@ -101,6 +108,41 @@ export const setRegister = (payload) => {
         })
         .finally(() => {
           dispatch(loadingUser(false));
+        });
+    });
+  };
+};
+
+// =========================== FETCH USER ===========================
+
+export const fetchUsers = (payload) => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      // dispatch(loadingProducts(true));
+      // dispatch(errorProducts(null));
+      fetch(`${baseUrl}/users`, {
+        method: 'GET',
+        headers: {
+          access_token: localStorage.getItem('access_token'),
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Something went wrong');
+          }
+        })
+        .then((data) => {
+          console.log(data);
+          dispatch(setUsers(data));
+          resolve();
+        })
+        .catch((err) => {
+          // dispatch(errorProducts(err));
+        })
+        .finally(() => {
+          // dispatch(loadingProducts(false));
         });
     });
   };
