@@ -70,6 +70,7 @@ function CardMusic(props) {
     dispatch(deletePost(postId));
   };
 
+
   return (
     <>
       <Card style={{ border: '0px' }}>

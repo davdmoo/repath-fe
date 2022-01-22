@@ -1,11 +1,14 @@
-import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, FETCH_USER_SUCCESS, USER_EDIT_SUCCESS } from '../actionTypes';
+
+import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN , FETCH_USER_SUCCESS, USER_EDIT_SUCCESS, FETCH_FOLLOWING_USERS} from "../actionTypes";
 
 const initialState = {
-  user: [],
-  users: [],
-  userLoading: true,
-  userError: null,
-};
+    user: [],
+    users: [],
+    userLoading: true,
+    userError: null,
+    following: []
+}
+
 
 function userReducer(state = initialState, action) {
   switch (action.type) {
@@ -43,14 +46,21 @@ function userReducer(state = initialState, action) {
         user: temp,
       };
 
-    case FETCH_USER_SUCCESS:
-      return {
+    case FETCH_USER_SUCCESS: 
+    return {
         ...state,
-        users: action.payload,
-      };
+        users: action.payload
+      }
+    
+    case FETCH_FOLLOWING_USERS:
+      return{
+        ...state,
+        following: action.payload
+      }
 
     default:
       return state;
   }
 }
+
 export default userReducer;
