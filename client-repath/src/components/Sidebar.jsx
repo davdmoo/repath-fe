@@ -69,7 +69,7 @@ function Sidebar() {
       <ListIcon style={{ width: '45px', height: '45px' }} sx={{ color: red[50] }} onClick={handleShow} />
 
       <div className="sidebar-container d-flex">
-        <Offcanvas style={{ marginLeft: '350px', width: '260px', background: '#dc2626' }} show={show} onHide={handleClose}>
+        <Offcanvas style={{ marginLeft: '25vw', width: '260px', background: '#dc2626' }} show={show} onHide={handleClose}>
           <div className="header-sidebar" style={{ height: '15vh' }}>
             <Offcanvas.Header style={{ justifyContent: 'center' }}>
               <Avatar alt="Zemy Sharp" src="/static/images/avatar/1.jpg" />

@@ -69,6 +69,7 @@ function CardTextImage(props) {
   };
 
   
+  
   return (
     <>
       <Card style={{ border: '0px' }}>
