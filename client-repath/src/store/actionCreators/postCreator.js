@@ -1,6 +1,23 @@
-import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS } from '../actionTypes';
+
+import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS } from '../actionTypes';
+import axios from 'axios';
+
 
 const baseUrl = 'http://localhost:3000';
+
+export const loadingPosts = (payload) => {
+  return {
+    type: LOADING_POSTS,
+    payload,
+  };
+};
+
+export const errorPosts = (payload) => {
+  return {
+    type: ERROR_POSTS,
+    payload,
+  };
+};
 
 // =========================== FETCH POST TIMELINE ===========================
 
@@ -18,12 +35,11 @@ export const setDeletePost = (payload) => {
   };
 };
 
-
 export const fetchPosts = (payload) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      // dispatch(loadingProducts(true));
-      // dispatch(errorProducts(null));
+      dispatch(loadingPosts(true));
+      dispatch(errorPosts(null));
       fetch(`${baseUrl}/posts`, {
         method: 'GET',
         headers: {
@@ -38,15 +54,15 @@ export const fetchPosts = (payload) => {
           }
         })
         .then((data) => {
-          console.log(data);
           dispatch(setPosts(data));
           resolve();
         })
         .catch((err) => {
-          // dispatch(errorProducts(err));
+          dispatch(errorPosts(err));
+          reject();
         })
         .finally(() => {
-          // dispatch(loadingProducts(false));
+          dispatch(loadingPosts(false));
         });
     });
   };
@@ -55,10 +71,9 @@ export const fetchPosts = (payload) => {
 // =========================== POST TEXT X IMAGE ===========================
 
 export const addPostTextImage = (payloadFormData) => {
-  console.log(payloadFormData, '<<<<<<<<<<<<<<<<<<<<<< INI DI CREATOR BERUPA FORM DATA');
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      fetch(`${baseUrl}/posts`, {
+      axios(`${baseUrl}/posts`, {
         method: 'POST',
         headers: {
           access_token: localStorage.getItem('access_token'),
@@ -69,21 +84,20 @@ export const addPostTextImage = (payloadFormData) => {
         //   if (data.ok) {
         //     return data.json();
         //   } else {
-        //     // console.log(data.statusText);
-        //     throw new Error(data.statusText);
+        //     console.log(data);
+        //     throw new Error(data);
         //   }
         // })
         .then((data) => {
-          // console.log(data, '<<<<<<<<<<<<<<<<<<<<<< INI DATA SETELAH NGE-POST');
+          console.log(data, '<<<<<<<<<<<<<<<<<<<<<< INI DATA SETELAH NGE-POST');
           // if (!data.message) {
-          //   dispatch(fetchAfterAddProduct(data));
           resolve();
           // }
           // console.log('OK ADD NEW PRODUCT');
         })
         .catch((err) => {
-          console.log(err);
-          // reject(err);
+          console.log(err.response.data.message);
+          reject(err);
         });
     });
   };
@@ -202,5 +216,3 @@ export const postLocation = (payload) => {
     });
   };
 };
-
-

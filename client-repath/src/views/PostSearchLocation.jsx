@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import { fetchLocationSearch } from '../store/actionCreators/searchCreator';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
+import Loader from '../components/componentsChild/Loader';
+import ErrorGlobal from '../components/componentsChild/ErrorGlobal';
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiYXptaWZ0cmQiLCJhIjoiY2t5bXE1dW1qMmFpOTJ2cDB6Nm9nNXBzaSJ9.kq9BAuFWAzxcnwgJHsV-zQ';
 
 function PostSearchLocation() {
@@ -34,7 +37,9 @@ function PostSearchLocation() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { locationList } = useSelector((state) => state.searchReducer);
+
+  const { locationList, searchLoading, searchError } = useSelector((state) => state.searchReducer);
+
 
   const [searchLocationForm, setSearchLocationForm] = useState({
     location: '',
@@ -63,6 +68,34 @@ function PostSearchLocation() {
         });
       }
     });
+
+  };
+
+  if (searchError) {
+    return <ErrorGlobal />;
+  }
+
+  // if (searchLoading) {
+  //   return (
+  //     <div style={{ paddingTop: '200px' }}>
+  //       <Loader />
+  //     </div>
+  //   );
+  // }
+
+  const locationListExist = () => {
+    if (locationList.length > 0) {
+      return locationList.map((location, idx) => {
+        return <CardSearchLocation key={idx} location={location}></CardSearchLocation>;
+      });
+    } else {
+      return (
+        <div>
+          <h3 className="mt-3">Sorry... </h3>
+          <h4>We can't find your location.</h4>
+        </div>
+      );
+    }
   };
 
   return (
@@ -84,9 +117,21 @@ function PostSearchLocation() {
             </button>
           </div>
         </div>
-        {locationList.map((location, idx) => {
+
+        {/* {locationList.map((location, idx) => {
           return <CardSearchLocation key={idx} location={location}></CardSearchLocation>;
-        })}
+        })} */}
+
+        {searchLoading ? (
+          <div>
+            <Loader />
+          </div>
+        ) : (
+          // locationList.map((location, idx) => {
+          //   return <CardSearchLocation key={idx} location={location}></CardSearchLocation>;
+          // })
+          locationListExist()
+        )}
       </div>
     </>
   );

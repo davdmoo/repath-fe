@@ -1,9 +1,11 @@
-import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, USER_EDIT_SUCCESS } from "../actionTypes";
+
+import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN , FETCH_USER_SUCCESS, USER_EDIT_SUCCESS} from "../actionTypes";
 
 const initialState = {
-  user: [],
-  userLoading: true,
-  userError: null
+    user: [],
+    users: [],
+    userLoading: true,
+    userError: null
 }
 
 function userReducer(state = initialState, action) {
@@ -36,14 +38,23 @@ function userReducer(state = initialState, action) {
         } else {
           temp.push(updatedUser);
         }
+
       });
       return {
         ...state,
         user: temp,
       };
 
-    default:
-      return state;
+        case FETCH_USER_SUCCESS: 
+        return {
+            ...state,
+            users: action.payload
+        }
+  
+      default:
+        return state;
+    }
+
   }
 }
 

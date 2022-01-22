@@ -47,7 +47,7 @@ function CardLocation(props) {
                   <div></div>
                 )} */}
               </div>
-              <div className="content-location d-flex flex-row" style={{ width: '200px' }}>
+              <div className="content-location d-flex flex-row" style={{ width: '50px' }}>
                 <div style={{ paddingTop: '3px' }}>
                   <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />
                 </div>

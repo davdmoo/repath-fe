@@ -74,9 +74,11 @@ function Sidebar() {
             <Offcanvas.Header style={{ justifyContent: 'center' }}>
               <Avatar alt="Zemy Sharp" src="/static/images/avatar/1.jpg" />
               <div className="d-flex flex row">
-                <text style={{ color: '#f5f5f5', fontSize: 16, fontWeight: 'bolder', justifyContent: 'flex-end', marginLeft: '20px' }}>Username</text>
+                <div style={{ color: '#f5f5f5', fontSize: 16, fontWeight: 'bolder', justifyContent: 'flex-end', marginLeft: '20px' }}>
+                  {localStorage.getItem('first_name')} {localStorage.getItem('last_name')}
+                </div>
 
-                <text style={{ color: '#f5f5f5', fontSize: 14, marginLeft: '20px' }}>Email</text>
+                <div style={{ color: '#f5f5f5', fontSize: 14, marginLeft: '20px' }}>{localStorage.getItem('email')}</div>
               </div>
             </Offcanvas.Header>
           </div>

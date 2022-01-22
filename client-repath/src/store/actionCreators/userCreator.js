@@ -1,4 +1,6 @@
-import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, USER_EDIT_SUCCESS } from '../actionTypes';
+
+import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, USER_EDIT_SUCCESS, FETCH_USER_SUCCESS } from '../actionTypes';
+
 
 const baseUrl = 'http://localhost:3000';
 
@@ -22,6 +24,7 @@ export const afterLogin = () => {
   };
 };
 
+
 export const afterEditUser = (id, payload) => {
   return {
     type: USER_EDIT_SUCCESS,
@@ -29,6 +32,12 @@ export const afterEditUser = (id, payload) => {
     payload
   }
 }
+export const setUsers = (payload) => {
+  return {
+    type: FETCH_USER_SUCCESS,
+    payload
+  };
+};
 
 // =========================== LOGIN USER ===========================
 
@@ -53,12 +62,16 @@ export const setLogin = (payload) => {
           }
         })
         .then((data) => {
-          // console.log(data.access_token, 'INI ACCESS TOKEN DI CREATOR');
-          console.log(data, 'data user from actionuser<<<<<<');
+
+          console.log(data, 'INI DATA <<<<<<<<<<<<<<<');
           if (data.access_token) {
             localStorage.setItem('access_token', data.access_token);
+            localStorage.setItem('first_name', data.payloadClient.firstName);
+            localStorage.setItem('last_name', data.payloadClient.lastName);
+            localStorage.setItem('email', data.payloadClient.email);
+
             localStorage.setItem('id', data.payloadClient.id);
-            // console.log(localStorage.getItem("id"),'localstorage id<<<<<<<<');
+
             resolve();
           }
         })
@@ -117,7 +130,6 @@ export const setRegister = (payload) => {
   };
 };
 
-
 export const setEditUser = (payload) => {
   const id = localStorage.getItem('id')
   return (dispatch, getState) => {
@@ -155,3 +167,39 @@ export const setEditUser = (payload) => {
     });
   };
 };
+
+// =========================== FETCH USER ===========================
+
+export const fetchUsers = (payload) => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      // dispatch(loadingProducts(true));
+      // dispatch(errorProducts(null));
+      fetch(`${baseUrl}/users`, {
+        method: 'GET',
+        headers: {
+          access_token: localStorage.getItem('access_token'),
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Something went wrong');
+          }
+        })
+        .then((data) => {
+          console.log(data);
+          dispatch(setUsers(data));
+          resolve();
+        })
+        .catch((err) => {
+          // dispatch(errorProducts(err));
+        })
+        .finally(() => {
+          // dispatch(loadingProducts(false));
+        });
+    });
+  };
+};
+

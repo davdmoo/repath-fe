@@ -3,7 +3,6 @@ import RowCommentSection from './componentsChild/RowCommentSection';
 import { Avatar } from '@mui/material/';
 
 function CardCommentPost(props) {
-  console.log(props.comments, 'PROPS.COMMENT ON COMMENT <<<<<<<<<<<<<');
   return (
     <div className="comment-card-container d-flex flex-column shadow">
       {props.comments.map((rowComment) => {

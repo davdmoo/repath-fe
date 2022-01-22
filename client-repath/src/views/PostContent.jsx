@@ -11,12 +11,14 @@ import NavbarContent from '../components/NavbarContent';
 import { addPostTextImage } from '../store/actionCreators/postCreator';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Input = styled('input')({
   display: 'none',
 });
 
 function PostContent() {
+  const notify = () => toast('Wow so easy!');
   const [type, setType] = useState('text');
   const [text, setText] = useState('');
   const [selectedFile, setSelectedFile] = useState({});
@@ -29,26 +31,66 @@ function PostContent() {
     setSelectedFile(e.target.files[0]);
   };
 
+  const fileData = () => {
+    if (selectedFile.name) {
+      return (
+        <div>
+          <h2>Image Details:</h2>
+          <p style={{ margin: '0px' }}>Image Name: {selectedFile.name}</p>
+          <p style={{ margin: '0px' }}>File Type: {selectedFile.type}</p>
+          <p style={{ marginBottom: '10px' }}>Last Modified: {selectedFile.lastModifiedDate.toDateString()}</p>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h4>Press camera icon to choose your image file.</h4>
+        </div>
+      );
+    }
+  };
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const doPostTextImage = () => {
-    console.log(text, selectedFile, type, '<<<<<<<<<<<<<<< SEBELUM MASUK FORM DATA');
+    // console.log(text, selectedFile, type, '<<<<<<<<<<<<<<< SEBELUM MASUK FORM DATA');
 
     let newPostTextImage = new FormData();
     newPostTextImage.append('type', type);
     newPostTextImage.append('text', text);
     newPostTextImage.append('imgUrl', selectedFile);
 
-    // console.log(newPostTextImage, 'INI FORM DATAAAAA');
-    dispatch(addPostTextImage(newPostTextImage)).then(() => {
-      console.log('SUCCESS ADD POST AFTER RESOLVE <<<<<<<<<<<<<<<<<<<<<<');
-      navigate('/');
-    });
+    dispatch(addPostTextImage(newPostTextImage))
+      .then(() => {
+        console.log('SUCCESS ADD POST AFTER RESOLVE <<<<<<<<<<<<<<<<<<<<<<');
+        navigate('/');
+      })
+      .catch((err) => {
+        toast.error('Please input text field and file type must be image with maximum size 3MB', {
+          position: 'bottom-center',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        console.log(err, 'error di wawwwwwwwww');
+      });
   };
+
+  // toast.promise(doPostTextImage, {
+  //   pending: 'Promise is pending',
+  //   success: 'Promise resolved 👌',
+  //   error: 'Promise rejected 🤯',
+  // });
 
   return (
     <>
+      <div>
+        <ToastContainer theme="colored" />
+      </div>
       <div
         style={{
           flex: 1,
@@ -63,9 +105,9 @@ function PostContent() {
             sx={{
               marginTop: 1,
               border: 3,
-              borderColor: '#f5f5f5',
+              borderColor: '#fef2f2',
               height: '34vh',
-              backgroundColor: '#f5f5f5',
+              backgroundColor: '#fef2f2',
             }}
           >
             <TextField id="outlined-multiline-static" multiline fullWidth rows={10} label="Write something here..." name="text" value={text} onChange={changeAddTextImageForm} />
@@ -75,25 +117,26 @@ function PostContent() {
                 <PhotoCamera />
               </IconButton>
             </label>
+            {fileData()}
+            <Button
+              variant="contained"
+              color="error"
+              style={{
+                marginTop: 10,
+                width: 200,
+              }}
+              onClick={(el) => {
+                el.preventDefault();
+                doPostTextImage();
+              }}
+            >
+              Post
+            </Button>
           </Box>
         </form>
-        <Stack direction="row" justifyContent="center">
-          <Button
-            variant="contained"
-            color="error"
-            style={{
-              marginTop: 40,
-              width: 200,
-            }}
-            onClick={(el) => {
-              el.preventDefault();
-              doPostTextImage();
-              // console.log(loginForm);
-            }}
-          >
-            Post
-          </Button>
-        </Stack>
+        {/* <Stack direction="row" justifyContent="center"> */}
+
+        {/* </Stack> */}
       </div>
     </>
   );

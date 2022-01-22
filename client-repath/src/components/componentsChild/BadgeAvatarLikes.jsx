@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Avatar, Badge } from '@mui/material/';
 
 function BadgeAvatarLikes(props) {
-  console.log(props.like, 'PROPS.LIKE ON BADGE AVATAR LIKES');
   return (
     <Badge
       overlap="circular"
