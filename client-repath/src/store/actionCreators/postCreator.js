@@ -1,6 +1,4 @@
-
 import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS } from '../actionTypes';
-
 
 const baseUrl = 'http://localhost:3000';
 
@@ -17,8 +15,9 @@ export const setDeletePost = (payload) => {
   return {
     type: POSTS_DELETE_SUCCESS,
     payload,
-  }
-}
+  };
+};
+
 
 export const fetchPosts = (payload) => {
   return (dispatch, getState) => {
@@ -101,32 +100,32 @@ export const deletePost = (id) => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          access_token: localStorage.getItem('access_token')
-        }
+          access_token: localStorage.getItem('access_token'),
+        },
       })
         .then((data) => {
           if (data.ok) {
-            return data.json()
+            return data.json();
           } else {
-            throw new Error('failed delete post')
+            throw new Error('failed delete post');
           }
         })
         .then((data) => {
           // console.log(data, 'success deleted post');
           // dispatch(setDeletePost(id))
-          resolve()
+          resolve();
         })
         .catch((err) => {
           // console.log(err, 'failed delete post');
           // dispatch(setErrorPost(err))
-          reject(err)
+          reject(err);
         })
         .finally(() => {
           // dispatch(setLoadingPost(false))
-        })
-    })
-  }
-}
+        });
+    });
+  };
+};
 
 // =========================== POST MUSIC ===========================
 
@@ -203,4 +202,5 @@ export const postLocation = (payload) => {
     });
   };
 };
+
 

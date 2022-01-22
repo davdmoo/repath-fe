@@ -1,4 +1,4 @@
-import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN } from '../actionTypes';
+import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, USER_EDIT_SUCCESS } from '../actionTypes';
 
 const baseUrl = 'http://localhost:3000';
 
@@ -21,6 +21,14 @@ export const afterLogin = () => {
     type: SUCCESS_LOGIN,
   };
 };
+
+export const afterEditUser = (id, payload) => {
+  return {
+    type: USER_EDIT_SUCCESS,
+    id,
+    payload
+  }
+}
 
 // =========================== LOGIN USER ===========================
 
@@ -45,9 +53,12 @@ export const setLogin = (payload) => {
           }
         })
         .then((data) => {
-          console.log(data.access_token, 'INI ACCESS TOKEN DI CREATOR');
+          // console.log(data.access_token, 'INI ACCESS TOKEN DI CREATOR');
+          console.log(data, 'data user from actionuser<<<<<<');
           if (data.access_token) {
             localStorage.setItem('access_token', data.access_token);
+            localStorage.setItem('id', data.payloadClient.id);
+            // console.log(localStorage.getItem("id"),'localstorage id<<<<<<<<');
             resolve();
           }
         })
@@ -101,6 +112,45 @@ export const setRegister = (payload) => {
         })
         .finally(() => {
           dispatch(loadingUser(false));
+        });
+    });
+  };
+};
+
+
+export const setEditUser = (payload) => {
+  const id = localStorage.getItem('id')
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      // dispatch(loadingUser(true));
+      // dispatch(errorUser(null));
+      fetch(`${baseUrl}/users/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          access_token: localStorage.getItem('access_token'),
+        },
+        body: JSON.stringify(payload),
+      })
+        .then((data) => {
+          if (data.ok) {
+            return data.json();
+          } else {
+            throw new Error(data.statusText);
+          }
+        })
+        .then((data) => {
+          console.log(data, 'data form setEditUser++++++++++');
+          if (!data.message) {
+            dispatch(afterEditUser(id, data));
+            resolve();
+          }
+        })
+        .catch((err) => {
+          reject(err);
+        })
+        .finally(() => {
+          // dispatch(loadingUser(false));
         });
     });
   };

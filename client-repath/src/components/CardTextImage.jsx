@@ -6,16 +6,17 @@ import { Card } from 'react-bootstrap';
 import CardLikedPost from './CardLikedPost';
 import CardCommentPost from './CardCommentPost';
 import ModalComment from './componentsChild/ModalComment';
-import { deletePost } from '../store/actionCreators/postCreator'
+import { deletePost } from '../store/actionCreators/postCreator';
 import { useDispatch } from 'react-redux';
 
 function CardTextImage(props) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const doDelete = (postId) => {
-    dispatch(deletePost(postId))
-  }
+    dispatch(deletePost(postId));
+  };
 
+  
   return (
     <>
       <Card style={{ border: '0px' }}>
@@ -68,11 +69,11 @@ function CardTextImage(props) {
                       <ModalComment />
                     </div>
                     <div style={{ marginTop: '10px' }}>
-                      <IconButton>
-                        <Delete
-                          onClick={() => doDelete(props.post._id)}
-                          sx={{ color: red[500] }} />
+
+                      <IconButton onClick={() => doDelete(props.post._id)}>
+                        <Delete sx={{ color: red[500] }} />
                       </IconButton>
+
                     </div>
                   </div>
                 </div>

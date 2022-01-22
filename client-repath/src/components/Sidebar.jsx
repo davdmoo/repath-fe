@@ -12,6 +12,8 @@ import ListIcon from '@mui/icons-material/List';
 import { red } from '@mui/material/colors';
 
 function Sidebar() {
+  const baseUrl = 'http://localhost:3000';
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -33,6 +35,34 @@ function Sidebar() {
     localStorage.clear();
     navigate('/login');
   };
+
+  // useEffect(() => {
+  //   const id = localStorage.getItem('id')
+  //   fetch(`${baseUrl}/users/${id}`, {
+  //     method: 'GET',
+  //     headers: {
+  //       access_token: localStorage.getItem('access_token'),
+  //     },
+  //   })
+  //     .then((response) => {
+
+  //       if (response.ok) {
+  //         return response.json();
+  //       } else {
+  //         throw new Error('Something went wrong');
+  //       }
+
+  //     })
+  //     .then((data) => {
+  //       toEditProfile = () => {
+  //         navigate('/profile');
+  //       };
+  //       console.log(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     })
+  // })
 
   return (
     <div>
