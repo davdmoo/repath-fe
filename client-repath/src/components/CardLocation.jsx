@@ -6,8 +6,8 @@ import { Card } from 'react-bootstrap';
 import CardLikedPost from './CardLikedPost';
 import CardCommentPost from './CardCommentPost';
 import ModalComment from './componentsChild/ModalComment';
-import { useDispatch } from 'react-redux'
-import { deletePost, likePost, unlikePost } from '../store/actionCreators/postCreator'
+import { useDispatch } from 'react-redux';
+import { deletePost, likePost, unlikePost } from '../store/actionCreators/postCreator';
 
 function CardLocation(props) {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function CardLocation(props) {
       for (let i = 0; i < props.post.likes.length; i++) {
         const like = props.post.likes[i];
 
-        if(like.userId._id === localStorage.id) {
+        if (like.userId._id === localStorage.id) {
           setChecked(true);
           break;
         } else {
@@ -28,18 +28,18 @@ function CardLocation(props) {
     } else {
       setChecked(false);
     }
-  }, [])
+  }, []);
 
   const handleLike = (id) => {
     dispatch(likePost(id))
       .then(() => {
-        setChecked(true)
+        setChecked(true);
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }
-  
+        console.log(err);
+      });
+  };
+
   const unlike = (likeId) => {
     dispatch(unlikePost(likeId))
       .then(() => {
@@ -47,15 +47,15 @@ function CardLocation(props) {
       })
       .catch((err) => {
         console.log(err);
-      })
-  }
-  
+      });
+  };
+
   function likeIdReturner(userId) {
     if (props.post.likes) {
       for (let i = 0; i < props.post.likes.length; i++) {
         const like = props.post.likes[i];
 
-        if(like.userId._id === userId) {
+        if (like.userId._id === userId) {
           return like._id;
         }
       }
@@ -65,8 +65,8 @@ function CardLocation(props) {
   }
 
   const doDelete = (postId) => {
-    dispatch(deletePost(postId))
-  }
+    dispatch(deletePost(postId));
+  };
   return (
     <>
       <Card style={{ border: '0px' }}>
@@ -101,12 +101,11 @@ function CardLocation(props) {
               </div>
               <div className="content-location d-flex flex-row" style={{ width: '50px' }}>
                 <div style={{ paddingTop: '3px' }}>
-                { checked
-
-                  ? (<Checkbox checked={checked} onChange={() => unlike(likeIdReturner(localStorage.id))} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />)
-
-                  : (<Checkbox checked={checked} onChange={() => handleLike(props.post._id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />)
-                }
+                  {checked ? (
+                    <Checkbox checked={checked} onChange={() => unlike(likeIdReturner(localStorage.id))} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />
+                  ) : (
+                    <Checkbox checked={checked} onChange={() => handleLike(props.post._id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />
+                  )}
                 </div>
                 <div style={{ paddingTop: '5px' }}>
                   <ModalComment />
