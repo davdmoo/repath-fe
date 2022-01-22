@@ -123,7 +123,7 @@ function CardTextImage(props) {
                     }
                     </div>
                     <div style={{ marginTop: '10px' }}>
-                      <ModalComment />
+                      <ModalComment post={props.post}/>
                     </div>
                     <div style={{ marginTop: '10px' }}>
 

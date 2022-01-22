@@ -287,3 +287,27 @@ export const unlikePost = (id) => {
     });
   };
 };
+
+export const commentPost = ({ id, content }) => {
+  console.log(content);
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: "POST",
+        url: `${baseUrl}/comments/${id}`,
+        headers: {
+          access_token: localStorage.access_token
+        },
+        data: { content }
+      })
+        .then((data) => {
+          console.log(data);
+          dispatch(fetchPostsAfterLikeUnlike());
+          resolve();
+        })
+        .catch((err) => {
+          reject(err);
+        })
+    });
+  };
+};
