@@ -7,6 +7,7 @@ import { fetchLocationSearch } from '../store/actionCreators/searchCreator';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
 import Loader from '../components/componentsChild/Loader';
+import LittleLoader from '../components/componentsChild/LittleLoader';
 import ErrorGlobal from '../components/componentsChild/ErrorGlobal';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYXptaWZ0cmQiLCJhIjoiY2t5bXE1dW1qMmFpOTJ2cDB6Nm9nNXBzaSJ9.kq9BAuFWAzxcnwgJHsV-zQ';
@@ -37,9 +38,8 @@ function PostSearchLocation() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
   const { locationList, searchLoading, searchError } = useSelector((state) => state.searchReducer);
-
+  const { afterPostLoading } = useSelector((state) => state.postReducer);
 
   const [searchLocationForm, setSearchLocationForm] = useState({
     location: '',
@@ -68,7 +68,6 @@ function PostSearchLocation() {
         });
       }
     });
-
   };
 
   if (searchError) {
@@ -117,6 +116,13 @@ function PostSearchLocation() {
             </button>
           </div>
         </div>
+        {afterPostLoading ? (
+          <div>
+            <LittleLoader />
+          </div>
+        ) : (
+          <div></div>
+        )}
 
         {/* {locationList.map((location, idx) => {
           return <CardSearchLocation key={idx} location={location}></CardSearchLocation>;

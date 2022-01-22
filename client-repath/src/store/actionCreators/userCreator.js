@@ -169,17 +169,25 @@ export const setEditUser = (payload) => {
 // =========================== FETCH USER ===========================
 
 export const fetchUsers = (payload) => {
+  let payload2
+  if(!payload) {
+    payload2 = ""
+  }else {
+    payload2 = payload
+  }
+  console.log(payload2,"=========", payload)
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       // dispatch(loadingProducts(true));
       // dispatch(errorProducts(null));
-      fetch(`${baseUrl}/users`, {
+      fetch(`${baseUrl}/users?name=${payload2}`, {
         method: 'GET',
         headers: {
           access_token: localStorage.getItem('access_token'),
         },
       })
         .then((response) => {
+          console.log(response);
           if (response.ok) {
             return response.json();
           } else {

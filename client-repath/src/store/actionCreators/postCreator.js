@@ -1,6 +1,5 @@
-import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS } from '../actionTypes';
+import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, POSTS_LIKE_SUCCESS, AFTER_POST_LOADING } from '../actionTypes';
 import axios from 'axios';
-
 
 const baseUrl = 'http://localhost:3000';
 
@@ -14,6 +13,13 @@ export const loadingPosts = (payload) => {
 export const errorPosts = (payload) => {
   return {
     type: ERROR_POSTS,
+    payload,
+  };
+};
+
+export const loadingAfterPost = (payload) => {
+  return {
+    type: AFTER_POST_LOADING,
     payload,
   };
 };
@@ -34,7 +40,7 @@ export const setDeletePost = (payload) => {
   };
 };
 
-export const fetchPosts = (payload) => {
+export const fetchPosts = () => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       dispatch(loadingPosts(true));
@@ -67,17 +73,47 @@ export const fetchPosts = (payload) => {
   };
 };
 
+export const fetchPostsAfterLikeUnlike = () => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      dispatch(errorPosts(null));
+      fetch(`${baseUrl}/posts`, {
+        method: 'GET',
+        headers: {
+          access_token: localStorage.getItem('access_token'),
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Something went wrong');
+          }
+        })
+        .then((data) => {
+          dispatch(setPosts(data));
+          resolve();
+        })
+        .catch((err) => {
+          dispatch(errorPosts(err));
+          reject();
+        });
+    });
+  };
+};
+
 // =========================== POST TEXT X IMAGE ===========================
 
 export const addPostTextImage = (payloadFormData) => {
   return (dispatch, getState) => {
+    dispatch(loadingAfterPost(true));
     return new Promise((resolve, reject) => {
       axios(`${baseUrl}/posts`, {
         method: 'POST',
         headers: {
           access_token: localStorage.getItem('access_token'),
         },
-        body: payloadFormData,
+        data: payloadFormData,
       })
         // .then((data) => {
         //   if (data.ok) {
@@ -90,13 +126,15 @@ export const addPostTextImage = (payloadFormData) => {
         .then((data) => {
           console.log(data, '<<<<<<<<<<<<<<<<<<<<<< INI DATA SETELAH NGE-POST');
           // if (!data.message) {
+          dispatch(loadingAfterPost(false));
           resolve();
           // }
           // console.log('OK ADD NEW PRODUCT');
         })
         .catch((err) => {
+          dispatch(loadingAfterPost(false));
           console.log(err.response.data.message);
-          reject(err);
+          reject(err.response.data);
         });
     });
   };
@@ -144,6 +182,7 @@ export const deletePost = (id) => {
 
 export const postMusic = (payload) => {
   return (dispatch, getState) => {
+    dispatch(loadingAfterPost(true));
     return new Promise((resolve, reject) => {
       // dispatch(loadingProducts(true));
       // dispatch(errorProducts(null));
@@ -168,10 +207,12 @@ export const postMusic = (payload) => {
           // console.log(arrayListMusics, '<<<<<<<<<< INI ARRAY MUSIC LIST');
 
           // dispatch(setPosts(data));
+          dispatch(loadingAfterPost(false));
           resolve();
         })
         .catch((err) => {
-          // dispatch(errorProducts(err));
+          dispatch(loadingAfterPost(false));
+          console.log(err);
         })
         .finally(() => {
           // dispatch(loadingProducts(false));
@@ -186,8 +227,7 @@ export const postLocation = (payload) => {
   let sendToServer = { location: payload.location, type: 'location' };
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      // dispatch(loadingProducts(true));
-      // dispatch(errorProducts(null));
+      dispatch(loadingAfterPost(true));
       fetch(`${baseUrl}/posts`, {
         method: 'POST',
         headers: {
@@ -204,13 +244,81 @@ export const postLocation = (payload) => {
           }
         })
         .then((data) => {
+          dispatch(loadingAfterPost(false));
           resolve();
         })
         .catch((err) => {
-          // dispatch(errorProducts(err));
+          dispatch(loadingAfterPost(false));
+          console.log(err);
         })
         .finally(() => {
           // dispatch(loadingProducts(false));
+        });
+    });
+  };
+};
+
+export const likePost = (id) => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'POST',
+        url: `${baseUrl}/likes/${id}`,
+        headers: {
+          access_token: localStorage.access_token,
+        },
+      })
+        .then((data) => {
+          dispatch(fetchPostsAfterLikeUnlike());
+          resolve();
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
+};
+
+export const unlikePost = (id) => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'DELETE',
+        url: `${baseUrl}/likes/${id}`,
+        headers: {
+          access_token: localStorage.access_token,
+        },
+      })
+        .then((data) => {
+          dispatch(fetchPostsAfterLikeUnlike());
+          resolve();
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
+};
+
+export const commentPost = ({ id, content }) => {
+  console.log(content);
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'POST',
+        url: `${baseUrl}/comments/${id}`,
+        headers: {
+          access_token: localStorage.access_token,
+        },
+        data: { content },
+      })
+        .then((data) => {
+          console.log(data);
+          dispatch(fetchPostsAfterLikeUnlike());
+          resolve();
+        })
+        .catch((err) => {
+          reject(err);
         });
     });
   };
