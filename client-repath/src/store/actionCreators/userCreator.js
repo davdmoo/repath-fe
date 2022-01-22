@@ -1,5 +1,5 @@
 import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, USER_EDIT_SUCCESS, FETCH_USER_SUCCESS } from '../actionTypes';
-import axios from 'axios'
+import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000';
 
@@ -23,25 +23,23 @@ export const afterLogin = () => {
   };
 };
 
-
 export const afterEditUser = (id, payload) => {
   return {
     type: USER_EDIT_SUCCESS,
     id,
-    payload
-  }
-}
+    payload,
+  };
+};
 export const setUsers = (payload) => {
   return {
     type: FETCH_USER_SUCCESS,
-    payload
+    payload,
   };
 };
 
 // =========================== LOGIN USER ===========================
 
 export const setLogin = (payload) => {
-  console.log(payload, 'payload>>>>>');
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       // dispatch(loadingUser(true));
@@ -61,8 +59,7 @@ export const setLogin = (payload) => {
         //     throw new Error(data.statusText);
         //   }
         // })
-        .then(({data}) => {
-          console.log(data, 'INI DATA <<<<<<<<<<<<<<<');
+        .then(({ data }) => {
           if (data.access_token) {
             localStorage.setItem('access_token', data.access_token);
             localStorage.setItem('first_name', data.payloadClient.firstName);
@@ -77,9 +74,9 @@ export const setLogin = (payload) => {
           console.log(err.response.data.message, 'error<<<');
           reject(err);
         })
-      .finally(() => {
-      //   // dispatch(loadingUser(false));
-      });
+        .finally(() => {
+          //   // dispatch(loadingUser(false));
+        });
     });
   };
 };
@@ -129,7 +126,7 @@ export const setRegister = (payload) => {
 };
 
 export const setEditUser = (payload) => {
-  const id = localStorage.getItem('id')
+  const id = localStorage.getItem('id');
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       // dispatch(loadingUser(true));
@@ -169,13 +166,13 @@ export const setEditUser = (payload) => {
 // =========================== FETCH USER ===========================
 
 export const fetchUsers = (payload) => {
-  let payload2
-  if(!payload) {
-    payload2 = ""
-  }else {
-    payload2 = payload
+  let payload2;
+  if (!payload) {
+    payload2 = '';
+  } else {
+    payload2 = payload;
   }
-  console.log(payload2,"=========", payload)
+
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       // dispatch(loadingProducts(true));
@@ -187,7 +184,6 @@ export const fetchUsers = (payload) => {
         },
       })
         .then((response) => {
-          console.log(response);
           if (response.ok) {
             return response.json();
           } else {
@@ -195,7 +191,6 @@ export const fetchUsers = (payload) => {
           }
         })
         .then((data) => {
-          console.log(data);
           dispatch(setUsers(data));
           resolve();
         })
@@ -208,4 +203,3 @@ export const fetchUsers = (payload) => {
     });
   };
 };
-

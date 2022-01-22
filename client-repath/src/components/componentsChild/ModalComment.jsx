@@ -13,18 +13,17 @@ function ModalComment({ post }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState('');
 
   function handleComment(e) {
     e.preventDefault();
     const commentPayload = {
       id: post._id,
-      content
-    }
-    dispatch(commentPost(commentPayload))
-      .then(() => {
-        setShow(false);
-      })
+      content,
+    };
+    dispatch(commentPost(commentPayload)).then(() => {
+      setShow(false);
+    });
   }
 
   function handleContent(e) {
@@ -33,7 +32,7 @@ function ModalComment({ post }) {
 
   return (
     <>
-      <IconButton onClick={handleShow}>
+      <IconButton onClick={handleShow} sx={{ padding: '0px 3px' }}>
         <Comment sx={{ color: blue[500] }} />
       </IconButton>
       {/* ======================================== MODAL ========================================*/}
