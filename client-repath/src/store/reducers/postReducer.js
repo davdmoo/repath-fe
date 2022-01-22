@@ -1,9 +1,10 @@
-import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS } from '../actionTypes';
+import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, AFTER_POST_LOADING } from '../actionTypes';
 
 const initialState = {
   posts: [],
   postsLoading: true,
   postsError: null,
+  afterPostLoading: false,
 };
 
 function postReducer(state = initialState, action) {
@@ -58,6 +59,12 @@ function postReducer(state = initialState, action) {
       return {
         ...state,
         postsError: action.payload,
+      };
+
+    case AFTER_POST_LOADING:
+      return {
+        ...state,
+        afterPostLoading: action.payload,
       };
 
     default:

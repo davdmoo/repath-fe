@@ -18,7 +18,7 @@ function CardTextImage(props) {
       for (let i = 0; i < props.post.likes.length; i++) {
         const like = props.post.likes[i];
 
-        if(like.userId._id === localStorage.id) {
+        if (like.userId._id === localStorage.id) {
           setChecked(true);
           break;
         } else {
@@ -28,18 +28,18 @@ function CardTextImage(props) {
     } else {
       setChecked(false);
     }
-  }, [])
+  }, []);
 
   const handleLike = (id) => {
     dispatch(likePost(id))
       .then(() => {
-        setChecked(true)
+        setChecked(true);
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }
-  
+        console.log(err);
+      });
+  };
+
   const unlike = (likeId) => {
     dispatch(unlikePost(likeId))
       .then(() => {
@@ -47,15 +47,15 @@ function CardTextImage(props) {
       })
       .catch((err) => {
         console.log(err);
-      })
-  }
-  
+      });
+  };
+
   function likeIdReturner(userId) {
     if (props.post.likes) {
       for (let i = 0; i < props.post.likes.length; i++) {
         const like = props.post.likes[i];
 
-        if(like.userId._id === userId) {
+        if (like.userId._id === userId) {
           return like._id;
         }
       }
@@ -68,12 +68,11 @@ function CardTextImage(props) {
     dispatch(deletePost(postId));
   };
 
-  
   return (
     <>
       <Card style={{ border: '0px' }}>
         <Card.Body style={{ backgroundColor: '#fef2f2', padding: '0px' }}>
-          <div className="card-container">
+          <div className="card-container ">
             <div className="card-left-side d-flex">
               <div>
                 <span className="dot-card-textImage">
@@ -98,7 +97,7 @@ function CardTextImage(props) {
               )}
               <div className="content-section-wrapper d-flex flex-column">
                 <div className="content-text d-flex flex-row">
-                  <div className="postText-container d-flex flex-row">
+                  <div className="postText-container d-flex flex-row shadow">
                     <div className="comment-section-pict">
                       {props.post.userId.imgUrl ? (
                         <Avatar className="avatar-card-textImage" alt={props.post.userId.firstName} src={props.post.userId.imgUrl} sx={{ width: 40, height: 40 }} variant="rounded"></Avatar>
@@ -115,27 +114,24 @@ function CardTextImage(props) {
                   </div>
                   <div className="content-text-button d-flex flex-row justify-content-center">
                     <div style={{ marginTop: '8px' }}>
-                    { checked
-
-                      ? (<Checkbox checked={checked} onChange={() => unlike(likeIdReturner(localStorage.id))} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />)
-
-                      : (<Checkbox checked={checked} onChange={() => handleLike(props.post._id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />)
-                    }
+                      {checked ? (
+                        <Checkbox checked={checked} onChange={() => unlike(likeIdReturner(localStorage.id))} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />
+                      ) : (
+                        <Checkbox checked={checked} onChange={() => handleLike(props.post._id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />
+                      )}
                     </div>
                     <div style={{ marginTop: '10px' }}>
-                      <ModalComment post={props.post}/>
+                      <ModalComment post={props.post} />
                     </div>
                     <div style={{ marginTop: '10px' }}>
-
                       <IconButton onClick={() => doDelete(props.post._id)}>
                         <Delete sx={{ color: red[500] }} />
                       </IconButton>
-
                     </div>
                   </div>
                 </div>
-                {props.post.likes.length > 0 ? <CardLikedPost key={props.post._id} likes={props.post.likes} /> : <div></div>}
-                {props.post.comments.length > 0 ? <CardCommentPost key={props.post._id} comments={props.post.comments} /> : <div></div>}
+                {props.post.likes.length > 0 ? <CardLikedPost likes={props.post.likes} /> : <div></div>}
+                {props.post.comments.length > 0 ? <CardCommentPost comments={props.post.comments} /> : <div></div>}
                 {/* {props.post.comments.length > 0 ? (
                   props.post.comments.map((comment) => {
                     return <CardCommentPost key={comment._id} comment={comment} />;
