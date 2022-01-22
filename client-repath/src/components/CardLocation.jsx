@@ -108,7 +108,7 @@ function CardLocation(props) {
                   )}
                 </div>
                 <div style={{ paddingTop: '5px' }}>
-                  <ModalComment />
+                  <ModalComment post={props.post}/>
                 </div>
                 <div style={{ paddingTop: '5px' }}>
                   <IconButton onClick={() => doDelete(props.post._id)}>
