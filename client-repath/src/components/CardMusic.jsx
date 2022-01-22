@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Avatar, Checkbox, IconButton } from '@mui/material/';
 import { FavoriteBorder, Favorite, MusicNote, Delete } from '@mui/icons-material/';
 import { red } from '@mui/material/colors';
@@ -7,11 +7,90 @@ import CardLikedPost from './CardLikedPost';
 import CardCommentPost from './CardCommentPost';
 import ModalComment from './componentsChild/ModalComment';
 import { useDispatch } from 'react-redux'
-import { deletePost } from '../store/actionCreators/postCreator'
+import { deletePost, likePost, unlikePost } from '../store/actionCreators/postCreator'
 
 function CardMusic(props) {
-  console.log(props.post.comments, 'PROPS.COMMENTS ON CARD MUSIC <<<<<<<<<<<<<');
-  console.log(props.post.likes, 'PROPS.LIKES ON CARD MUSIC <<<<<<<<<<<<<');
+  // console.log(props.post.comments, 'PROPS.COMMENTS ON CARD MUSIC <<<<<<<<<<<<<');
+  // console.log(props.post.likes, 'PROPS.LIKES ON CARD MUSIC <<<<<<<<<<<<<');
+  const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    if (props.post.likes) {
+      for (let i = 0; i < props.post.likes.length; i++) {
+        const like = props.post.likes[i];
+
+        if(like.userId._id === localStorage.id) {
+          setChecked(true);
+          break;
+        } else {
+          setChecked(false);
+        }
+      }
+    } else {
+      setChecked(false);
+    }
+  }, [])
+
+  const handleLike = (id) => {
+    dispatch(likePost(id))
+      .then(() => {
+        console.log(checked, "<<<< STATUS LIKE");
+        setChecked(true)
+      })
+      .catch((err) => console.log(err))
+    // if (checked) {
+    // } 
+    // else {
+    //   dispatch(unlikePost(likeId))
+    //     .then(() => {
+    //       console.log(checked, "<<<< STATUS UNLIKE???");
+    //       setChecked(false)
+    //     })
+    //     .catch((err) => console.log(err))
+    // }
+  }
+  const unlike = (likeId) => {
+    dispatch(unlikePost(likeId))
+      .then(() => {
+        setChecked(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+  
+  function likeIdReturner(userId) {
+    if (props.post.likes) {
+      for (let i = 0; i < props.post.likes.length; i++) {
+        const like = props.post.likes[i];
+
+        if(like.userId._id === userId) {
+          return like._id;
+        }
+      }
+    } else {
+      return false;
+    }
+  }
+
+  function checkLike(userId) {
+    if (props.post.likes) {
+      // props.post.likes.forEach(like => {
+      //   if (like.userId._id === userId) return true; 
+      // })
+      for (let i = 0; i < props.post.likes.length; i++) {
+        const like = props.post.likes[i];
+
+        if(like.userId._id === userId) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    } else {
+      return false;
+    }
+  }
 
   const dispatch = useDispatch();
   const doDelete = (postId) => {
@@ -66,7 +145,13 @@ function CardMusic(props) {
               <div className="content-image-album d-flex flex-row" style={{ width: '200px' }}>
                 <Avatar alt={props.post.artist} src={props.post.imageAlbum} sx={{ width: 60, height: 60 }} variant="rounded"></Avatar>
                 <div style={{ paddingTop: '3px', marginLeft: '25px' }}>
-                  <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />
+                  { checked
+
+                  ? (<Checkbox checked={checked} onChange={() => unlike(likeIdReturner(localStorage.id))} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />)
+
+                  : (<Checkbox checked={checked} onChange={() => handleLike(props.post._id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} />)
+                  }
+
                 </div>
                 <div style={{ paddingTop: '5px' }}>
                   <ModalComment />
