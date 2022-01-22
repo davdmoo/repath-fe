@@ -7,6 +7,7 @@ import { fetchMusicSearch } from '../store/actionCreators/searchCreator';
 import { makeid } from '../hooks/randomizeLetter';
 import Loader from '../components/componentsChild/Loader';
 import ErrorGlobal from '../components/componentsChild/ErrorGlobal';
+import LittleLoader from '../components/componentsChild/LittleLoader';
 
 function PostSearchMusic() {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function PostSearchMusic() {
   }, []);
 
   const { musicList, searchLoading, searchError } = useSelector((state) => state.searchReducer);
+  const { afterPostLoading } = useSelector((state) => state.postReducer);
 
   const [searchMusicForm, setSearchMusicForm] = useState({
     title: '',
@@ -74,6 +76,14 @@ function PostSearchMusic() {
             </button>
           </div>
         </div>
+
+        {afterPostLoading ? (
+          <div>
+            <LittleLoader />
+          </div>
+        ) : (
+          <div></div>
+        )}
 
         {searchLoading ? (
           <div>
