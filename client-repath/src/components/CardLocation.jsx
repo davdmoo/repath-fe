@@ -6,8 +6,15 @@ import { Card } from 'react-bootstrap';
 import CardLikedPost from './CardLikedPost';
 import CardCommentPost from './CardCommentPost';
 import ModalComment from './componentsChild/ModalComment';
+import { useDispatch } from 'react-redux'
+import { deletePost } from '../store/actionCreators/postCreator'
 
 function CardLocation(props) {
+  const dispatch = useDispatch();
+
+  const doDelete = (postId) => {
+    dispatch(deletePost(postId))
+  }
   return (
     <>
       <Card style={{ border: '0px' }}>
@@ -48,7 +55,7 @@ function CardLocation(props) {
                   <ModalComment />
                 </div>
                 <div style={{ paddingTop: '5px' }}>
-                  <IconButton>
+                  <IconButton onClick={() => doDelete(props.post._id)}>
                     <Delete sx={{ color: red[500] }} />
                   </IconButton>
                 </div>

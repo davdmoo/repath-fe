@@ -16,6 +16,7 @@ function CardTextImage(props) {
     dispatch(deletePost(postId));
   };
 
+  
   return (
     <>
       <Card style={{ border: '0px' }}>
@@ -68,9 +69,11 @@ function CardTextImage(props) {
                       <ModalComment />
                     </div>
                     <div style={{ marginTop: '10px' }}>
+
                       <IconButton onClick={() => doDelete(props.post._id)}>
                         <Delete sx={{ color: red[500] }} />
                       </IconButton>
+
                     </div>
                   </div>
                 </div>

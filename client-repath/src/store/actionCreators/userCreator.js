@@ -1,4 +1,6 @@
-import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, FETCH_USER_SUCCESS } from '../actionTypes';
+
+import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, USER_EDIT_SUCCESS, FETCH_USER_SUCCESS } from '../actionTypes';
+
 
 const baseUrl = 'http://localhost:3000';
 
@@ -22,6 +24,14 @@ export const afterLogin = () => {
   };
 };
 
+
+export const afterEditUser = (id, payload) => {
+  return {
+    type: USER_EDIT_SUCCESS,
+    id,
+    payload
+  }
+}
 export const setUsers = (payload) => {
   return {
     type: FETCH_USER_SUCCESS,
@@ -61,6 +71,7 @@ export const setLogin = (payload) => {
             localStorage.setItem('email', data.payloadClient.email);
 
             localStorage.setItem('id', data.payloadClient.id);
+
             resolve();
           }
         })
@@ -119,6 +130,44 @@ export const setRegister = (payload) => {
   };
 };
 
+export const setEditUser = (payload) => {
+  const id = localStorage.getItem('id')
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      // dispatch(loadingUser(true));
+      // dispatch(errorUser(null));
+      fetch(`${baseUrl}/users/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          access_token: localStorage.getItem('access_token'),
+        },
+        body: JSON.stringify(payload),
+      })
+        .then((data) => {
+          if (data.ok) {
+            return data.json();
+          } else {
+            throw new Error(data.statusText);
+          }
+        })
+        .then((data) => {
+          console.log(data, 'data form setEditUser++++++++++');
+          if (!data.message) {
+            dispatch(afterEditUser(id, data));
+            resolve();
+          }
+        })
+        .catch((err) => {
+          reject(err);
+        })
+        .finally(() => {
+          // dispatch(loadingUser(false));
+        });
+    });
+  };
+};
+
 // =========================== FETCH USER ===========================
 
 export const fetchUsers = (payload) => {
@@ -153,3 +202,4 @@ export const fetchUsers = (payload) => {
     });
   };
 };
+

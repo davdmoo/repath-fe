@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 
 function Register() {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [registerForm, setRegisterForm] = useState({
     firstName: '',

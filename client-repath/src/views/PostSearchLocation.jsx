@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchLocationSearch } from '../store/actionCreators/searchCreator';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+
 import Loader from '../components/componentsChild/Loader';
 import ErrorGlobal from '../components/componentsChild/ErrorGlobal';
 
@@ -36,7 +37,9 @@ function PostSearchLocation() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
   const { locationList, searchLoading, searchError } = useSelector((state) => state.searchReducer);
+
 
   const [searchLocationForm, setSearchLocationForm] = useState({
     location: '',
@@ -65,6 +68,7 @@ function PostSearchLocation() {
         });
       }
     });
+
   };
 
   if (searchError) {
@@ -113,6 +117,7 @@ function PostSearchLocation() {
             </button>
           </div>
         </div>
+
         {/* {locationList.map((location, idx) => {
           return <CardSearchLocation key={idx} location={location}></CardSearchLocation>;
         })} */}

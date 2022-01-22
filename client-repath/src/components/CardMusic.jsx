@@ -6,8 +6,18 @@ import { Card } from 'react-bootstrap';
 import CardLikedPost from './CardLikedPost';
 import CardCommentPost from './CardCommentPost';
 import ModalComment from './componentsChild/ModalComment';
+import { useDispatch } from 'react-redux'
+import { deletePost } from '../store/actionCreators/postCreator'
 
 function CardMusic(props) {
+  console.log(props.post.comments, 'PROPS.COMMENTS ON CARD MUSIC <<<<<<<<<<<<<');
+  console.log(props.post.likes, 'PROPS.LIKES ON CARD MUSIC <<<<<<<<<<<<<');
+
+  const dispatch = useDispatch();
+  const doDelete = (postId) => {
+    dispatch(deletePost(postId))
+  }
+
   return (
     <>
       <Card style={{ border: '0px' }}>
@@ -30,9 +40,11 @@ function CardMusic(props) {
                 <div className="song-title" style={{ width: '200px' }}>
                   Listening to {props.post.title} by <span className="fw-bold"> {props.post.artist}</span>
                 </div>
+
                 <div className="album-title" style={{ width: '200px' }}>
                   {props.post.albumName}
                 </div>
+
                 {props.post.likes.length > 0 ? <CardLikedPost likes={props.post.likes} /> : <div></div>}
                 {/* {props.post.likes.length > 0 ? (
                   props.post.likes.map((like) => {
@@ -60,7 +72,7 @@ function CardMusic(props) {
                   <ModalComment />
                 </div>
                 <div style={{ paddingTop: '5px' }}>
-                  <IconButton>
+                  <IconButton onClick={() => doDelete(props.post._id)}>
                     <Delete sx={{ color: red[500] }} />
                   </IconButton>
                 </div>
