@@ -12,6 +12,7 @@ import { deletePost, likePost, unlikePost } from '../store/actionCreators/postCr
 function CardMusic(props) {
   // console.log(props.post.comments, 'PROPS.COMMENTS ON CARD MUSIC <<<<<<<<<<<<<');
   // console.log(props.post.likes, 'PROPS.LIKES ON CARD MUSIC <<<<<<<<<<<<<');
+  const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
@@ -34,21 +35,13 @@ function CardMusic(props) {
   const handleLike = (id) => {
     dispatch(likePost(id))
       .then(() => {
-        console.log(checked, "<<<< STATUS LIKE");
         setChecked(true)
       })
-      .catch((err) => console.log(err))
-    // if (checked) {
-    // } 
-    // else {
-    //   dispatch(unlikePost(likeId))
-    //     .then(() => {
-    //       console.log(checked, "<<<< STATUS UNLIKE???");
-    //       setChecked(false)
-    //     })
-    //     .catch((err) => console.log(err))
-    // }
+      .catch((err) => {
+        console.log(err)
+      })
   }
+  
   const unlike = (likeId) => {
     dispatch(unlikePost(likeId))
       .then(() => {
@@ -73,26 +66,6 @@ function CardMusic(props) {
     }
   }
 
-  function checkLike(userId) {
-    if (props.post.likes) {
-      // props.post.likes.forEach(like => {
-      //   if (like.userId._id === userId) return true; 
-      // })
-      for (let i = 0; i < props.post.likes.length; i++) {
-        const like = props.post.likes[i];
-
-        if(like.userId._id === userId) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    } else {
-      return false;
-    }
-  }
-
-  const dispatch = useDispatch();
   const doDelete = (postId) => {
     dispatch(deletePost(postId))
   }
