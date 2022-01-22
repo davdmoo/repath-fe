@@ -16,4 +16,4 @@ export const LOADING_SEARCH = 'searchLoading/loading';
 export const ERROR_SEARCH = 'searchError/error';
 
 export const FETCH_USER_SUCCESS = 'users/fetchSuccess';
-
+export const FETCH_FOLLOWING_USERS = 'users/fetchFollowing'

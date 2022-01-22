@@ -1,8 +1,18 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import CardFriendList from "../components/CardFriendList";
+import { useEffect } from "react";
+import { fetchFollowing } from "../store/actionCreators/followCreator";
 
 function FollowingPage() {
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
+
+	useEffect(() => {
+		dispatch(fetchFollowing())
+	}, [])
 	return (
 		<>
 			<Navbar />
@@ -17,10 +27,6 @@ function FollowingPage() {
 				<CardFriendList />
 				<CardFriendList />
 
-				<CardFriendList />
-				<CardFriendList />
-				<CardFriendList />
-				<CardFriendList />
 				<CardFriendList />
 				<CardFriendList />
 				<CardFriendList />
