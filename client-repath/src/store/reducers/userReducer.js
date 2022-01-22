@@ -28,14 +28,9 @@ function userReducer(state = initialState, action) {
         }
 
         case FETCH_USER_SUCCESS: 
-        const id = localStorage.getItem('id');
-        console.log(id,`IDDDDDDDD`);
-        const payload = action.payload
-        console.log(payload,`PAYLOADDDD`)
-        const notLoginUser = payload.filter((user) => user._id.toString() !== id);
         return {
             ...state,
-            users: notLoginUser
+            users: action.payload
         }
   
       default:

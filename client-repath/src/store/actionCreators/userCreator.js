@@ -52,9 +52,10 @@ export const setLogin = (payload) => {
           }
         })
         .then((data) => {
-          console.log(data.access_token, 'INI ACCESS TOKEN DI CREATOR');
+          console.log(data.payloadClient, 'INI ACCESS TOKEN DI CREATOR');
           if (data.access_token) {
             localStorage.setItem('access_token', data.access_token);
+            localStorage.setItem('id', data.payloadClient.id);
             resolve();
           }
         })
