@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import ModalConfirmDelete from './componentsChild/ModalConfirmDelete';
 import { errorToastAlert2 } from '../hooks/errorToastAlert';
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 
 function CardTextImage(props) {
   const dispatch = useDispatch();
@@ -19,6 +20,14 @@ function CardTextImage(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const renderTooltip = (prop) => (
+    <Tooltip id="button-tooltip" {...prop}>
+      <div>
+        {props.post.userId.username}
+      </div>
+    </Tooltip>
+  );
 
   useEffect(() => {
     if (props.post.likes) {
@@ -80,13 +89,33 @@ function CardTextImage(props) {
       <Card style={{ border: '0px' }}>
         <Card.Body style={{ backgroundColor: '#fef2f2', padding: '0px' }}>
           <div className="card-container ">
+
             <div className="card-left-side d-flex">
+              {props.post.userId.imgUrl ? (
+                <OverlayTrigger
+                  placement="bottom"
+                  delay={{ show: 250, hide: 400 }}
+                  overlay={renderTooltip}
+                >
+                  <Avatar className="avatar-card" alt="David" src={props.post.userId.imgUrl} sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                </OverlayTrigger>
+              ) : (
+                <OverlayTrigger
+                  placement="bottom"
+                  delay={{ show: 250, hide: 400 }}
+                  overlay={renderTooltip}
+                >
+                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                </OverlayTrigger>
+              )}
               <div>
                 <span className="dot-card-textImage">
                   <FormatQuote sx={{ color: red[50] }} />
                 </span>
               </div>
             </div>
+
+
             <div className="card-right-side d-flex flex-column">
               {props.post.imgUrl !== '[object Object]' ? (
                 <div

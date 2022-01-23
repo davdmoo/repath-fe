@@ -97,6 +97,7 @@ function Login() {
           autoComplete="off"
         >
           <TextField
+            type="email"
             name="email"
             value={loginForm.email}
             onChange={changeLoginFormInput}
