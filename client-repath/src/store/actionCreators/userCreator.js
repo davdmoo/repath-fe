@@ -1,4 +1,4 @@
-import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, USER_EDIT_SUCCESS, FETCH_USER_SUCCESS } from '../actionTypes';
+import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, USER_EDIT_SUCCESS, FETCH_USER_SUCCESS, FETCH_USER_BY_ID_SUCCESS } from '../actionTypes';
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000';
@@ -37,6 +37,13 @@ export const setUsers = (payload) => {
   };
 };
 
+export const setUser = (payload) => {
+  return {
+    type: FETCH_USER_BY_ID_SUCCESS,
+    payload
+  };
+};
+
 // =========================== LOGIN USER ===========================
 
 export const setLogin = (payload) => {
@@ -62,9 +69,9 @@ export const setLogin = (payload) => {
         .then(({ data }) => {
           if (data.access_token) {
             localStorage.setItem('access_token', data.access_token);
-            localStorage.setItem('first_name', data.payloadClient.firstName);
-            localStorage.setItem('last_name', data.payloadClient.lastName);
-            localStorage.setItem('email', data.payloadClient.email);
+            // localStorage.setItem('first_name', data.payloadClient.firstName);
+            // localStorage.setItem('last_name', data.payloadClient.lastName);
+            // localStorage.setItem('email', data.payloadClient.email);
             localStorage.setItem('id', data.payloadClient.id);
             resolve();
           }
@@ -203,3 +210,25 @@ export const fetchUsers = (payload) => {
     });
   };
 };
+
+export const fetchUserById = (id) => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      axios({
+        url: `${baseUrl}/users/${id}`,
+        method: 'GET',
+        headers: {
+          access_token: localStorage.access_token,
+        },
+      })
+        .then((data) => {
+          dispatch(setUser(data));
+          resolve(data);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        })
+    });
+  };
+}

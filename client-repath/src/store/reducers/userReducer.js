@@ -1,8 +1,8 @@
 
-import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN , FETCH_USER_SUCCESS, USER_EDIT_SUCCESS, FETCH_FOLLOWING_USERS,FETCH_FOLLOWER_USER} from "../actionTypes";
+import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN , FETCH_USER_SUCCESS, USER_EDIT_SUCCESS, FETCH_FOLLOWING_USERS,FETCH_FOLLOWER_USER, FETCH_USER_BY_ID_SUCCESS } from "../actionTypes";
 
 const initialState = {
-    user: [],
+    user: {},
     users: [],
     userLoading: true,
     userError: null,
@@ -63,6 +63,12 @@ function userReducer(state = initialState, action) {
       return{
         ...state,
         follower: action.payload
+      }
+    
+    case FETCH_USER_BY_ID_SUCCESS:
+      return {
+        ...state,
+        user: action.payload
       }
 
     default:
