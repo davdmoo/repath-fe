@@ -43,22 +43,11 @@ export const setLogin = (payload) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       // dispatch(loadingUser(true));
-      // dispatch(errorUser(null));
+      dispatch(errorUser(null));
       axios(`${baseUrl}/users/login`, {
         method: 'POST',
-        // headers: {
-        //   'Content-Type': 'application/json',
-        // },
         data: payload,
       })
-        // .then((data) => {
-        //   if (data.ok) {
-        //     return data.json();
-        //   } else {
-        //     // console.log(data.statusText);
-        //     throw new Error(data.statusText);
-        //   }
-        // })
         .then(({ data }) => {
           if (data.access_token) {
             localStorage.setItem('access_token', data.access_token);
@@ -71,12 +60,12 @@ export const setLogin = (payload) => {
         })
         .catch((err) => {
           // dispatch(errorUser(err));
-          console.log(err.response.data.message, 'error<<<');
-          reject(err);
+          // console.log(err.response.data, 'error user creator<<<');
+          reject(err.response.data);
         })
-        .finally(() => {
+        // .finally(() => {
           //   // dispatch(loadingUser(false));
-        });
+        // });
     });
   };
 };
@@ -86,29 +75,17 @@ export const setLogin = (payload) => {
 export const setRegister = (payload) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      // console.log('REGISTER ON CREATORS <<<<<<<<<<<<<<<<<<<<<<');
-      // resolve();
       // dispatch(loadingUser(true));
       // dispatch(errorUser(null));
       axios(`${baseUrl}/users/register`, {
         method: 'POST',
         headers: {
-          // 'Content-Type': 'application/json',
           access_token: localStorage.getItem('access_token'),
         },
         data: payload,
       })
-        // .then((data) => {
-        //   if (data.ok) {
-        //     return data.json();
-        //   } else {
-        // console.log(data.statusText);
-        // throw new Error(data.statusText);
-        //   }
-        // })
         .then((data) => {
-          // console.log(data, '<<<<<<<<<<<<<<<<<<<<<< INI DATA SETELAH REGISTER');
-
+          // console.log(data, '<<<<<<<<<< INI DATA SETELAH REGISTER');
           if (!data.message) {
             resolve();
           }
@@ -116,11 +93,12 @@ export const setRegister = (payload) => {
         })
         .catch((err) => {
           // dispatch(errorUser(err));
-          reject(err);
+          console.log(err.response.data);
+          reject(err.response.data);
         })
-        .finally(() => {
+        // .finally(() => {
           // dispatch(loadingUser(false));
-        });
+        // });
     });
   };
 };

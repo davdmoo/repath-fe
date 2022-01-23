@@ -6,6 +6,8 @@ import { red } from '@mui/material/colors';
 import { setLogin } from '../store/actionCreators/userCreator';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { errorToastAlert } from '../hooks/errorToastAlert';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Login() {
   const [loginForm, setLoginForm] = useState({
@@ -27,17 +29,14 @@ function Login() {
 
   const doLogin = () => {
     // console.log('GO TO LOGIN <<<<<<<<<<<<<<<<<<<<<<');
-    dispatch(setLogin(loginForm)).then(() => {
-      navigate('/');
-    });
-    //   .catch((err) => {
-    // 	console.log(err);
-    // 	if (err == 'Error: Bad Request') {
-    // 	  errorAlert(err, 'Please input field data');
-    // 	} else {
-    // 	  errorAlert(err, 'Invalid email/password');
-    // 	}
-    //   });
+    dispatch(setLogin(loginForm))
+      .then(() => {
+        navigate('/');
+      })
+      .catch((err) => {
+        // console.log(err.message, 'error from login>>>>>>>>>');
+        if (err.message) errorToastAlert(err.message);
+      });
   };
 
   const toRegister = () => {
@@ -46,6 +45,14 @@ function Login() {
 
   return (
     <>
+      <div>
+        <ToastContainer
+          style={{
+            fontWeight: 'bold',
+            marginBottom: '40vh'
+          }}
+          theme="light" />
+      </div>
       <div
         style={{
           background: '#DC2626',
