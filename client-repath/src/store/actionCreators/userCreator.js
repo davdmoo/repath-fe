@@ -132,11 +132,10 @@ export const setEditUser = (payload) => {
           }
         })
         .then((data) => {
-          console.log(data, 'data form setEditUser++++++++++');
           if (!data.message) {
             dispatch(afterEditUser(id, data));
-            resolve();
           }
+          resolve();
         })
         .catch((err) => {
           reject(err);
