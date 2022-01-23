@@ -9,12 +9,19 @@ import ModalComment from './componentsChild/ModalComment';
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost, unlikePost } from '../store/actionCreators/postCreator';
 import ModalConfirmDelete from './componentsChild/ModalConfirmDelete';
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 
 function CardMusic(props) {
   // console.log(props.post.comments, 'PROPS.COMMENTS ON CARD MUSIC <<<<<<<<<<<<<');
   // console.log(props.post.likes, 'PROPS.LIKES ON CARD MUSIC <<<<<<<<<<<<<');
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
+
+  const renderTooltip = (prop) => (
+    <Tooltip id="button-tooltip" {...prop}>
+      <div>{props.post.userId.firstName}</div>
+    </Tooltip>
+  );
 
   useEffect(() => {
     if (props.post.likes) {
@@ -78,9 +85,13 @@ function CardMusic(props) {
           <div className="card-container">
             <div className="card-left-side d-flex">
               {props.post.userId.imgUrl ? (
-                <Avatar className="avatar-card" alt="David" src={props.post.userId.imgUrl} sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                <OverlayTrigger placement="bottom" overlay={renderTooltip}>
+                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src={props.post.userId.imgUrl} sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                </OverlayTrigger>
               ) : (
-                <Avatar className="avatar-card" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                <OverlayTrigger placement="bottom" overlay={renderTooltip}>
+                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                </OverlayTrigger>
               )}
               <div>
                 <span className="dot-card-music">
@@ -88,6 +99,7 @@ function CardMusic(props) {
                 </span>
               </div>
             </div>
+
             <div className="card-right-side d-flex flex-row mt-3">
               <div className="content-text-music" style={{ width: '250px', textAlign: 'left' }}>
                 <div className="song-title" style={{ width: '250px', paddingRight: '20px' }}>

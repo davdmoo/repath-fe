@@ -5,7 +5,7 @@ import { Card } from 'react-bootstrap';
 import { PersonAdd } from '@mui/icons-material/';
 import { blue } from '@mui/material/colors';
 import { useDispatch } from 'react-redux';
-import { followUser } from '../store/actionCreators/followCreator';
+import { followUser, addFriend } from '../store/actionCreators/followCreator';
 
 function CardAddPeople({ user }) {
   const dispatch = useDispatch();
@@ -13,6 +13,11 @@ function CardAddPeople({ user }) {
   const doFollow = (followId) => {
     dispatch(followUser(followId));
     console.log(followId, `<<<<<<<<<<<<<<<<<Follow`);
+  };
+
+  const handleAddFriend = (userId) => {
+    dispatch(addFriend(userId));
+    // console.log(userId);
   };
 
   return (
@@ -34,14 +39,14 @@ function CardAddPeople({ user }) {
                 </div>
                 <div style={{ width: '350px' }} className="addfriend-firstName">
                   {user.firstName + ' ' + user.lastName}
-                  <p>{user.city}</p>
+                  {/* <p>{user.city}</p> */}
                 </div>
                 <div style={{ width: '350px' }} className="addfriend-city">
                   {user.city}
                 </div>
               </div>
               <div style={{ width: '100px' }} className="d-flex justify-content-center align-items-center">
-                <IconButton onClick={() => doFollow(user._id)}>
+                <IconButton onClick={() => handleAddFriend(user._id)}>
                   <PersonAdd sx={{ width: 40, height: 40, color: blue[500] }} />
                 </IconButton>
               </div>

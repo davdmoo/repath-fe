@@ -14,10 +14,30 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/componentsChild/Loader';
 import ErrorGlobal from '../components/componentsChild/ErrorGlobal';
 import { ToastContainer, toast } from 'react-toastify';
+import { fetchUserById } from '../store/actionCreators/userCreator';
 
 function Home() {
   const dispatch = useDispatch();
   const { posts, postsLoading, postsError } = useSelector((state) => state.postReducer);
+  const [currentUser, setcurrentUser] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    header: '',
+    imgUrl: '',
+  });
+
+  useEffect(() => {
+    dispatch(fetchUserById(localStorage.id)).then(({ data }) => {
+      setcurrentUser({
+        firstName: data.firstName,
+        lastName: data.lastname,
+        email: data.email,
+        imgUrl: data.imgUrl,
+        header: data.header,
+      });
+    });
+  }, []);
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -33,7 +53,7 @@ function Home() {
         <ToastContainer />
       </div>
       <Navbar />
-      <Header />
+      <Header currentUser={currentUser} />
 
       {postsLoading ? (
         <div>

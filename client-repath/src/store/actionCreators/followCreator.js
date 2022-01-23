@@ -1,4 +1,5 @@
 import { FETCH_FOLLOWING_USERS, FETCH_FOLLOWER_USER } from '../actionTypes';
+import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000';
 
@@ -89,6 +90,72 @@ export const fetchFollower = () => {
         })
         .catch((err) => {
           console.log(err, `Nani Error`);
+          reject(err);
+        });
+    });
+  };
+};
+
+export const addFriend = (userId) => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'POST',
+        url: `${baseUrl}/friends/${userId}`,
+        headers: {
+          access_token: localStorage.access_token,
+        },
+      })
+        .then(({ data }) => {
+          console.log(data);
+          resolve();
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        });
+    });
+  };
+};
+
+export const accFriendReq = (reqId) => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'PATCH',
+        url: `${baseUrl}/friends/${reqId}`,
+        headers: {
+          access_token: localStorage.access_token,
+        },
+      })
+        .then(({ data }) => {
+          console.log(data);
+          resolve();
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        });
+    });
+  };
+};
+
+export const delFriendReq = (reqId) => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'DELETE',
+        url: `${baseUrl}/friends/${reqId}`,
+        headers: {
+          access_token: localStorage.access_token,
+        },
+      })
+        .then(({ data }) => {
+          console.log(data);
+          resolve();
+        })
+        .catch((err) => {
+          console.log(err);
           reject(err);
         });
     });
