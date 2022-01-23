@@ -9,10 +9,19 @@ import ModalComment from './componentsChild/ModalComment';
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost, unlikePost } from '../store/actionCreators/postCreator';
 import ModalConfirmDelete from './componentsChild/ModalConfirmDelete';
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 
 function CardLocation(props) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
+
+  const renderTooltip = (prop) => (
+    <Tooltip id="button-tooltip" {...prop}>
+      <div>
+        {props.post.userId.username}
+      </div>
+    </Tooltip>
+  );
 
   useEffect(() => {
     if (props.post.likes) {
@@ -75,9 +84,21 @@ function CardLocation(props) {
           <div className="card-container">
             <div className="card-left-side d-flex">
               {props.post.userId.imgUrl ? (
-                <Avatar className="avatar-card" alt="David" src={props.post.userId.imgUrl} sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                <OverlayTrigger
+                  placement="bottom"
+                  delay={{ show: 250, hide: 400 }}
+                  overlay={renderTooltip}
+                >
+                  <Avatar className="avatar-card" alt="David" src={props.post.userId.imgUrl} sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                </OverlayTrigger>
               ) : (
-                <Avatar className="avatar-card" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                <OverlayTrigger
+                  placement="bottom"
+                  delay={{ show: 250, hide: 400 }}
+                  overlay={renderTooltip}
+                >
+                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                </OverlayTrigger>
               )}
               <div>
                 <span className="dot-card-location">
