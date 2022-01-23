@@ -1,10 +1,17 @@
-import { FETCH_FOLLOWING_USERS } from '../actionTypes';
+import { FETCH_FOLLOWING_USERS, FETCH_FOLLOWER_USER } from '../actionTypes';
 
 const baseUrl = 'http://localhost:3000';
 
 export const fetchFollowingSuccess = (payload) => {
   return {
     type: FETCH_FOLLOWING_USERS,
+    payload,
+  };
+};
+
+export const fetchFollowerSuccess = (payload) => {
+  return {
+    type: FETCH_FOLLOWER_USER,
     payload,
   };
 };
@@ -45,12 +52,43 @@ export const fetchFollowing = () => {
           }
         })
         .then((data) => {
-          // console.log(data);
+          console.log(data, `AAAAA`);
           dispatch(fetchFollowingSuccess(data));
 
           resolve(data);
         })
         .catch((err) => {
+          reject(err);
+        });
+    });
+  };
+};
+
+export const fetchFollower = () => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      fetch(`${baseUrl}/follows/followers`, {
+        method: 'GET',
+        headers: {
+          access_token: localStorage.getItem('access_token'),
+        },
+      })
+        .then((response) => {
+          console.log(response, `AAAAAAAAA`)
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Something went wrong');
+          }
+        })
+        .then((data) => {
+          console.log(data, `AAAAA`);
+          dispatch(fetchFollowerSuccess(data));
+
+          resolve(data);
+        })
+        .catch((err) => {
+          console.log(err, `Nani Error`)
           reject(err);
         });
     });

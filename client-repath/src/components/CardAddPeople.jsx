@@ -34,6 +34,7 @@ function CardAddPeople({ user }) {
                 </div>
                 <div style={{ width: '350px' }} className="addfriend-firstName">
                   {user.firstName + ' ' + user.lastName}
+                  <p>{user.city}</p>
                 </div>
                 <div style={{ width: '350px' }} className="addfriend-city">
                   {user.city}

@@ -13,6 +13,7 @@ import SearchPeoplePage from './views/SearchPeoplePage';
 import PostContent from './views/PostContent';
 import PostSearchMusic from './views/PostSearchMusic';
 import PostSearchLocation from './views/PostSearchLocation';
+import FollowerPage from './views/FollowerPage';
 
 function App() {
   return (
@@ -47,6 +48,14 @@ function App() {
           element={
             <AuthGuardLogin>
               <FollowingPage />
+            </AuthGuardLogin>
+          }
+        />
+        <Route
+          path="/followers"
+          element={
+            <AuthGuardLogin>
+              <FollowerPage />
             </AuthGuardLogin>
           }
         />
@@ -91,6 +100,7 @@ function App() {
           }
         />
       </Routes>
+      
     </div>
   );
 }

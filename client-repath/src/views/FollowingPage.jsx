@@ -11,13 +11,14 @@ function FollowingPage() {
   const { following } = useSelector((state) => state.userReducer);
 
   useEffect(() => {
+    console.log(following, `COMPONENT`)
     dispatch(fetchFollowing());
   }, []);
 
   const userFollowingExist = () => {
     if (following.length > 0) {
       return following.map((user, idx) => {
-        return <CardFriendList key={user._id} user={user.follower} />;
+        return <CardFriendList key={user._id} user={user.following} />;
       });
     } else {
       return (
