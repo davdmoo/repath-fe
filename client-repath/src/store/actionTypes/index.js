@@ -21,3 +21,5 @@ export const FETCH_FOLLOWING_USERS = 'users/fetchFollowing'
 
 export const AFTER_POST_LOADING = 'afterPost/loading';
 
+export const FETCH_FOLLOWER_USER = "users/fetchFollowers"
+
