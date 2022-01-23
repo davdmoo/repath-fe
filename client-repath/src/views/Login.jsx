@@ -81,13 +81,13 @@ function Login() {
           ></img>
         </div>
         <div style={{ marginBottom: 50 }}>
-          <p
+          <h5
             style={{
               color: '#f5f5f5',
             }}
           >
             Share your wonderful moments with us
-          </p>
+          </h5>
         </div>
 
         <Box
