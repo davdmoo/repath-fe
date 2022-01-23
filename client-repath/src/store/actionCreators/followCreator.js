@@ -1,6 +1,6 @@
-import { FETCH_FOLLOWING_USERS, FETCH_FOLLOWER_USER } from '../actionTypes';
 
-import axios from 'axios';
+import { FETCH_FOLLOWING_USERS, FETCH_FOLLOWER_USER, USER_FETCH_REQUEST } from '../actionTypes';
+import axios from "axios";
 
 
 const baseUrl = 'http://localhost:3000';
@@ -36,6 +36,13 @@ export const followUser = (followId) => {
         });
     });
   };
+};
+
+export const fetchRequestsSuccess = (payload) => {
+  return{
+    type: USER_FETCH_REQUEST,
+    payload
+  }
 };
 
 export const fetchFollowing = () => {
@@ -125,6 +132,7 @@ export const addFriend = (userId) => {
 };
 
 export const accFriendReq = (reqId) => {
+  console.log("masuk sini euy", reqId)
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       axios({
@@ -137,7 +145,7 @@ export const accFriendReq = (reqId) => {
 
       })
         .then(({ data }) => {
-          console.log(data);
+          console.log(data, "uwu dapet");
           resolve();
         })
         .catch((err) => {
@@ -163,15 +171,43 @@ export const delFriendReq = (reqId) => {
 
       })
         .then(({ data }) => {
-          console.log(data);
+          console.log(data, "uwu dapet");
           resolve();
         })
         .catch((err) => {
           console.log(err);
           reject(err);
 
+        })
+    })
+  }
+}
+
+export const getRequest = () => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      fetch(`${baseUrl}/friends/requests`, {
+        method: 'GET',
+        headers: {
+          access_token: localStorage.getItem('access_token'),
+        },
+      })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Something went wrong');
+        }
+      })
+      .then((data) => {
+        dispatch(fetchRequestsSuccess(data));
+
+        resolve(data);
+      })
+        .catch((err) => {
+          console.log(err, `FETCH REQUEST FAILED`);
         });
     });
   };
-};
+}
 

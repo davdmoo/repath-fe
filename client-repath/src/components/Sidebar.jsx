@@ -10,8 +10,12 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ListIcon from '@mui/icons-material/List';
 import { red } from '@mui/material/colors';
+import PersonPinSharpIcon from '@mui/icons-material/PersonPinSharp';
 import { useDispatch } from 'react-redux';
-import { fetchUserById } from '../store/actionCreators/userCreator';
+
+import { fetchUserById } from "../store/actionCreators/userCreator";
+import { Container } from '@mui/material';
+
 
 function Sidebar() {
   const dispatch = useDispatch();
@@ -50,7 +54,9 @@ function Sidebar() {
   const toSearchPeople = () => {
     navigate('/search-people');
   };
-
+  const toFriendRequest = () => {
+    navigate('/requests')
+  }
   const doLogout = () => {
     localStorage.clear();
     navigate('/login');
@@ -101,7 +107,6 @@ function Sidebar() {
               </div>
             </Offcanvas.Header>
           </div>
-
           <div className="main-sidebar d-flex flex-column" style={{ height: '75vh' }}>
             <Button
               variant="outline-light"
@@ -133,6 +138,16 @@ function Sidebar() {
               }}
             >
               <GroupIcon style={{ marginRight: '10px' }} /> Following
+            </Button>{' '}
+            <Button
+              variant="outline-light"
+              style={{ border: '0px' }}
+              onClick={(e) => {
+                e.preventDefault();
+                toFriendRequest();
+              }}
+            >
+              <PersonPinSharpIcon style={{ marginRight: '10px' }} /> Friend Request
             </Button>{' '}
             <Button
               variant="outline-light"

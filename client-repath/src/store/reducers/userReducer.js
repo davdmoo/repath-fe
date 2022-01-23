@@ -1,4 +1,5 @@
-import { LOADING_USER, AFTER_POST_USER_LOADING, ERROR_USER, SUCCESS_LOGIN, FETCH_USER_SUCCESS, USER_EDIT_SUCCESS, FETCH_FOLLOWING_USERS, FETCH_FOLLOWER_USER, FETCH_USER_BY_ID_SUCCESS } from '../actionTypes';
+
+import { LOADING_USER, AFTER_POST_USER_LOADING, ERROR_USER, SUCCESS_LOGIN, FETCH_USER_SUCCESS, USER_EDIT_SUCCESS, FETCH_FOLLOWING_USERS, FETCH_FOLLOWER_USER, FETCH_USER_BY_ID_SUCCESS, USER_FETCH_REQUEST } from '../actionTypes';
 
 const initialState = {
   user: {},
@@ -8,7 +9,9 @@ const initialState = {
   userError: null,
   following: [],
   follower: [],
+  request: []
 };
+
 
 function userReducer(state = initialState, action) {
   switch (action.type) {
@@ -77,6 +80,11 @@ function userReducer(state = initialState, action) {
         user: action.payload,
       };
 
+    case USER_FETCH_REQUEST:
+      return {
+        ...state,
+        request: action.payload
+      }
     default:
       return state;
   }
