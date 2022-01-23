@@ -7,7 +7,6 @@ export const POSTS_FETCH_SUCCESS = 'posts/fetchSuccess';
 export const POSTS_DELETE_SUCCESS = 'posts/delete';
 export const LOADING_POSTS = 'postsLoading/loading';
 export const ERROR_POSTS = 'postsError/error';
-export const POSTS_LIKE_SUCCESS = 'posts/like';
 
 export const SEARCH_MUSIC_LIST_SUCCESS = 'musicslist/fetchSuccess';
 export const SEARCH_LOCATION_LIST_SUCCESS = 'locationList/fetchSuccess';
@@ -21,5 +20,6 @@ export const FETCH_FOLLOWING_USERS = 'users/fetchFollowing'
 
 export const AFTER_POST_LOADING = 'afterPost/loading';
 
-export const FETCH_FOLLOWER_USER = "users/fetchFollowers"
+export const FETCH_FOLLOWER_USER = "users/fetchFollowers";
 
+export const FETCH_USER_BY_ID_SUCCESS = 'users/fetchByIdSuccess';

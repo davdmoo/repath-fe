@@ -6,6 +6,8 @@ import { red } from '@mui/material/colors';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRegister } from '../store/actionCreators/userCreator';
 import { useNavigate } from 'react-router-dom';
+import { errorToastAlert } from '../hooks/errorToastAlert';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Register() {
   const dispatch = useDispatch();
@@ -36,6 +38,9 @@ function Register() {
     dispatch(setRegister(registerForm)).then(() => {
       // console.log(setRegister, 'BACK TO REGISTER AFTER RESOLVE <<<<<<<<<<<<<<<<<<<<<<');
       navigate('/login');
+    })
+    .catch((err) => {
+      if (err.message) errorToastAlert('Please fill out the entire form');
     });
   };
 
@@ -45,6 +50,14 @@ function Register() {
 
   return (
     <>
+    <div>
+        <ToastContainer
+          style={{
+            fontWeight: 'bold',
+            marginBottom: '40vh'
+          }}
+          theme="light" />
+      </div>
       <div
         style={{
           className: 'container',
