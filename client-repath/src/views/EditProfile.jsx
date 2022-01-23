@@ -109,11 +109,11 @@ function EditProfile() {
 									<TextField
 										// value={editUserForm.imgUrl}
 										onChange={changeEditUserInput}
-										name="imageUrl" label="profile picture url" variant="filled" margin="normal" size="small"></TextField>
+										name="imgUrl" label="profile picture url" variant="filled" margin="normal" size="small"></TextField>
 									{/* <TextField 
 								value={editUserForm.imgUrl}
 								onChange={changeEditUserInput}
-								name="headerUrl" label="header background url" variant="filled" margin="normal" size="small"></TextField> */}
+								name="header" label="header background url" variant="filled" margin="normal" size="small"></TextField> */}
 									<TextField
 										// value={editUserForm.username}
 										onChange={changeEditUserInput}
