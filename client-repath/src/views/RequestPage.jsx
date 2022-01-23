@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import {getRequest} from '../store/actionCreators/followCreator'
+import { getRequest } from '../store/actionCreators/followCreator';
 import { useDispatch, useSelector } from 'react-redux';
 import CardRequestList from '../components/CardRequestList';
 
 function RequestPage() {
   const dispatch = useDispatch();
-  
+
   const { request } = useSelector((state) => state.userReducer);
 
   useEffect(() => {
@@ -14,6 +14,13 @@ function RequestPage() {
   }, []);
 
   const userRequestExist = () => {
+    return (
+      <>
+        <CardRequestList />
+        <CardRequestList />
+        <CardRequestList />
+      </>
+    );
     if (request.length > 0) {
       return request.map((user, idx) => {
         return <CardRequestList key={user._id} user={user.sender} />;
@@ -21,8 +28,7 @@ function RequestPage() {
     } else {
       return (
         <div>
-          <h3 className="mt-3">Sorry... </h3>
-          <h4>No friend request.</h4>
+          <h4 style={{ paddingTop: '200px' }}>There are no friend request.</h4>
         </div>
       );
     }
@@ -30,10 +36,9 @@ function RequestPage() {
   return (
     <>
       <Navbar />
-      <div style={{ height: '100vh', backgroundColor: '#fef2f2', paddingTop: '95px' }}>
+      <div style={{ minHeight: '100vh', backgroundColor: '#fef2f2', paddingTop: '105px' }}>
         <h1 className="pt-2 pb-3">Friend Request</h1>
-       {userRequestExist()}
-      
+        {userRequestExist()}
       </div>
     </>
   );

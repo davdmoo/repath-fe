@@ -3,7 +3,7 @@ import { IconButton, TextField } from '@mui/material/';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { Comment, Send } from '@mui/icons-material/';
 import { blue } from '@mui/material/colors';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { commentPost } from '../../store/actionCreators/postCreator';
 
 function ModalComment({ post }) {
@@ -31,6 +31,8 @@ function ModalComment({ post }) {
     setContent(e.target.value);
   }
 
+  const { afterClickPostLoading } = useSelector((state) => state.postReducer);
+
   return (
     <>
       {/* <Button variant="outline-primary" onClick={handleShow}>
@@ -53,6 +55,7 @@ function ModalComment({ post }) {
           {/* <Button type="button" variant="contained" endIcon={<Send />} onClick={handleComment}>
             Post
           </Button> */}
+          {afterClickPostLoading ? <div className="spinner-grow text-primary" style={{ width: '20px', height: '20px' }}></div> : <div></div>}
           <Button
             variant="outline-primary"
             onClick={(e) => {

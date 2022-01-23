@@ -18,9 +18,7 @@ function CardAddPeople({ user }) {
   const handleAddFriend = (userId) => {
     dispatch(addFriend(userId));
     // console.log(userId);
-
   };
-
 
   return (
     <>
@@ -41,16 +39,22 @@ function CardAddPeople({ user }) {
                 </div>
                 <div style={{ width: '350px' }} className="addfriend-firstName">
                   {user.firstName + ' ' + user.lastName}
-                  {/* <p>{user.city}</p> */}
                 </div>
                 <div style={{ width: '350px' }} className="addfriend-city">
                   {user.city}
                 </div>
               </div>
               <div style={{ width: '100px' }} className="d-flex justify-content-center align-items-center">
-                <IconButton onClick={() => handleAddFriend(user._id)}>
+                {localStorage.id == user._id ? (
+                  <div></div>
+                ) : (
+                  <IconButton onClick={() => handleAddFriend(user._id)}>
+                    <PersonAdd sx={{ width: 40, height: 40, color: blue[500] }} />
+                  </IconButton>
+                )}
+                {/* <IconButton onClick={() => handleAddFriend(user._id)}>
                   <PersonAdd sx={{ width: 40, height: 40, color: blue[500] }} />
-                </IconButton>
+                </IconButton> */}
               </div>
             </div>
           </div>

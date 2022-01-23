@@ -1,4 +1,4 @@
-import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, AFTER_POST_LOADING } from '../actionTypes';
+import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, AFTER_POST_LOADING, AFTER_CLICK_POST_LOADING } from '../actionTypes';
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000';
@@ -20,6 +20,13 @@ export const errorPosts = (payload) => {
 export const loadingAfterPost = (payload) => {
   return {
     type: AFTER_POST_LOADING,
+    payload,
+  };
+};
+
+export const postLoadingAfterClick = (payload) => {
+  return {
+    type: AFTER_CLICK_POST_LOADING,
     payload,
   };
 };
@@ -301,6 +308,7 @@ export const unlikePost = (id) => {
 
 export const commentPost = ({ id, content }) => {
   return (dispatch, getState) => {
+    dispatch(postLoadingAfterClick(true));
     return new Promise((resolve, reject) => {
       axios({
         method: 'POST',
@@ -313,9 +321,11 @@ export const commentPost = ({ id, content }) => {
         .then((data) => {
           // console.log(data);
           dispatch(fetchPostsAfterLikeUnlike());
+          dispatch(postLoadingAfterClick(false));
           resolve();
         })
         .catch((err) => {
+          dispatch(postLoadingAfterClick(false));
           reject(err);
         });
     });

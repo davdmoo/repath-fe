@@ -13,9 +13,8 @@ import { red } from '@mui/material/colors';
 import PersonPinSharpIcon from '@mui/icons-material/PersonPinSharp';
 import { useDispatch } from 'react-redux';
 
-import { fetchUserById } from "../store/actionCreators/userCreator";
+import { fetchUserById } from '../store/actionCreators/userCreator';
 import { Container } from '@mui/material';
-
 
 function Sidebar() {
   const dispatch = useDispatch();
@@ -55,8 +54,8 @@ function Sidebar() {
     navigate('/search-people');
   };
   const toFriendRequest = () => {
-    navigate('/requests')
-  }
+    navigate('/requests');
+  };
   const doLogout = () => {
     localStorage.clear();
     navigate('/login');
@@ -137,7 +136,7 @@ function Sidebar() {
                 toFollowing();
               }}
             >
-              <GroupIcon style={{ marginRight: '10px' }} /> Following
+              <GroupIcon style={{ marginRight: '10px' }} /> Friend List
             </Button>{' '}
             <Button
               variant="outline-light"
