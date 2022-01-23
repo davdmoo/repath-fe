@@ -90,8 +90,9 @@ function EditProfile() {
     if (selectedFile.name) {
       return (
         <div className="mt-3">
-          <h5>
-            Change your profile picture to {selectedFile.name} ({byteFormatter(selectedFile.size, 2)}){' '}
+          <h5 className="mx-5">Changing your profile picture to</h5>
+          <h5 className="mx-5">
+            {selectedFile.name} ({byteFormatter(selectedFile.size, 2)})
           </h5>
         </div>
       );

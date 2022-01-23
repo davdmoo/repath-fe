@@ -418,6 +418,36 @@ html {
   width: 115px;
 }
 
-/* body.modal-open div.modal-backdrop {
-  z-index: 0;
-} */
+/* FRIEND REQUEST */
+.card-container-friendrequest {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.card-container-friendrequest:hover {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+  background-color: #fee2e2;
+  color: #6b7280 !important;
+}
+
+.content-friendrequest {
+  width: 470px;
+  text-align: left;
+}
+
+.friendrequest-name {
+  /* font-weight: bold; */
+  font-size: 30px;
+}
+
+.friendrequest-city {
+  font-size: 20px;
+  color: #6b7280;
+}
+
+.card-left-side-friendrequest {
+  width: 115px;
+  height: 115px;
+  /* border-right: 2px solid #9ca3af; */
+}

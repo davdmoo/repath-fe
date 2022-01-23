@@ -1,4 +1,3 @@
-
 import { LOADING_USER, AFTER_POST_USER_LOADING, ERROR_USER, SUCCESS_LOGIN, FETCH_USER_SUCCESS, USER_EDIT_SUCCESS, FETCH_FOLLOWING_USERS, FETCH_FOLLOWER_USER, FETCH_USER_BY_ID_SUCCESS, USER_FETCH_REQUEST } from '../actionTypes';
 
 const initialState = {
@@ -9,9 +8,8 @@ const initialState = {
   userError: null,
   following: [],
   follower: [],
-  request: []
+  request: [],
 };
-
 
 function userReducer(state = initialState, action) {
   switch (action.type) {
@@ -62,7 +60,6 @@ function userReducer(state = initialState, action) {
       };
 
     case FETCH_FOLLOWING_USERS:
-      console.log(action.payload, 'INI PAYLOADDD');
       return {
         ...state,
         following: action.payload,
@@ -83,8 +80,8 @@ function userReducer(state = initialState, action) {
     case USER_FETCH_REQUEST:
       return {
         ...state,
-        request: action.payload
-      }
+        request: action.payload,
+      };
     default:
       return state;
   }

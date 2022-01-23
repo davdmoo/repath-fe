@@ -31,7 +31,7 @@ function FollowingPage() {
   return (
     <>
       <Navbar />
-      <div style={{ height: '100vh', backgroundColor: '#fef2f2', paddingTop: '95px' }}>
+      <div style={{ minHeight: '100vh', backgroundColor: '#fef2f2', paddingTop: '95px' }}>
         <h1 className="pt-2 pb-3">Followers</h1>
         {follower.map((user) => (
           <CardFollower key={user._id} user={user.follower} />

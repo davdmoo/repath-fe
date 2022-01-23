@@ -55,6 +55,7 @@ export const setUser = (payload) => {
 
 export const setLogin = (payload) => {
   return (dispatch, getState) => {
+    dispatch(postLoadingUser(true));
     return new Promise((resolve, reject) => {
       // dispatch(loadingUser(true));
       dispatch(errorUser(null));
@@ -66,12 +67,12 @@ export const setLogin = (payload) => {
           if (data.access_token) {
             localStorage.setItem('access_token', data.access_token);
             localStorage.setItem('id', data.payloadClient.id);
+            dispatch(postLoadingUser(false));
             resolve();
           }
         })
         .catch((err) => {
-          // dispatch(errorUser(err));
-          // console.log(err.response.data, 'error user creator<<<');
+          dispatch(postLoadingUser(false));
           reject(err.response.data);
         });
       // .finally(() => {
@@ -85,6 +86,7 @@ export const setLogin = (payload) => {
 
 export const setRegister = (payload) => {
   return (dispatch, getState) => {
+    dispatch(postLoadingUser(true));
     return new Promise((resolve, reject) => {
       // dispatch(loadingUser(true));
       // dispatch(errorUser(null));
@@ -97,14 +99,15 @@ export const setRegister = (payload) => {
       })
         .then((data) => {
           // console.log(data, '<<<<<<<<<< INI DATA SETELAH REGISTER');
-          if (!data.message) {
-            resolve();
-          }
+          // if (!data.message) {
+          dispatch(postLoadingUser(false));
+          resolve();
+          // }
           // console.log('OK ADD NEW PRODUCT');
         })
         .catch((err) => {
-          // dispatch(errorUser(err));
-          console.log(err.response.data);
+          dispatch(postLoadingUser(false));
+          // console.log(err.response.data);
           reject(err.response.data);
         });
       // .finally(() => {
