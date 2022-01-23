@@ -1,7 +1,7 @@
-import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, FETCH_USER_SUCCESS, USER_EDIT_SUCCESS, FETCH_FOLLOWING_USERS, FETCH_FOLLOWER_USER } from '../actionTypes';
+import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, FETCH_USER_SUCCESS, USER_EDIT_SUCCESS, FETCH_FOLLOWING_USERS, FETCH_FOLLOWER_USER, FETCH_USER_BY_ID_SUCCESS } from '../actionTypes';
 
 const initialState = {
-  user: [],
+  user: {},
   users: [],
   userLoading: true,
   userError: null,
@@ -29,20 +29,20 @@ function userReducer(state = initialState, action) {
         user: action.payload,
       };
     case USER_EDIT_SUCCESS:
-      const idUpdated = action.id;
+      // const idUpdated = action.id;
       const updatedUser = action.payload;
 
-      let temp = [];
-      state.user.forEach((el) => {
-        if (el.id !== idUpdated) {
-          temp.push(el);
-        } else {
-          temp.push(updatedUser);
-        }
-      });
+      // let temp = [];
+      // state.user.forEach((el) => {
+      //   if (el.id !== idUpdated) {
+      //     temp.push(el);
+      //   } else {
+      //     temp.push(updatedUser);
+      //   }
+      // });
       return {
         ...state,
-        user: temp,
+        user: updatedUser,
       };
 
     case FETCH_USER_SUCCESS:
@@ -62,6 +62,12 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         follower: action.payload,
+      };
+
+    case FETCH_USER_BY_ID_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
       };
 
     default:

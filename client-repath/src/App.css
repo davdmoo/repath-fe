@@ -418,6 +418,6 @@ html {
   width: 115px;
 }
 
-body.modal-open div.modal-backdrop {
+/* body.modal-open div.modal-backdrop {
   z-index: 0;
-}
+} */

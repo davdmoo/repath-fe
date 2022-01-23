@@ -1,4 +1,4 @@
-import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, USER_EDIT_SUCCESS, FETCH_USER_SUCCESS } from '../actionTypes';
+import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, USER_EDIT_SUCCESS, FETCH_USER_SUCCESS, FETCH_USER_BY_ID_SUCCESS } from '../actionTypes';
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000';
@@ -37,46 +37,42 @@ export const setUsers = (payload) => {
   };
 };
 
+export const setUser = (payload) => {
+  return {
+    type: FETCH_USER_BY_ID_SUCCESS,
+    payload
+  };
+};
+
 // =========================== LOGIN USER ===========================
 
 export const setLogin = (payload) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       // dispatch(loadingUser(true));
-      // dispatch(errorUser(null));
+      dispatch(errorUser(null));
       axios(`${baseUrl}/users/login`, {
         method: 'POST',
-        // headers: {
-        //   'Content-Type': 'application/json',
-        // },
         data: payload,
       })
-        // .then((data) => {
-        //   if (data.ok) {
-        //     return data.json();
-        //   } else {
-        //     // console.log(data.statusText);
-        //     throw new Error(data.statusText);
-        //   }
-        // })
         .then(({ data }) => {
           if (data.access_token) {
             localStorage.setItem('access_token', data.access_token);
-            localStorage.setItem('first_name', data.payloadClient.firstName);
-            localStorage.setItem('last_name', data.payloadClient.lastName);
-            localStorage.setItem('email', data.payloadClient.email);
+            // localStorage.setItem('first_name', data.payloadClient.firstName);
+            // localStorage.setItem('last_name', data.payloadClient.lastName);
+            // localStorage.setItem('email', data.payloadClient.email);
             localStorage.setItem('id', data.payloadClient.id);
             resolve();
           }
         })
         .catch((err) => {
           // dispatch(errorUser(err));
-          console.log(err.response.data.message, 'error<<<');
-          reject(err);
+          // console.log(err.response.data, 'error user creator<<<');
+          reject(err.response.data);
         })
-        .finally(() => {
+        // .finally(() => {
           //   // dispatch(loadingUser(false));
-        });
+        // });
     });
   };
 };
@@ -86,29 +82,17 @@ export const setLogin = (payload) => {
 export const setRegister = (payload) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      // console.log('REGISTER ON CREATORS <<<<<<<<<<<<<<<<<<<<<<');
-      // resolve();
       // dispatch(loadingUser(true));
       // dispatch(errorUser(null));
       axios(`${baseUrl}/users/register`, {
         method: 'POST',
         headers: {
-          // 'Content-Type': 'application/json',
           access_token: localStorage.getItem('access_token'),
         },
         data: payload,
       })
-        // .then((data) => {
-        //   if (data.ok) {
-        //     return data.json();
-        //   } else {
-        // console.log(data.statusText);
-        // throw new Error(data.statusText);
-        //   }
-        // })
         .then((data) => {
-          // console.log(data, '<<<<<<<<<<<<<<<<<<<<<< INI DATA SETELAH REGISTER');
-
+          // console.log(data, '<<<<<<<<<< INI DATA SETELAH REGISTER');
           if (!data.message) {
             resolve();
           }
@@ -116,11 +100,12 @@ export const setRegister = (payload) => {
         })
         .catch((err) => {
           // dispatch(errorUser(err));
-          reject(err);
+          console.log(err.response.data);
+          reject(err.response.data);
         })
-        .finally(() => {
+        // .finally(() => {
           // dispatch(loadingUser(false));
-        });
+        // });
     });
   };
 };
@@ -147,11 +132,10 @@ export const setEditUser = (payload) => {
           }
         })
         .then((data) => {
-          console.log(data, 'data form setEditUser++++++++++');
           if (!data.message) {
             dispatch(afterEditUser(id, data));
-            resolve();
           }
+          resolve();
         })
         .catch((err) => {
           reject(err);
@@ -203,3 +187,25 @@ export const fetchUsers = (payload) => {
     });
   };
 };
+
+export const fetchUserById = (id) => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      axios({
+        url: `${baseUrl}/users/${id}`,
+        method: 'GET',
+        headers: {
+          access_token: localStorage.access_token,
+        },
+      })
+        .then((data) => {
+          dispatch(setUser(data));
+          resolve(data);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        })
+    });
+  };
+}

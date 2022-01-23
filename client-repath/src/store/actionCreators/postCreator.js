@@ -1,4 +1,4 @@
-import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, POSTS_LIKE_SUCCESS, AFTER_POST_LOADING } from '../actionTypes';
+import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, AFTER_POST_LOADING } from '../actionTypes';
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000';

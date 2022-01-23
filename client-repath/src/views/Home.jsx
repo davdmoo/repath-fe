@@ -16,9 +16,9 @@ import ErrorGlobal from '../components/componentsChild/ErrorGlobal';
 import { ToastContainer, toast } from 'react-toastify';
 
 function Home() {
+  const dispatch = useDispatch();
   const { posts, postsLoading, postsError } = useSelector((state) => state.postReducer);
 
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPosts());
   }, []);
