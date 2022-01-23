@@ -14,7 +14,7 @@ import PostContent from './views/PostContent';
 import PostSearchMusic from './views/PostSearchMusic';
 import PostSearchLocation from './views/PostSearchLocation';
 import FollowerPage from './views/FollowerPage';
-
+import RequestPage from './views/RequestPage';
 function App() {
   return (
     <div className="App">
@@ -56,6 +56,14 @@ function App() {
           element={
             <AuthGuardLogin>
               <FollowerPage />
+            </AuthGuardLogin>
+          }
+        />
+        <Route
+          path="/requests"
+          element={
+            <AuthGuardLogin>
+              <RequestPage />
             </AuthGuardLogin>
           }
         />
