@@ -4,7 +4,6 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { styled } from '@mui/material/styles';
 import NavbarContent from '../components/NavbarContent';
@@ -73,12 +72,6 @@ function PostContent() {
         else errorToastAlert(err.message);
       });
   };
-
-  // toast.promise(doPostTextImage, {
-  //   pending: 'Promise is pending',
-  //   success: 'Promise resolved 👌',
-  //   error: 'Promise rejected 🤯',
-  // });
 
   const { afterPostLoading } = useSelector((state) => state.postReducer);
 
