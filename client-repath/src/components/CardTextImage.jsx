@@ -75,10 +75,6 @@ function CardTextImage(props) {
   //   dispatch(deletePost(postId));
   // };
 
-<<<<<<< HEAD
-  
-=======
->>>>>>> 3f13547186cc7757130ce06636721a6b2a5b345f
   return (
     <>
       <Card style={{ border: '0px' }}>
