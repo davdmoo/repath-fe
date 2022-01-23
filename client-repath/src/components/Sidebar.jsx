@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Offcanvas } from 'react-bootstrap';
-import { Button, Badge } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import Avatar from '@mui/material/Avatar';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -10,9 +10,30 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ListIcon from '@mui/icons-material/List';
 import { red } from '@mui/material/colors';
+import { useDispatch } from 'react-redux';
+import { fetchUserById } from "../store/actionCreators/userCreator";
 
 function Sidebar() {
-  const baseUrl = 'http://localhost:3000';
+  const dispatch = useDispatch();
+  const [currentUser, setcurrentUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    header: "",
+    imgUrl: ""
+  })
+
+  useEffect(() => {
+    dispatch(fetchUserById(localStorage.id))
+      .then(({data}) => {
+        setcurrentUser({
+          firstName: data.firstName,
+          lastName: data.lastname,
+          email: data.email,
+          imgUrl: data.imgUrl
+        })
+      })
+  }, [dispatch]);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -74,10 +95,10 @@ function Sidebar() {
               <Avatar alt="Zemy Sharp" src="/static/images/avatar/1.jpg" />
               <div className="d-flex flex row">
                 <div style={{ color: '#f5f5f5', fontSize: 16, fontWeight: 'bolder', justifyContent: 'flex-end', marginLeft: '20px' }}>
-                  {localStorage.getItem('first_name')} {localStorage.getItem('last_name')}
+                  {currentUser.firstName} {currentUser.lastName}
                 </div>
 
-                <div style={{ color: '#f5f5f5', fontSize: 14, marginLeft: '20px' }}>{localStorage.getItem('email')}</div>
+                <div style={{ color: '#f5f5f5', fontSize: 14, marginLeft: '20px' }}>{currentUser.email}</div>
               </div>
             </Offcanvas.Header>
           </div>
