@@ -67,7 +67,6 @@ function Sidebar() {
   return (
     <div>
       <ListIcon style={{ width: '45px', height: '45px' }} sx={{ color: red[50] }} onClick={handleShow} />
-
       <div className="sidebar-container d-flex">
         <Offcanvas style={{ marginLeft: '25vw', width: '260px', background: '#dc2626' }} show={show} onHide={handleClose}>
           <div className="header-sidebar" style={{ height: '15vh' }}>
