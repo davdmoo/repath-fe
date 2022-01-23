@@ -12,29 +12,30 @@ import ListIcon from '@mui/icons-material/List';
 import { red } from '@mui/material/colors';
 import PersonPinSharpIcon from '@mui/icons-material/PersonPinSharp';
 import { useDispatch } from 'react-redux';
+
 import { fetchUserById } from "../store/actionCreators/userCreator";
 import { Container } from '@mui/material';
+
 
 function Sidebar() {
   const dispatch = useDispatch();
   const [currentUser, setcurrentUser] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    header: "",
-    imgUrl: ""
-  })
+    firstName: '',
+    lastName: '',
+    email: '',
+    header: '',
+    imgUrl: '',
+  });
 
   useEffect(() => {
-    dispatch(fetchUserById(localStorage.id))
-      .then(({data}) => {
-        setcurrentUser({
-          firstName: data.firstName,
-          lastName: data.lastname,
-          email: data.email,
-          imgUrl: data.imgUrl
-        })
-      })
+    dispatch(fetchUserById(localStorage.id)).then(({ data }) => {
+      setcurrentUser({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        imgUrl: data.imgUrl,
+      });
+    });
   }, [dispatch]);
 
   const [show, setShow] = useState(false);
@@ -96,7 +97,7 @@ function Sidebar() {
         <Offcanvas style={{ marginLeft: '25vw', width: '260px', background: '#dc2626' }} show={show} onHide={handleClose}>
           <div className="header-sidebar" style={{ height: '15vh' }}>
             <Offcanvas.Header style={{ justifyContent: 'center' }}>
-              <Avatar alt="Zemy Sharp" src="/static/images/avatar/1.jpg" />
+              {currentUser.imgUrl ? <Avatar alt={currentUser.firstName} src={currentUser.imgUrl}></Avatar> : <Avatar alt={currentUser.firstName} src="/static/images/avatar/1.jpg"></Avatar>}
               <div className="d-flex flex row">
                 <div style={{ color: '#f5f5f5', fontSize: 16, fontWeight: 'bolder', justifyContent: 'flex-end', marginLeft: '20px' }}>
                   {currentUser.firstName} {currentUser.lastName}

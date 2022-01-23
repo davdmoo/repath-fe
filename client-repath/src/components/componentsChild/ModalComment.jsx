@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { IconButton, TextField, Button } from '@mui/material/';
-import { Modal } from 'react-bootstrap';
+import { IconButton, TextField } from '@mui/material/';
+import { Modal, Form, Button } from 'react-bootstrap';
 import { Comment, Send } from '@mui/icons-material/';
 import { blue } from '@mui/material/colors';
 import { useDispatch } from 'react-redux';
@@ -15,14 +15,15 @@ function ModalComment({ post }) {
 
   const [content, setContent] = useState('');
 
-  function handleComment(e) {
-    e.preventDefault();
+  function handleComment() {
+    // e.preventDefault();
     const commentPayload = {
       id: post._id,
       content,
     };
     dispatch(commentPost(commentPayload)).then(() => {
       setShow(false);
+      setContent('');
     });
   }
 
@@ -32,24 +33,37 @@ function ModalComment({ post }) {
 
   return (
     <>
+      {/* <Button variant="outline-primary" onClick={handleShow}>
+        Primary
+      </Button> */}
       <IconButton onClick={handleShow} sx={{ padding: '0px 3px' }}>
         <Comment sx={{ color: blue[500] }} />
       </IconButton>
       {/* ======================================== MODAL ========================================*/}
       <Modal show={show} onHide={handleClose} centered size="md">
-        <form onSubmit={handleComment}>
-          <Modal.Header closeButton>
-            <Modal.Title>Comment</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <TextField value={content} onChange={handleContent} fullWidth id="standard-basic" label="Standard" variant="standard" />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button type="submit" variant="contained" endIcon={<Send />}>
-              Post
-            </Button>
-          </Modal.Footer>
-        </form>
+        {/* <form> */}
+        <Modal.Header closeButton>
+          <Modal.Title>Comment</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {/* <TextField value={content} onChange={handleContent} fullWidth id="standard-basic" label="Standard" variant="standard" /> */}
+          <Form.Control value={content} onChange={handleContent} type="text" placeholder="Comment here..." />
+        </Modal.Body>
+        <Modal.Footer>
+          {/* <Button type="button" variant="contained" endIcon={<Send />} onClick={handleComment}>
+            Post
+          </Button> */}
+          <Button
+            variant="outline-primary"
+            onClick={(e) => {
+              e.preventDefault();
+              handleComment();
+            }}
+          >
+            Post
+          </Button>
+        </Modal.Footer>
+        {/* </form> */}
       </Modal>
     </>
   );

@@ -417,3 +417,7 @@ html {
 .card-left-side-search-location {
   width: 115px;
 }
+
+/* body.modal-open div.modal-backdrop {
+  z-index: 0;
+} */

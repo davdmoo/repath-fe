@@ -19,9 +19,9 @@ function CardMusic(props) {
 
   const renderTooltip = (prop) => (
     <Tooltip id="button-tooltip" {...prop}>
-      <div>
-        {props.post.userId.username}
-      </div>
+
+      <div>{props.post.userId.firstName}</div>
+
     </Tooltip>
   );
 
@@ -88,19 +88,13 @@ function CardMusic(props) {
 
             <div className="card-left-side d-flex">
               {props.post.userId.imgUrl ? (
-                <OverlayTrigger
-                  placement="bottom"
-                  delay={{ show: 250, hide: 400 }}
-                  overlay={renderTooltip}
-                >
-                  <Avatar className="avatar-card" alt="David" src={props.post.userId.imgUrl} sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+
+                <OverlayTrigger placement="bottom" overlay={renderTooltip}>
+                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src={props.post.userId.imgUrl} sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
                 </OverlayTrigger>
               ) : (
-                <OverlayTrigger
-                  placement="bottom"
-                  delay={{ show: 250, hide: 400 }}
-                  overlay={renderTooltip}
-                >
+                <OverlayTrigger placement="bottom" overlay={renderTooltip}>
+
                   <Avatar className="avatar-card" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
                 </OverlayTrigger>
               )}
@@ -110,7 +104,7 @@ function CardMusic(props) {
                 </span>
               </div>
             </div>
-            
+
             <div className="card-right-side d-flex flex-row mt-3">
               <div className="content-text-music" style={{ width: '250px', textAlign: 'left' }}>
                 <div className="song-title" style={{ width: '250px', paddingRight: '20px' }}>

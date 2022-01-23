@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { IconButton, TextField, Button } from '@mui/material/';
-import { Modal } from 'react-bootstrap';
-// import { Comment, Send, Button } from '@mui/icons-material/';
+import { IconButton, TextField } from '@mui/material/';
+import { Modal, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { Delete } from '@mui/icons-material/';
 import { deepOrange } from '@mui/material/colors';
@@ -32,10 +31,10 @@ function ModalConfirmDelete({ id }) {
         </Modal.Header>
         <Modal.Body>Are you sure want to delete your selected post?</Modal.Body>
         <Modal.Footer>
-          <Button onClick={handleClose} variant="outlined" sx={{ marginRight: '10px' }} color="warning">
+          {/* <Button onClick={handleClose} variant="outlined" sx={{ marginRight: '10px' }} color="warning">
             Cancel
-          </Button>
-          <Button
+          </Button> */}
+          {/* <Button
             onClick={(e) => {
               e.preventDefault();
               doDelete(id);
@@ -43,6 +42,18 @@ function ModalConfirmDelete({ id }) {
             variant="contained"
             color="error"
             startIcon={<Delete />}
+          >
+            Delete
+          </Button> */}
+          <Button variant="outline-warning" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button
+            variant="danger"
+            onClick={(e) => {
+              e.preventDefault();
+              doDelete(id);
+            }}
           >
             Delete
           </Button>
