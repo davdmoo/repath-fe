@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import CardFollower from '../components/CardFollower';
-import {fetchFollower} from '../store/actionCreators/followCreator'
+import { fetchFollower } from '../store/actionCreators/followCreator';
 import { useDispatch, useSelector } from 'react-redux';
-
 
 function FollowingPage() {
   const dispatch = useDispatch();
-  
+
   const { follower } = useSelector((state) => state.userReducer);
 
   useEffect(() => {
-    console.log(follower, `COMPONENT`)
+    console.log(follower, `COMPONENT`);
     dispatch(fetchFollower());
   }, []);
 
@@ -34,12 +33,9 @@ function FollowingPage() {
       <Navbar />
       <div style={{ height: '100vh', backgroundColor: '#fef2f2', paddingTop: '95px' }}>
         <h1 className="pt-2 pb-3">Followers</h1>
-       {follower.map(user=>(
-       
-          <CardFollower key={user._id} user={user.follower}/>
-          
-        ))
-      }
+        {follower.map((user) => (
+          <CardFollower key={user._id} user={user.follower} />
+        ))}
       </div>
     </>
   );

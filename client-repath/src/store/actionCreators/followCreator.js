@@ -74,7 +74,7 @@ export const fetchFollower = () => {
         },
       })
         .then((response) => {
-          console.log(response, `AAAAAAAAA`)
+          console.log(response, `AAAAAAAAA`);
           if (response.ok) {
             return response.json();
           } else {
@@ -88,7 +88,7 @@ export const fetchFollower = () => {
           resolve(data);
         })
         .catch((err) => {
-          console.log(err, `Nani Error`)
+          console.log(err, `Nani Error`);
           reject(err);
         });
     });

@@ -1,15 +1,13 @@
-
-import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN , FETCH_USER_SUCCESS, USER_EDIT_SUCCESS, FETCH_FOLLOWING_USERS,FETCH_FOLLOWER_USER} from "../actionTypes";
+import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, FETCH_USER_SUCCESS, USER_EDIT_SUCCESS, FETCH_FOLLOWING_USERS, FETCH_FOLLOWER_USER } from '../actionTypes';
 
 const initialState = {
-    user: [],
-    users: [],
-    userLoading: true,
-    userError: null,
-    following: [],
-    follower:[]
-}
-
+  user: [],
+  users: [],
+  userLoading: true,
+  userError: null,
+  following: [],
+  follower: [],
+};
 
 function userReducer(state = initialState, action) {
   switch (action.type) {
@@ -47,27 +45,28 @@ function userReducer(state = initialState, action) {
         user: temp,
       };
 
-    case FETCH_USER_SUCCESS: 
-    return {
+    case FETCH_USER_SUCCESS:
+      return {
         ...state,
-        users: action.payload
-      }
-    
+        users: action.payload,
+      };
+
     case FETCH_FOLLOWING_USERS:
-      return{
+      console.log(action.payload, 'INI PAYLOADDD');
+      return {
         ...state,
-        following: action.payload
-      }
-    
+        following: action.payload,
+      };
+
     case FETCH_FOLLOWER_USER:
-      return{
+      return {
         ...state,
-        follower: action.payload
-      }
+        follower: action.payload,
+      };
 
     default:
       return state;
   }
 }
 
-export default userReducer
+export default userReducer;

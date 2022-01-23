@@ -128,6 +128,7 @@ function CardTextImage(props) {
                       )}
                     </div>
                     <div style={{ marginTop: '10px' }}>
+                      {' '}
                       <ModalComment post={props.post} />
                     </div>
                     {props.post.userId._id == localStorage.id ? (
