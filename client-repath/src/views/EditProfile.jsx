@@ -1,19 +1,19 @@
-import React, { useState, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavbarContent from '../components/NavbarContent';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { red } from '@mui/material/colors';
+// import { red } from '@mui/material/colors';
 import { setEditUser } from '../store/actionCreators/userCreator';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { fetchUserById } from "../store/actionCreators/userCreator";
 
 function EditProfile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [editUserForm, setEditUserForm] = useState({
     firstName: '',
     lastName: '',
@@ -22,6 +22,21 @@ function EditProfile() {
     phoneNumber: '',
     city: '',
   });
+
+  useEffect(() => {
+    dispatch(fetchUserById(localStorage.id))
+      .then(({data}) => {
+        setEditUserForm({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          imgUrl: data.imgUrl,
+          username: data.username,
+          phoneNumber: data.phoneNumber,
+          city: data.city
+        })
+      })
+  }, [dispatch]);
 
   const changeEditUserInput = (e) => {
     const value = e.target.value;
@@ -33,10 +48,10 @@ function EditProfile() {
   };
 
   const doEditUser = () => {
-    console.log(editUserForm, 'editUserForm<<<<<<<<<<<');
-    dispatch(setEditUser(editUserForm)).then(() => {
-      navigate('/');
-    });
+    dispatch(setEditUser(editUserForm))
+      .then(() => {
+        navigate('/');
+      });
   };
 
   return (
@@ -91,7 +106,7 @@ function EditProfile() {
                 autoComplete="off"
               >
                 <TextField
-                  // value={editUserForm.firstName}
+                  value={editUserForm.firstName}
                   onChange={changeEditUserInput}
                   name="firstName"
                   label="first name"
@@ -100,7 +115,7 @@ function EditProfile() {
                 ></TextField>
 
                 <TextField
-                  // value={editUserForm.lastName}
+                  value={editUserForm.lastName}
                   onChange={changeEditUserInput}
                   name="lastName"
                   label="last name"
@@ -117,7 +132,7 @@ function EditProfile() {
                   autoComplete="off"
                 >
                   <TextField
-                    // value={editUserForm.imgUrl}
+                    value={editUserForm.imgUrl}
                     onChange={changeEditUserInput}
                     name="imgUrl"
                     label="profile picture url"
@@ -130,7 +145,7 @@ function EditProfile() {
 								onChange={changeEditUserInput}
 								name="headerUrl" label="header background url" variant="filled" margin="normal" size="small"></TextField> */}
                   <TextField
-                    // value={editUserForm.username}
+                    value={editUserForm.username}
                     onChange={changeEditUserInput}
                     name="username"
                     label="username"
@@ -139,7 +154,7 @@ function EditProfile() {
                     size="small"
                   />
                   <TextField
-                    // value={editUserForm.phoneNumber}
+                    value={editUserForm.phoneNumber}
                     onChange={changeEditUserInput}
                     name="phoneNumber"
                     label="phone number"
@@ -148,7 +163,7 @@ function EditProfile() {
                     size="small"
                   />
                   <TextField
-                    // value={editUserForm.city}
+                    value={editUserForm.city}
                     onChange={changeEditUserInput}
                     name="city"
                     label="city"
