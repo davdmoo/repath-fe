@@ -17,7 +17,9 @@ function CardLocation(props) {
 
   const renderTooltip = (prop) => (
     <Tooltip id="button-tooltip" {...prop}>
+
       <div>{props.post.userId.firstName}</div>
+
     </Tooltip>
   );
 
@@ -82,11 +84,13 @@ function CardLocation(props) {
           <div className="card-container">
             <div className="card-left-side d-flex">
               {props.post.userId.imgUrl ? (
+
                 <OverlayTrigger placement="bottom" overlay={renderTooltip}>
                   <Avatar className="avatar-card" alt={props.post.userId.firstName} src={props.post.userId.imgUrl} sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
                 </OverlayTrigger>
               ) : (
                 <OverlayTrigger placement="bottom" overlay={renderTooltip}>
+
                   <Avatar className="avatar-card" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
                 </OverlayTrigger>
               )}
