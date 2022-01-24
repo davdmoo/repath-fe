@@ -17,9 +17,7 @@ function CardLocation(props) {
 
   const renderTooltip = (prop) => (
     <Tooltip id="button-tooltip" {...prop}>
-
       <div>{props.post.userId.firstName}</div>
-
     </Tooltip>
   );
 
@@ -84,24 +82,22 @@ function CardLocation(props) {
           <div className="card-container">
             <div className="card-left-side d-flex">
               {props.post.userId.imgUrl ? (
-
                 <OverlayTrigger placement="bottom" overlay={renderTooltip}>
-                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src={props.post.userId.imgUrl} sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src={props.post.userId.imgUrl} sx={{ width: 45, height: 45 }} variant="rounded"></Avatar>
                 </OverlayTrigger>
               ) : (
                 <OverlayTrigger placement="bottom" overlay={renderTooltip}>
-
-                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 45, height: 45 }} variant="rounded"></Avatar>
                 </OverlayTrigger>
               )}
               <div>
                 <span className="dot-card-location">
-                  <LocationOn sx={{ color: red[50] }} />
+                  <LocationOn sx={{ color: red[50], fontSize: 20 }} />
                 </span>
               </div>
             </div>
             <div className="card-right-side d-flex flex-row">
-              <div className="content-text" style={{ width: '250px', textAlign: 'left' }}>
+              <div className="content-location">
                 <div className="location-title">
                   Arrived in <span className="fw-bold">{props.post.location}</span>
                 </div>
@@ -115,19 +111,25 @@ function CardLocation(props) {
                   <div></div>
                 )} */}
               </div>
-              <div className="content-location d-flex flex-row" style={{ width: '50px' }}>
-                <div style={{ paddingTop: '4px' }}>
+              <div className=" d-flex flex-row" style={{ width: '50px' }}>
+                <div style={{ paddingTop: '10px' }}>
                   {checked ? (
-                    <Checkbox checked={checked} onChange={() => unlike(likeIdReturner(localStorage.id))} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[400] }} />} sx={{ padding: '0px 3px' }} />
+                    <Checkbox
+                      checked={checked}
+                      onChange={() => unlike(likeIdReturner(localStorage.id))}
+                      icon={<FavoriteBorder />}
+                      checkedIcon={<Favorite sx={{ color: red[400] }} />}
+                      sx={{ padding: '0px 1px', '& .MuiSvgIcon-root': { fontSize: 16 } }}
+                    />
                   ) : (
-                    <Checkbox checked={checked} onChange={() => handleLike(props.post._id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[400] }} />} sx={{ padding: '0px 3px' }} />
+                    <Checkbox checked={checked} onChange={() => handleLike(props.post._id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[400] }} />} sx={{ padding: '0px 1px', '& .MuiSvgIcon-root': { fontSize: 16 } }} />
                   )}
                 </div>
-                <div style={{ paddingTop: '5px' }}>
+                <div style={{ paddingTop: '10px' }}>
                   <ModalComment post={props.post} />
                 </div>
                 {props.post.userId._id == localStorage.id ? (
-                  <div style={{ paddingTop: '5px' }}>
+                  <div style={{ paddingTop: '10px' }}>
                     {/* <IconButton onClick={() => doDelete(props.post._id)} sx={{ padding: '0px 3px' }}>
                       <Delete sx={{ color: deepOrange[900] }} />
                     </IconButton> */}

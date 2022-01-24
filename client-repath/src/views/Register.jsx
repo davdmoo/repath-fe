@@ -124,6 +124,7 @@ function Register() {
               sx={{
                 input: {
                   color: red[50],
+                  borderColor: red[50],
                 },
               }}
             ></TextField>

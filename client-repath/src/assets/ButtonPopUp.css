@@ -6,8 +6,8 @@
   height: 70px;
   margin-left: -40px;
   position: fixed;
-  top: 82vh;
-  right: 63vw;
+  top: 85vh;
+  right: 72vw;
   color: #ffffff;
   text-align: center;
   line-height: 60px;
@@ -76,8 +76,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   text-align: center;
   box-sizing: border-box;
   font-size: 26px;

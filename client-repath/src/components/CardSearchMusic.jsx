@@ -33,10 +33,10 @@ export default function CardSearchMusic(props) {
         <Card.Body style={{ backgroundColor: '#fef2f2', padding: '0px' }}>
           <div className="card-container-search-music">
             <div className="card-left-side-search-music d-flex">
-              <Avatar className="avatar-card" alt="BrunoMars" src={props.music.imageAlbum} sx={{ width: 75, height: 75 }} variant="rounded"></Avatar>
+              <Avatar className="avatar-card" alt="BrunoMars" src={props.music.imageAlbum} sx={{ width: 60, height: 60 }} variant="rounded"></Avatar>
             </div>
-            <div className="card-right-side d-flex flex-row align-items-center">
-              <div className="content-search-music" style={{ width: '250px', textAlign: 'left' }}>
+            <div className="card-right-side-music-search d-flex flex-row align-items-center">
+              <div className="content-search-music">
                 <div className="search-music-title">{props.music.title}</div>
                 <div className="search-music-artist">{props.music.artist}</div>
                 <div className="search-music-albums">{props.music.albumName}</div>

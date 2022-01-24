@@ -19,9 +19,7 @@ function CardMusic(props) {
 
   const renderTooltip = (prop) => (
     <Tooltip id="button-tooltip" {...prop}>
-
       <div>{props.post.userId.firstName}</div>
-
     </Tooltip>
   );
 
@@ -85,35 +83,30 @@ function CardMusic(props) {
       <Card style={{ border: '0px' }}>
         <Card.Body style={{ backgroundColor: '#fef2f2', padding: '0px' }}>
           <div className="card-container">
-
             <div className="card-left-side d-flex">
               {props.post.userId.imgUrl ? (
-
                 <OverlayTrigger placement="bottom" overlay={renderTooltip}>
-                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src={props.post.userId.imgUrl} sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src={props.post.userId.imgUrl} sx={{ width: 45, height: 45 }} variant="rounded"></Avatar>
                 </OverlayTrigger>
               ) : (
                 <OverlayTrigger placement="bottom" overlay={renderTooltip}>
-
-                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 45, height: 45 }} variant="rounded"></Avatar>
                 </OverlayTrigger>
               )}
               <div>
                 <span className="dot-card-music">
-                  <MusicNote sx={{ color: red[50] }} />
+                  <MusicNote sx={{ color: red[50], fontSize: 20 }} />
                 </span>
               </div>
             </div>
 
             <div className="card-right-side d-flex flex-row mt-3">
-              <div className="content-text-music" style={{ width: '250px', textAlign: 'left' }}>
-                <div className="song-title" style={{ width: '250px', paddingRight: '20px' }}>
+              <div className="content-text-music">
+                <div className="song-title">
                   Listening to {props.post.title} by <span className="fw-bold"> {props.post.artist}</span>
                 </div>
 
-                <div className="album-title" style={{ width: '200px' }}>
-                  {props.post.albumName}
-                </div>
+                <div className="album-title">{props.post.albumName}</div>
                 <div style={{ marginTop: '10px' }}>
                   {props.post.likes.length > 0 ? <CardLikedPost likes={props.post.likes} /> : <div></div>}
                   {props.post.comments.length > 0 ? <CardCommentPost comments={props.post.comments} /> : <div></div>}
@@ -135,16 +128,22 @@ function CardMusic(props) {
               </div>
               <div style={{ height: '60px' }}>
                 <div style={{ marginBottom: '30px' }}>
-                  <Avatar alt={props.post.artist} src={props.post.imageAlbum} sx={{ width: 60, height: 60 }} variant="rounded"></Avatar>
+                  <Avatar alt={props.post.artist} src={props.post.imageAlbum} sx={{ width: 46, height: 46 }} variant="rounded"></Avatar>
                 </div>
               </div>
               <div className="content-image-album d-flex flex-row" style={{ width: '200px' }}>
                 {/* <Avatar alt={props.post.artist} src={props.post.imageAlbum} sx={{ width: 60, height: 60 }} variant="rounded"></Avatar> */}
                 <div style={{ paddingTop: '4px' }}>
                   {checked ? (
-                    <Checkbox checked={checked} onChange={() => unlike(likeIdReturner(localStorage.id))} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} sx={{ padding: '0px 3px' }} />
+                    <Checkbox
+                      checked={checked}
+                      onChange={() => unlike(likeIdReturner(localStorage.id))}
+                      icon={<FavoriteBorder />}
+                      checkedIcon={<Favorite sx={{ color: red[500] }} />}
+                      sx={{ padding: '0px 1px', '& .MuiSvgIcon-root': { fontSize: 16 } }}
+                    />
                   ) : (
-                    <Checkbox checked={checked} onChange={() => handleLike(props.post._id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} sx={{ padding: '0px 3px' }} />
+                    <Checkbox checked={checked} onChange={() => handleLike(props.post._id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[500] }} />} sx={{ padding: '0px 1px', '& .MuiSvgIcon-root': { fontSize: 16 } }} />
                   )}
                 </div>
                 <div style={{ paddingTop: '5px' }}>

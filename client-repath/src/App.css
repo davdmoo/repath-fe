@@ -6,7 +6,7 @@ html {
 
 .App {
   text-align: center;
-  width: 640px;
+  width: 390px;
   background-color: #fef2f2;
 }
 
@@ -54,16 +54,17 @@ html {
   border-radius: 50%;
   border: 1px solid white;
   display: inline-block;
-  margin-right: 372px;
-  margin-top: 10px;
+  margin-right: 203px;
+  margin-top: 15px;
 }
 
 .vl-header {
+  width: 50px;
   border-left: 2px solid #9ca3af;
-  height: 25px;
+  height: 19px;
   position: relative;
-  bottom: 6px;
-  left: 133px;
+  /* bottom: 2px; */
+  left: 93px;
 }
 
 /* CARD-MUSIC */
@@ -73,17 +74,17 @@ html {
 }
 
 .card-left-side {
-  width: 135px;
+  width: 95px;
   border-right: 2px solid #9ca3af;
 }
 
 .card-right-side {
-  margin: 10px 0px 10px 30px;
-  width: 475px;
+  margin: 5px 0px 10px 20px;
+  width: 275px;
 }
 
 .avatar-card {
-  margin: 15px 0px 10px 30px;
+  margin: 15px 0px 10px 25px;
 }
 
 .content-text {
@@ -96,22 +97,23 @@ html {
 }
 
 .content-text-music {
-  width: 250px;
+  width: 160px;
   text-align: left;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
+  font-size: 15px;
 }
 
 .album-title {
   color: #9ca3af;
-  font-size: 15px;
+  font-size: 0.75em;
+  width: 200px;
 }
 
 .content-image-album {
-  padding-top: 10px;
-  margin-left: 53px;
+  margin-left: 5px;
 }
 
 .rounded-likes {
@@ -123,33 +125,52 @@ html {
   margin-top: 5px;
 }
 
+.song-title {
+  width: 150px;
+  padding-right: 0px;
+  font-size: 0.8em;
+  line-height: 1.3em;
+}
+
 .dot-card-music {
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   background-color: #eab308;
   border-radius: 50%;
   border: 2px solid white;
   display: inline-block;
   position: relative;
-  left: 38px;
+  left: 10px;
   top: 25px;
 }
 
 /* CARD-LOCATION */
 .dot-card-location {
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   background-color: #22c55e;
   border-radius: 50%;
   border: 2px solid white;
   display: inline-block;
   position: relative;
-  left: 38px;
+  left: 10px;
   top: 18px;
+}
+
+.content-location {
+  width: 212px;
+  text-align: left;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: flex-start; */
+  flex-direction: column;
+  padding-right: 20px;
+  margin-top: 15px;
 }
 
 .location-title {
   padding-top: 0px;
+  font-size: 0.8em;
 }
 
 .rounded-likes-location {
@@ -159,10 +180,6 @@ html {
   height: 42px;
   margin-left: 90px;
   margin-top: 6px;
-}
-
-.content-location {
-  margin-left: 113px;
 }
 
 /* CARD-POST-IMAGE */
@@ -180,8 +197,9 @@ html {
 }
 
 .content-text-button {
-  width: 130px;
+  width: 80px;
   height: 50px;
+  /* padding-left: 5px; */
 }
 
 .postText-description {
@@ -191,33 +209,34 @@ html {
 }
 
 .postText-container {
-  width: 350px;
+  width: 200px;
   text-align: left;
   background-color: white;
+  font-size: 0.8em;
   /* border-radius: 10px; */
   /* margin-top: 10px; */
 }
 
 .content-text {
-  width: 470px;
+  width: 280px;
   text-align: left;
 }
 
 .dot-card-textImage {
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   background-color: #e11d48;
   border-radius: 50%;
   border: 2px solid white;
   display: inline-block;
   position: relative;
-  left: 38px;
+  left: 10px;
   top: 25px;
 }
 
 /* LIKES CARD ON POST */
 .likes-section {
-  width: 330px;
+  width: 250px;
   text-align: left;
   background-color: white;
   border-radius: 10px;
@@ -231,17 +250,18 @@ html {
 
 /* COMMENT CARD ON POST */
 .comment-card-container {
-  width: 330px;
+  width: 250px;
   text-align: left;
   background-color: white;
   border-radius: 10px;
   margin-top: 10px;
+  font-size: 0.8em;
 }
 
 .comment-section-description {
-  margin-left: 10px;
+  margin-left: 5px;
   margin-top: 10px;
-  padding-right: 10px;
+  padding-right: 5px;
 }
 
 /* FRIENDLIST */
@@ -338,14 +358,21 @@ html {
 }
 
 .content-search-music {
-  width: 470px;
+  width: 250px;
   text-align: left;
 }
 
 .search-music-title {
+  margin-top: 5px;
   margin-bottom: -6px;
-  font-size: 25px;
-  width: 500px;
+  font-size: 22px;
+  width: 240px;
+  line-height: 1.2em;
+}
+
+.card-right-side-music-search {
+  margin: 5px 0px 10px 0px;
+  width: 275px;
 }
 
 .search-music-artist {
@@ -359,7 +386,7 @@ html {
 }
 
 .card-left-side-search-music {
-  width: 115px;
+  width: 100px;
 }
 
 /* EditProfile */
@@ -382,8 +409,10 @@ html {
 }
 
 .content-search-location {
-  width: 470px;
+  width: 250px;
   text-align: left;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .search-location-city {
@@ -409,10 +438,15 @@ html {
   border: 3px solid white;
   display: inline-block;
   /* position: relative; */
-  margin: 15px 0 0 40px;
+  margin: 10px 0 0 20px;
   /* left: 15px;
   top: 28px; */
 }
+
+/* .card-right-side-location {
+  width: 150px;
+  padding: 500px 0;
+} */
 
 .card-left-side-search-location {
   width: 115px;

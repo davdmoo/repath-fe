@@ -10,11 +10,36 @@ import { errorToastAlert } from '../hooks/errorToastAlert';
 import { ToastContainer, toast } from 'react-toastify';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import { alpha, styled } from '@mui/material/styles';
 
 function Login() {
   const [loginForm, setLoginForm] = useState({
     email: '',
     password: '',
+  });
+
+  const CssTextField = styled(TextField)({
+    '& label.Mui-focused': {
+      color: red[50],
+    },
+    '& .MuiInput-underline:before': {
+      borderColor: red[50],
+      color: red[50],
+    },
+    '& .MuiInput-underline:after': {
+      borderColor: red[50],
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: red[50],
+      },
+      '&:hover fieldset': {
+        borderColor: red[50],
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: red[50],
+      },
+    },
   });
 
   const changeLoginFormInput = (e) => {
@@ -106,23 +131,26 @@ function Login() {
             name="email"
             value={loginForm.email}
             onChange={changeLoginFormInput}
-            label="email"
-            variant="filled"
+            label="Email"
             margin="normal"
             sx={{
               input: {
                 color: red[50],
               },
             }}
+            focused
           ></TextField>
+
+          {/* <CssTextField variant="standard" label="Testing" sx={{ color: red[50] }} /> */}
 
           <TextField
             name="password"
             value={loginForm.password}
             onChange={changeLoginFormInput}
             type="password"
-            label="password"
-            variant="filled"
+            label="Password"
+            placehorder="AAAAA"
+            focused
             margin="normal"
             sx={{
               input: {

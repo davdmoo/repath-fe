@@ -38,11 +38,11 @@ function ModalComment({ post }) {
       {/* <Button variant="outline-primary" onClick={handleShow}>
         Primary
       </Button> */}
-      <IconButton onClick={handleShow} sx={{ padding: '0px 3px' }}>
-        <Comment sx={{ color: blue[500] }} />
+      <IconButton onClick={handleShow} sx={{ padding: '0px 1px' }}>
+        <Comment sx={{ color: blue[500], fontSize: 16 }} />
       </IconButton>
       {/* ======================================== MODAL ========================================*/}
-      <Modal show={show} onHide={handleClose} centered size="md">
+      <Modal show={show} onHide={handleClose} centered size="sm">
         {/* <form> */}
         <Modal.Header closeButton>
           <Modal.Title>Comment</Modal.Title>
