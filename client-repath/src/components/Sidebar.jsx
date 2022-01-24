@@ -91,8 +91,8 @@ function Sidebar() {
       <div className="sidebar-container d-flex">
         <Offcanvas style={{ marginLeft: '25vw', width: '260px', background: '#dc2626' }} show={show} onHide={handleClose}>
           <div className="header-sidebar" style={{ height: '15vh' }}>
-            <Offcanvas.Header style={{ justifyContent: 'center' }}>
-              <Avatar alt="Zemy Sharp" src="/static/images/avatar/1.jpg" />
+            <Offcanvas.Header style={{ justifyContent: 'center', marginTop: '2vh' }}>
+              <Avatar alt="Zemy Sharp" style={{marginLeft: '3vh'}} src="/static/images/avatar/1.jpg" />
               <div className="d-flex flex row">
                 <div style={{ color: '#f5f5f5', fontSize: 16, fontWeight: 'bolder', justifyContent: 'flex-end', marginLeft: '20px' }}>
                   {currentUser.firstName} {currentUser.lastName}
@@ -103,7 +103,7 @@ function Sidebar() {
             </Offcanvas.Header>
           </div>
 
-          <div className="main-sidebar d-flex flex-column" style={{ height: '75vh' }}>
+          <div className="main-sidebar d-flex flex-column" style={{ height: '75vh', alignItems: 'flex-start', marginLeft: '6vh', marginTop:'3vh' }}>
             <Button
               variant="outline-light"
               style={{ border: '0px' }}
@@ -117,7 +117,7 @@ function Sidebar() {
             </Button>{' '}
             <Button
               variant="outline-light"
-              style={{ border: '0px' }}
+              style={{ border: '0px', marginTop: '2vh' }}
               onClick={(e) => {
                 e.preventDefault();
                 toEditProfile();
@@ -127,7 +127,7 @@ function Sidebar() {
             </Button>{' '}
             <Button
               variant="outline-light"
-              style={{ border: '0px' }}
+              style={{ border: '0px', marginTop: '2vh' }}
               onClick={(e) => {
                 e.preventDefault();
                 toFollowing();
@@ -137,13 +137,13 @@ function Sidebar() {
             </Button>{' '}
             <Button
               variant="outline-light"
-              style={{ border: '0px' }}
+              style={{ border: '0px', marginTop: '2vh' }}
               onClick={(e) => {
                 e.preventDefault();
                 toSearchPeople();
               }}
             >
-              <PersonAddIcon style={{ marginRight: '10px' }} /> Search People
+              <PersonAddIcon style={{ marginRight: '9px' }} /> Search People
             </Button>{' '}
           </div>
           <div className="footer-sidebar d-flex flex-column" style={{ height: '10vh' }}>
