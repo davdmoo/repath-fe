@@ -87,23 +87,24 @@ function Sidebar() {
 
   return (
     <div>
-      <ListIcon style={{ width: '45px', height: '45px' }} sx={{ color: red[50] }} onClick={handleShow} />
+      <ListIcon style={{ width: '42px', height: '42px' }} sx={{ color: red[50] }} onClick={handleShow} />
       <div className="sidebar-container d-flex">
-        <Offcanvas style={{ marginLeft: '25vw', width: '260px', background: '#dc2626' }} show={show} onHide={handleClose}>
-          <div className="header-sidebar" style={{ height: '15vh' }}>
+        <Offcanvas style={{ marginLeft: '0vw', width: '200px', background: '#dc2626' }} show={show} onHide={handleClose}>
+        
+          <div className="header-sidebar d-flex flex row" style={{ height: '15vh' }}>
             <Offcanvas.Header style={{ justifyContent: 'center', marginTop: '2vh' }}>
-              <Avatar alt="Zemy Sharp" style={{marginLeft: '3vh'}} src="/static/images/avatar/1.jpg" />
+              <Avatar alt="Zemy Sharp" style={{marginLeft: '1vh'}} src="/static/images/avatar/1.jpg" />
               <div className="d-flex flex row">
-                <div style={{ color: '#f5f5f5', fontSize: 16, fontWeight: 'bolder', justifyContent: 'flex-end', marginLeft: '20px' }}>
+                <div style={{ color: '#f5f5f5', fontSize: 16, fontWeight: 'bolder', justifyContent: 'flex-end', marginLeft: '15px' }}>
                   {currentUser.firstName} {currentUser.lastName}
                 </div>
 
-                <div style={{ color: '#f5f5f5', fontSize: 14, marginLeft: '20px' }}>{currentUser.email}</div>
+                <div style={{ color: '#f5f5f5', fontSize: 14, marginLeft: '15px' }}>{currentUser.email}</div>
               </div>
             </Offcanvas.Header>
           </div>
 
-          <div className="main-sidebar d-flex flex-column" style={{ height: '75vh', alignItems: 'flex-start', marginLeft: '6vh', marginTop:'3vh' }}>
+          <div className="main-sidebar d-flex flex-column" style={{ height: '75vh', alignItems: 'flex-start', marginLeft: '3vh', marginTop:'3vh' }}>
             <Button
               variant="outline-light"
               style={{ border: '0px' }}
@@ -112,7 +113,7 @@ function Sidebar() {
                 toHome();
               }}
             >
-              <HomeIcon style={{ marginRight: '10px' }} />
+              <HomeIcon style={{ marginRight: '3px' }} />
               Home
             </Button>{' '}
             <Button
@@ -123,7 +124,7 @@ function Sidebar() {
                 toEditProfile();
               }}
             >
-              <AccountCircleIcon style={{ marginRight: '10px' }} /> Profile
+              <AccountCircleIcon style={{ marginRight: '3px' }} /> Profile
             </Button>{' '}
             <Button
               variant="outline-light"
@@ -133,7 +134,7 @@ function Sidebar() {
                 toFollowing();
               }}
             >
-              <GroupIcon style={{ marginRight: '10px' }} /> Following
+              <GroupIcon style={{ marginRight: '3px' }} /> Following
             </Button>{' '}
             <Button
               variant="outline-light"
@@ -143,7 +144,7 @@ function Sidebar() {
                 toSearchPeople();
               }}
             >
-              <PersonAddIcon style={{ marginRight: '9px' }} /> Search People
+              <PersonAddIcon style={{ marginRight: '2px' }} /> Search People
             </Button>{' '}
           </div>
           <div className="footer-sidebar d-flex flex-column" style={{ height: '10vh' }}>

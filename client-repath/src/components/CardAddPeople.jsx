@@ -33,13 +33,13 @@ function CardAddPeople({ user }) {
               )}
             </div>
             <div className="card-right-side d-flex flex-row align-items-center">
-              <div className="content-addfriend d-flex flex-column" style={{ width: '450px', textAlign: 'left' }}>
+              <div className="content-addfriend d-flex flex-column" style={{ width: '160px', textAlign: 'left' }}>
                 <div className="addfriend-name" style={{ width: '350px' }}>
                   {user.username}
                 </div>
                 <div style={{ width: '350px' }} className="addfriend-firstName">
                   {user.firstName + ' ' + user.lastName}
-                  <p>{user.city}</p>
+                  {/* <p>{user.city}</p> */}
                 </div>
                 <div style={{ width: '350px' }} className="addfriend-city">
                   {user.city}
@@ -47,7 +47,7 @@ function CardAddPeople({ user }) {
               </div>
               <div style={{ width: '100px' }} className="d-flex justify-content-center align-items-center">
                 <IconButton onClick={() => handleAddFriend(user._id)}>
-                  <PersonAdd sx={{ width: 40, height: 40, color: blue[500] }} />
+                  <PersonAdd sx={{ width: 35, height: 35, color: blue[500] }} />
                 </IconButton>
               </div>
             </div>

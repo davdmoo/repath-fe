@@ -75,8 +75,8 @@ function EditProfile() {
               src="/static/images/avatar/1.jpg"
               sx={{
                 mt: 5,
-                width: 100,
-                height: 100,
+                width: 90,
+                height: 90,
                 mx: 'auto',
               }}
             />
@@ -124,9 +124,9 @@ function EditProfile() {
                 ></TextField>
                 <Box
                   sx={{
-                    '& > :not(style)': { width: '52ch' },
+                    '& > :not(style)': {m: 1, width: '25ch' },
                     flexDirection: 'column',
-                    alignSelf: 'center',
+                    alignSelf: 'center'
                   }}
                   noValidate
                   autoComplete="off"
@@ -177,7 +177,7 @@ function EditProfile() {
                   variant="contained"
                   color="error"
                   style={{
-                    width: 200,
+                    width: 170,
                   }}
                 >
                   Edit
