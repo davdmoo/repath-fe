@@ -10,29 +10,31 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ListIcon from '@mui/icons-material/List';
 import { red } from '@mui/material/colors';
+import PersonPinSharpIcon from '@mui/icons-material/PersonPinSharp';
 import { useDispatch } from 'react-redux';
-import { fetchUserById } from "../store/actionCreators/userCreator";
+
+import { fetchUserById } from '../store/actionCreators/userCreator';
+import { Container } from '@mui/material';
 
 function Sidebar() {
   const dispatch = useDispatch();
   const [currentUser, setcurrentUser] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    header: "",
-    imgUrl: ""
-  })
+    firstName: '',
+    lastName: '',
+    email: '',
+    header: '',
+    imgUrl: '',
+  });
 
   useEffect(() => {
-    dispatch(fetchUserById(localStorage.id))
-      .then(({data}) => {
-        setcurrentUser({
-          firstName: data.firstName,
-          lastName: data.lastname,
-          email: data.email,
-          imgUrl: data.imgUrl
-        })
-      })
+    dispatch(fetchUserById(localStorage.id)).then(({ data }) => {
+      setcurrentUser({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        imgUrl: data.imgUrl,
+      });
+    });
   }, [dispatch]);
 
   const [show, setShow] = useState(false);
@@ -51,7 +53,9 @@ function Sidebar() {
   const toSearchPeople = () => {
     navigate('/search-people');
   };
-
+  const toFriendRequest = () => {
+    navigate('/requests');
+  };
   const doLogout = () => {
     localStorage.clear();
     navigate('/login');
@@ -113,7 +117,7 @@ function Sidebar() {
                 toHome();
               }}
             >
-              <HomeIcon style={{ marginRight: '3px' }} />
+              <HomeIcon style={{ marginRight: '5px' }} />
               Home
             </Button>{' '}
             <Button
@@ -124,7 +128,7 @@ function Sidebar() {
                 toEditProfile();
               }}
             >
-              <AccountCircleIcon style={{ marginRight: '3px' }} /> Profile
+              <AccountCircleIcon style={{ marginRight: '5px' }} /> Profile
             </Button>{' '}
             <Button
               variant="outline-light"
@@ -134,7 +138,17 @@ function Sidebar() {
                 toFollowing();
               }}
             >
-              <GroupIcon style={{ marginRight: '3px' }} /> Following
+              <GroupIcon style={{ marginRight: '5px' }} /> Friend List
+            </Button>{' '}
+            <Button
+              variant="outline-light"
+              style={{ border: '0px', marginTop: '2vh' }}
+              onClick={(e) => {
+                e.preventDefault();
+                toFriendRequest();
+              }}
+            >
+              <PersonPinSharpIcon style={{ marginRight: '5px' }} /> Friend Request
             </Button>{' '}
             <Button
               variant="outline-light"
@@ -144,7 +158,7 @@ function Sidebar() {
                 toSearchPeople();
               }}
             >
-              <PersonAddIcon style={{ marginRight: '2px' }} /> Search People
+              <PersonAddIcon style={{ marginRight: '5px' }} /> Search People
             </Button>{' '}
           </div>
           <div className="footer-sidebar d-flex flex-column" style={{ height: '10vh' }}>

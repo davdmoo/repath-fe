@@ -1,4 +1,4 @@
-import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN, USER_EDIT_SUCCESS, FETCH_USER_SUCCESS, FETCH_USER_BY_ID_SUCCESS } from '../actionTypes';
+import { LOADING_USER, AFTER_POST_USER_LOADING, ERROR_USER, SUCCESS_LOGIN, USER_EDIT_SUCCESS, FETCH_USER_SUCCESS, FETCH_USER_BY_ID_SUCCESS } from '../actionTypes';
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000';
@@ -6,6 +6,13 @@ const baseUrl = 'http://localhost:3000';
 export const loadingUser = (payload) => {
   return {
     type: LOADING_USER,
+    payload,
+  };
+};
+
+export const postLoadingUser = (payload) => {
+  return {
+    type: AFTER_POST_USER_LOADING,
     payload,
   };
 };
@@ -40,7 +47,7 @@ export const setUsers = (payload) => {
 export const setUser = (payload) => {
   return {
     type: FETCH_USER_BY_ID_SUCCESS,
-    payload
+    payload,
   };
 };
 
@@ -48,6 +55,7 @@ export const setUser = (payload) => {
 
 export const setLogin = (payload) => {
   return (dispatch, getState) => {
+    dispatch(postLoadingUser(true));
     return new Promise((resolve, reject) => {
       // dispatch(loadingUser(true));
       dispatch(errorUser(null));
@@ -58,21 +66,18 @@ export const setLogin = (payload) => {
         .then(({ data }) => {
           if (data.access_token) {
             localStorage.setItem('access_token', data.access_token);
-            // localStorage.setItem('first_name', data.payloadClient.firstName);
-            // localStorage.setItem('last_name', data.payloadClient.lastName);
-            // localStorage.setItem('email', data.payloadClient.email);
             localStorage.setItem('id', data.payloadClient.id);
+            dispatch(postLoadingUser(false));
             resolve();
           }
         })
         .catch((err) => {
-          // dispatch(errorUser(err));
-          // console.log(err.response.data, 'error user creator<<<');
+          dispatch(postLoadingUser(false));
           reject(err.response.data);
-        })
-        // .finally(() => {
-          //   // dispatch(loadingUser(false));
-        // });
+        });
+      // .finally(() => {
+      //   // dispatch(loadingUser(false));
+      // });
     });
   };
 };
@@ -81,6 +86,7 @@ export const setLogin = (payload) => {
 
 export const setRegister = (payload) => {
   return (dispatch, getState) => {
+    dispatch(postLoadingUser(true));
     return new Promise((resolve, reject) => {
       // dispatch(loadingUser(true));
       // dispatch(errorUser(null));
@@ -93,51 +99,56 @@ export const setRegister = (payload) => {
       })
         .then((data) => {
           // console.log(data, '<<<<<<<<<< INI DATA SETELAH REGISTER');
-          if (!data.message) {
-            resolve();
-          }
+          // if (!data.message) {
+          dispatch(postLoadingUser(false));
+          resolve();
+          // }
           // console.log('OK ADD NEW PRODUCT');
         })
         .catch((err) => {
-          // dispatch(errorUser(err));
-          console.log(err.response.data);
+          dispatch(postLoadingUser(false));
+          // console.log(err.response.data);
           reject(err.response.data);
-        })
-        // .finally(() => {
-          // dispatch(loadingUser(false));
-        // });
+        });
+      // .finally(() => {
+      // dispatch(loadingUser(false));
+      // });
     });
   };
 };
 
+// =========================== EDIT USER ===========================
+
 export const setEditUser = (payload) => {
   const id = localStorage.getItem('id');
   return (dispatch, getState) => {
+    dispatch(postLoadingUser(true));
     return new Promise((resolve, reject) => {
-      // dispatch(loadingUser(true));
+      // dispatch(postLoadingUser(true));
       // dispatch(errorUser(null));
-      fetch(`${baseUrl}/users/${id}`, {
+      axios(`${baseUrl}/users/${id}`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
           access_token: localStorage.getItem('access_token'),
         },
-        body: JSON.stringify(payload),
+        data: payload,
       })
+        // .then((data) => {
+        //   if (data.ok) {
+        //     return data.json();
+        //   } else {
+        //     throw new Error(data.statusText);
+        //   }
+        // })
         .then((data) => {
-          if (data.ok) {
-            return data.json();
-          } else {
-            throw new Error(data.statusText);
-          }
-        })
-        .then((data) => {
-          if (!data.message) {
-            dispatch(afterEditUser(id, data));
-          }
+          // if (!data.message) {
+          // }
+          dispatch(postLoadingUser(false));
+          dispatch(afterEditUser(id, data));
           resolve();
         })
         .catch((err) => {
+          dispatch(postLoadingUser(false));
           reject(err);
         })
         .finally(() => {
@@ -188,6 +199,8 @@ export const fetchUsers = (payload) => {
   };
 };
 
+// =========================== FETCH USER BY ID ===========================
+
 export const fetchUserById = (id) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
@@ -205,7 +218,7 @@ export const fetchUserById = (id) => {
         .catch((err) => {
           console.log(err);
           reject(err);
-        })
+        });
     });
   };
-}
+};

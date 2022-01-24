@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,7 +13,7 @@ import PostContent from './views/PostContent';
 import PostSearchMusic from './views/PostSearchMusic';
 import PostSearchLocation from './views/PostSearchLocation';
 import FollowerPage from './views/FollowerPage';
-
+import RequestPage from './views/RequestPage';
 function App() {
   return (
     <div className="App">
@@ -60,6 +59,14 @@ function App() {
           }
         />
         <Route
+          path="/requests"
+          element={
+            <AuthGuardLogin>
+              <RequestPage />
+            </AuthGuardLogin>
+          }
+        />
+        <Route
           path="/search-people"
           element={
             <AuthGuardLogin>
@@ -100,7 +107,6 @@ function App() {
           }
         />
       </Routes>
-      
     </div>
   );
 }

@@ -417,3 +417,37 @@ html {
 .card-left-side-search-location {
   width: 115px;
 }
+
+/* FRIEND REQUEST */
+.card-container-friendrequest {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.card-container-friendrequest:hover {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+  background-color: #fee2e2;
+  color: #6b7280 !important;
+}
+
+.content-friendrequest {
+  width: 450px;
+  text-align: left;
+}
+
+.friendrequest-name {
+  /* font-weight: bold; */
+  font-size: 22px;
+}
+
+.friendrequest-city {
+  font-size: 18px;
+  color: #6b7280;
+}
+
+.card-left-side-friendrequest {
+  width: 100px;
+  height: 100px;
+  /* border-right: 2px solid #9ca3af; */
+}

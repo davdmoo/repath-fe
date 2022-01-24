@@ -18,7 +18,7 @@ function CardAddPeople({ user }) {
   const handleAddFriend = (userId) => {
     dispatch(addFriend(userId));
     // console.log(userId);
-  }
+  };
 
   return (
     <>

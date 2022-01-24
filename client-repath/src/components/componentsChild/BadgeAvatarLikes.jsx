@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import { Avatar, Badge } from '@mui/material/';
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 
 function BadgeAvatarLikes(props) {
+  const renderTooltip = (prop) => (
+    <Tooltip id="button-tooltip" {...prop}>
+      <div>
+        {props.like.userId.firstName} {props.like.userId.lastName}
+      </div>
+    </Tooltip>
+  );
   return (
     <Badge
       overlap="circular"
@@ -9,9 +17,13 @@ function BadgeAvatarLikes(props) {
       badgeContent={<Avatar alt="IconLike" src="https://e7.pngegg.com/pngimages/742/937/png-clipart-heart-emoji-emoticon-symbol-broken-heart-love-heart.png" sx={{ width: 22, height: 22, border: `2px solid white` }} />}
     >
       {props.like.userId.imgUrl ? (
-        <Avatar alt={props.like.userId.firstName} src={props.like.userId.imgUrl} sx={{ margin: '5px' }}></Avatar>
+        <OverlayTrigger placement="top" overlay={renderTooltip}>
+          <Avatar alt={props.like.userId.firstName} src={props.like.userId.imgUrl} sx={{ margin: '5px' }}></Avatar>
+        </OverlayTrigger>
       ) : (
-        <Avatar alt={props.like.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ margin: '5px' }}></Avatar>
+        <OverlayTrigger placement="top" overlay={renderTooltip}>
+          <Avatar alt={props.like.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ margin: '5px' }}></Avatar>
+        </OverlayTrigger>
       )}
     </Badge>
   );

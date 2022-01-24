@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { errorToastAlert } from '../hooks/errorToastAlert';
 import { ToastContainer, toast } from 'react-toastify';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Login() {
   const [loginForm, setLoginForm] = useState({
@@ -43,15 +45,18 @@ function Login() {
     navigate('/register');
   };
 
+  const { afterPostUser } = useSelector((state) => state.userReducer);
+
   return (
     <>
       <div>
         <ToastContainer
           style={{
             fontWeight: 'bold',
-            marginBottom: '40vh'
+            marginBottom: '40vh',
           }}
-          theme="light" />
+          theme="light"
+        />
       </div>
       <div
         style={{
@@ -76,13 +81,13 @@ function Login() {
           ></img>
         </div>
         <div style={{ marginBottom: 50 }}>
-          <p
+          <h5
             style={{
               color: '#f5f5f5',
             }}
           >
             Share your wonderful moments with us
-          </p>
+          </h5>
         </div>
 
         <Box
@@ -181,6 +186,25 @@ function Login() {
           </Button>
         </div>
       </div>
+      {afterPostUser ? (
+        <div>
+          <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={true}>
+            <div className="d-flex flex-column justify-content-center align-items-center">
+              <CircularProgress color="inherit" />
+              <p>Please wait...</p>
+            </div>
+          </Backdrop>
+        </div>
+      ) : (
+        <div>
+          <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={false}>
+            <div className="d-flex ">
+              <CircularProgress color="inherit" />
+              <p>Please wait...</p>
+            </div>
+          </Backdrop>
+        </div>
+      )}
     </>
   );
 }

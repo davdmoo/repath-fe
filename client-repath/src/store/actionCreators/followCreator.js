@@ -1,5 +1,5 @@
-import { FETCH_FOLLOWING_USERS, FETCH_FOLLOWER_USER } from '../actionTypes';
-import axios from "axios";
+import { FETCH_FOLLOWING_USERS, FETCH_FOLLOWER_USER, USER_FETCH_REQUEST } from '../actionTypes';
+import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000';
 
@@ -36,6 +36,13 @@ export const followUser = (followId) => {
   };
 };
 
+export const fetchRequestsSuccess = (payload) => {
+  return {
+    type: USER_FETCH_REQUEST,
+    payload,
+  };
+};
+
 export const fetchFollowing = () => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
@@ -53,7 +60,6 @@ export const fetchFollowing = () => {
           }
         })
         .then((data) => {
-          console.log(data, `AAAAA`);
           dispatch(fetchFollowingSuccess(data));
 
           resolve(data);
@@ -75,7 +81,7 @@ export const fetchFollower = () => {
         },
       })
         .then((response) => {
-          console.log(response, `AAAAAAAAA`)
+          console.log(response, `AAAAAAAAA`);
           if (response.ok) {
             return response.json();
           } else {
@@ -89,7 +95,7 @@ export const fetchFollower = () => {
           resolve(data);
         })
         .catch((err) => {
-          console.log(err, `Nani Error`)
+          console.log(err, `Nani Error`);
           reject(err);
         });
     });
@@ -100,11 +106,11 @@ export const addFriend = (userId) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       axios({
-        method: "POST",
+        method: 'POST',
         url: `${baseUrl}/friends/${userId}`,
         headers: {
-          access_token: localStorage.access_token
-        }
+          access_token: localStorage.access_token,
+        },
       })
         .then(({ data }) => {
           console.log(data);
@@ -113,51 +119,80 @@ export const addFriend = (userId) => {
         .catch((err) => {
           console.log(err);
           reject(err);
-        })
+        });
     });
   };
 };
 
 export const accFriendReq = (reqId) => {
+  console.log('masuk sini euy', reqId);
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       axios({
-        method: "PATCH",
+        method: 'PATCH',
         url: `${baseUrl}/friends/${reqId}`,
         headers: {
-          access_token: localStorage.access_token
-        }
+          access_token: localStorage.access_token,
+        },
       })
         .then(({ data }) => {
-          console.log(data);
+          console.log(data, 'uwu dapet');
           resolve();
         })
         .catch((err) => {
           console.log(err);
           reject(err);
-        })
-    })
-  }
+        });
+    });
+  };
 };
 
 export const delFriendReq = (reqId) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       axios({
-        method: "DELETE",
+        method: 'DELETE',
         url: `${baseUrl}/friends/${reqId}`,
         headers: {
-          access_token: localStorage.access_token
-        }
+          access_token: localStorage.access_token,
+        },
       })
         .then(({ data }) => {
-          console.log(data);
+          console.log(data, 'uwu dapet');
           resolve();
         })
         .catch((err) => {
           console.log(err);
           reject(err);
+        });
+    });
+  };
+};
+
+export const getRequest = () => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      fetch(`${baseUrl}/friends/requests`, {
+        method: 'GET',
+        headers: {
+          access_token: localStorage.getItem('access_token'),
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Something went wrong');
+          }
         })
-    })
-  }
-}
+        .then((data) => {
+          dispatch(fetchRequestsSuccess(data));
+
+          resolve(data);
+        })
+        .catch((err) => {
+          console.log(err, `FETCH REQUEST FAILED`);
+        });
+    });
+  };
+};

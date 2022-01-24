@@ -1,15 +1,15 @@
-
-import { LOADING_USER, ERROR_USER, SUCCESS_LOGIN , FETCH_USER_SUCCESS, USER_EDIT_SUCCESS, FETCH_FOLLOWING_USERS,FETCH_FOLLOWER_USER, FETCH_USER_BY_ID_SUCCESS } from "../actionTypes";
+import { LOADING_USER, AFTER_POST_USER_LOADING, ERROR_USER, SUCCESS_LOGIN, FETCH_USER_SUCCESS, USER_EDIT_SUCCESS, FETCH_FOLLOWING_USERS, FETCH_FOLLOWER_USER, FETCH_USER_BY_ID_SUCCESS, USER_FETCH_REQUEST } from '../actionTypes';
 
 const initialState = {
-    user: {},
-    users: [],
-    userLoading: true,
-    userError: null,
-    following: [],
-    follower:[]
-}
-
+  user: {},
+  users: [],
+  userLoading: true,
+  afterPostUser: false,
+  userError: null,
+  following: [],
+  follower: [],
+  request: [],
+};
 
 function userReducer(state = initialState, action) {
   switch (action.type) {
@@ -17,6 +17,12 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         userLoading: action.payload,
+      };
+
+    case AFTER_POST_USER_LOADING:
+      return {
+        ...state,
+        afterPostUser: action.payload,
       };
 
     case ERROR_USER:
@@ -47,33 +53,38 @@ function userReducer(state = initialState, action) {
         user: updatedUser,
       };
 
-    case FETCH_USER_SUCCESS: 
-    return {
+    case FETCH_USER_SUCCESS:
+      return {
         ...state,
-        users: action.payload
-      }
-    
+        users: action.payload,
+      };
+
     case FETCH_FOLLOWING_USERS:
-      return{
+      return {
         ...state,
-        following: action.payload
-      }
-    
+        following: action.payload,
+      };
+
     case FETCH_FOLLOWER_USER:
-      return{
+      return {
         ...state,
-        follower: action.payload
-      }
-    
+        follower: action.payload,
+      };
+
     case FETCH_USER_BY_ID_SUCCESS:
       return {
         ...state,
-        user: action.payload
-      }
+        user: action.payload,
+      };
 
+    case USER_FETCH_REQUEST:
+      return {
+        ...state,
+        request: action.payload,
+      };
     default:
       return state;
   }
 }
 
-export default userReducer
+export default userReducer;
