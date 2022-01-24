@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import { Avatar, IconButton } from '@mui/material/';
 import { Card } from 'react-bootstrap';
 import { PersonAdd } from '@mui/icons-material/';
 import { blue } from '@mui/material/colors';
-import { useDispatch } from 'react-redux';
-import { followUser, addFriend } from '../store/actionCreators/followCreator';
+import { useDispatch, useSelector } from 'react-redux';
+import { followUser, addFriend, fetchFollowing } from '../store/actionCreators/followCreator';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function CardAddPeople({ user }) {
   const dispatch = useDispatch();
@@ -20,6 +22,35 @@ function CardAddPeople({ user }) {
     // console.log(userId);
   };
 
+  useEffect(() => {
+    dispatch(fetchFollowing());
+  }, []);
+
+  // const { following } = useSelector((state) => state.userReducer);
+  // console.log(following);
+
+  const { afterClickPostLoading } = useSelector((state) => state.postReducer);
+
+  // const showButtonAddFriend = () => {
+  //   if (user._id == localStorage.id) {
+  //     return <div> A</div>;
+  //   } else {
+  //     for (let i = 0; i < following.length; i++) {
+  //       // console.log(i);
+  //       // console.log(following[1]._id, user._id);
+  //       if (following[i]._id == user._id) {
+  //         return <div>B</div>;
+  //       } else if (following[i]._id !== user._id) {
+  //         return (
+  //           <IconButton onClick={() => handleAddFriend(user._id)}>
+  //             <PersonAdd sx={{ width: 35, height: 35, color: blue[500] }} />
+  //           </IconButton>
+  //         );
+  //       }
+  //     }
+  //   }
+  // };
+
   return (
     <>
       <Card style={{ border: '0px' }}>
@@ -27,12 +58,12 @@ function CardAddPeople({ user }) {
           <div className="card-container-addfriend">
             <div className="card-left-side-addfriend d-flex justify-content-center align-items-center">
               {user.imgUrl ? (
-                <Avatar className="avatar-card" alt="David" src={user.imgUrl} sx={{ width: 75, height: 75 }} variant="rounded"></Avatar>
+                <Avatar className="avatar-card" alt="David" src={user.imgUrl} sx={{ width: 60, height: 60 }} variant="rounded"></Avatar>
               ) : (
-                <Avatar className="avatar-card" alt={user.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 75, height: 75 }} variant="rounded"></Avatar>
+                <Avatar className="avatar-card" alt={user.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 60, height: 60 }} variant="rounded"></Avatar>
               )}
             </div>
-            <div className="card-right-side d-flex flex-row align-items-center">
+            <div className="card-right-side-addfriend d-flex flex-row align-items-center">
               <div className="content-addfriend d-flex flex-column" style={{ width: '160px', textAlign: 'left' }}>
                 <div className="addfriend-name" style={{ width: '350px' }}>
                   {user.username}
@@ -46,14 +77,39 @@ function CardAddPeople({ user }) {
                 </div>
               </div>
               <div style={{ width: '100px' }} className="d-flex justify-content-center align-items-center">
-                <IconButton onClick={() => handleAddFriend(user._id)}>
-                  <PersonAdd sx={{ width: 35, height: 35, color: blue[500] }} />
-                </IconButton>
+                {/* {showButtonAddFriend()} */}
+                {user._id == localStorage.id ? (
+                  <div></div>
+                ) : (
+                  <IconButton onClick={() => handleAddFriend(user._id)}>
+                    <PersonAdd sx={{ width: 35, height: 35, color: blue[500] }} />
+                  </IconButton>
+                )}
               </div>
             </div>
           </div>
         </Card.Body>
       </Card>
+      {/* return post.type === 'location' ? <CardLocation key={post._id} post={post} /> : post.type === 'text' ? <CardTextImage key={post._id} post={post} /> : <CardMusic key={post._id} post={post} />; */}
+      {/* {afterClickPostLoading ? (
+        <div>
+          <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={true}>
+            <div className="d-flex flex-column justify-content-center align-items-center">
+              <CircularProgress color="inherit" />
+              <p>Please wait...</p>
+            </div>
+          </Backdrop>
+        </div>
+      ) : (
+        <div>
+          <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={false}>
+            <div className="d-flex ">
+              <CircularProgress color="inherit" />
+              <p>Please wait...</p>
+            </div>
+          </Backdrop>
+        </div>
+      )} */}
     </>
   );
 }

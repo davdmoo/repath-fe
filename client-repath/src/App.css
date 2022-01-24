@@ -284,17 +284,22 @@ html {
 
 .friendlist-name {
   /* font-weight: bold; */
-  font-size: 30px;
+  font-size: 24px;
 }
 
 .friendlist-city {
-  font-size: 20px;
+  font-size: 16px;
   color: #6b7280;
 }
 
+.card-right-side-friendlist {
+  margin: 5px 0px 10px 5px;
+  width: 275px;
+}
+
 .card-left-side-friendlist {
-  width: 115px;
-  height: 115px;
+  width: 100px;
+  height: 80px;
   /* border-right: 2px solid #9ca3af; */
 }
 
@@ -302,6 +307,11 @@ html {
 .card-container-addfriend {
   display: flex;
   border-bottom: 2px solid #e5e7eb;
+}
+
+.card-right-side-addfriend {
+  margin: 10px 0px 10px 5px;
+  width: 275px;
 }
 
 .content-addfriend {
@@ -324,7 +334,7 @@ html {
 }
 
 .card-left-side-addfriend {
-  width: 110px;
+  width: 100px;
   /* border-right: 2px solid #9ca3af; */
 }
 

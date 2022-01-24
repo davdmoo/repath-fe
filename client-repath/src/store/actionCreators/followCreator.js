@@ -1,5 +1,7 @@
 import { FETCH_FOLLOWING_USERS, FETCH_FOLLOWER_USER, USER_FETCH_REQUEST } from '../actionTypes';
 import axios from 'axios';
+import { postLoadingAfterClick } from './postCreator';
+import { loadingUser } from './userCreator';
 
 const baseUrl = 'http://localhost:3000';
 
@@ -46,6 +48,7 @@ export const fetchRequestsSuccess = (payload) => {
 
 export const fetchFollowing = () => {
   return (dispatch, getState) => {
+    dispatch(loadingUser(true));
     return new Promise((resolve, reject) => {
       fetch(`${baseUrl}/friends`, {
         method: 'GET',
@@ -62,12 +65,15 @@ export const fetchFollowing = () => {
         })
         .then((data) => {
           dispatch(fetchFollowingSuccess(data));
+          dispatch(loadingUser(false));
 
           resolve(data);
         })
         .catch((err) => {
+          dispatch(loadingUser(false));
           reject(err);
-        });
+        })
+        .finally(() => {});
     });
   };
 };
@@ -105,6 +111,7 @@ export const fetchFollower = () => {
 
 export const addFriend = (userId) => {
   return (dispatch, getState) => {
+    dispatch(postLoadingAfterClick(true));
     return new Promise((resolve, reject) => {
       axios({
         method: 'POST',
@@ -114,11 +121,13 @@ export const addFriend = (userId) => {
         },
       })
         .then(({ data }) => {
-          console.log(data);
+          dispatch(postLoadingAfterClick(false));
+          dispatch(getRequest());
           resolve();
         })
         .catch((err) => {
-          console.log(err);
+          dispatch(postLoadingAfterClick(false));
+          console.log(err.response.data);
           reject(err);
         });
     });
@@ -126,8 +135,8 @@ export const addFriend = (userId) => {
 };
 
 export const accFriendReq = (reqId) => {
-  console.log('masuk sini euy', reqId);
   return (dispatch, getState) => {
+    dispatch(postLoadingAfterClick(true));
     return new Promise((resolve, reject) => {
       axios({
         method: 'PATCH',
@@ -137,10 +146,12 @@ export const accFriendReq = (reqId) => {
         },
       })
         .then(({ data }) => {
-          console.log(data, 'uwu dapet');
+          dispatch(postLoadingAfterClick(false));
+          dispatch(getRequest());
           resolve();
         })
         .catch((err) => {
+          dispatch(postLoadingAfterClick(false));
           console.log(err);
           reject(err);
         });
@@ -150,6 +161,7 @@ export const accFriendReq = (reqId) => {
 
 export const delFriendReq = (reqId) => {
   return (dispatch, getState) => {
+    dispatch(postLoadingAfterClick(true));
     return new Promise((resolve, reject) => {
       axios({
         method: 'DELETE',
@@ -159,10 +171,12 @@ export const delFriendReq = (reqId) => {
         },
       })
         .then(({ data }) => {
-          console.log(data, 'uwu dapet');
+          dispatch(postLoadingAfterClick(false));
+          dispatch(getRequest());
           resolve();
         })
         .catch((err) => {
+          dispatch(postLoadingAfterClick(false));
           console.log(err);
           reject(err);
         });
@@ -172,29 +186,32 @@ export const delFriendReq = (reqId) => {
 
 export const getRequest = () => {
   return (dispatch, getState) => {
+    dispatch(loadingUser(true));
     return new Promise((resolve, reject) => {
       fetch(`${baseUrl}/friends/requests`, {
         method: 'GET',
         headers: {
-          access_token: localStorage.getItem('access_token')
+          access_token: localStorage.getItem('access_token'),
         },
       })
-      .then((response) => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          throw new Error('Something went wrong');
-        }
-      })
-      .then((data) => {
-        console.log(data, "INI DATA");
-        dispatch(fetchRequestsSuccess(data));
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Something went wrong');
+          }
+        })
+        .then((data) => {
+          dispatch(fetchRequestsSuccess(data));
 
-        resolve(data);
-      })
-      .catch((err) => {
-        console.log(err, `FETCH REQUEST FAILED`);
-      });
+          resolve(data);
+        })
+        .catch((err) => {
+          console.log(err, `FETCH REQUEST FAILED`);
+        })
+        .finally(() => {
+          dispatch(loadingUser(false));
+        });
     });
   };
 };
