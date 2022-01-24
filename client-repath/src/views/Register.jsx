@@ -70,16 +70,16 @@ function Register() {
           background: '#DC2626',
           flex: 1,
           flexDirection: 'row',
-          height: 982,
-          width: 640,
+          height: '150vh',
+          width: '100vw',
         }}
       >
         <div>
           <img
             src="https://ik.imagekit.io/hanakar/Re-Path_D2YBYxVuS2I.png?ik-sdk-version=javascript-1.4.3&updatedAt=1642490213261"
             style={{
-              height: 200,
-              width: 200,
+              height: 100,
+              width: 100,
               justifyContent: 'center',
               alignItems: 'center',
               alignSelf: 'center',
@@ -90,7 +90,7 @@ function Register() {
           <p
             style={{
               color: '#f5f5f5',
-              fontSize: 24,
+              fontSize: 18,
               fontWeight: 'bolder',
             }}
           >
@@ -106,7 +106,7 @@ function Register() {
           <Box
             //   component="form"
             sx={{
-              '& > :not(style)': { m: 1, width: '25ch' },
+              '& > :not(style)': { mx: 1, width: '19ch' },
               flexDirection: 'column',
               alignSelf: 'center',
             }}
@@ -117,13 +117,14 @@ function Register() {
               name="firstName"
               value={registerForm.firstName}
               onChange={changeRegisterFormInput}
-              label="first name"
-              variant="filled"
-              // margin="normal"
+              label="First Name"
+              // variant="filled"
+              focused
               size="small"
               sx={{
                 input: {
                   color: red[50],
+                  borderColor: red[50],
                 },
               }}
             ></TextField>
@@ -132,9 +133,8 @@ function Register() {
               name="lastName"
               value={registerForm.lastName}
               onChange={changeRegisterFormInput}
-              label="last name"
-              variant="filled"
-              // margin="normal"
+              label="Last Name"
+              focused
               size="small"
               sx={{
                 input: {
@@ -145,7 +145,7 @@ function Register() {
             <Box
               // component="form"
               sx={{
-                '& > :not(style)': { ml: 11, width: '52ch' },
+                '& > :not(style)': { mx: 2, width: '40ch' },
                 flexDirection: 'column',
                 alignSelf: 'center',
               }}
@@ -156,8 +156,8 @@ function Register() {
                 name="username"
                 value={registerForm.username}
                 onChange={changeRegisterFormInput}
-                label="username"
-                variant="filled"
+                label="Username"
+                focused
                 margin="normal"
                 size="small"
                 sx={{
@@ -171,8 +171,8 @@ function Register() {
                 name="email"
                 value={registerForm.email}
                 onChange={changeRegisterFormInput}
-                label="email"
-                variant="filled"
+                label="Email"
+                focused
                 margin="normal"
                 size="small"
                 sx={{
@@ -186,8 +186,8 @@ function Register() {
                 value={registerForm.password}
                 onChange={changeRegisterFormInput}
                 type="password"
-                label="password"
-                variant="filled"
+                label="Password"
+                focused
                 margin="normal"
                 size="small"
                 sx={{
@@ -200,8 +200,8 @@ function Register() {
                 name="phoneNumber"
                 value={registerForm.phoneNumber}
                 onChange={changeRegisterFormInput}
-                label="phone number"
-                variant="filled"
+                label="Phone Number"
+                focused
                 margin="normal"
                 size="small"
                 sx={{
@@ -214,8 +214,8 @@ function Register() {
                 name="city"
                 value={registerForm.city}
                 onChange={changeRegisterFormInput}
-                label="city"
-                variant="filled"
+                label="City"
+                focused
                 margin="normal"
                 size="small"
                 sx={{
@@ -294,7 +294,7 @@ function Register() {
       ) : (
         <div>
           <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={false}>
-            <div className="d-flex ">
+            <div className="d-flex flex-column justify-content-center align-items-center">
               <CircularProgress color="inherit" />
               <p>Please wait...</p>
             </div>

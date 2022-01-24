@@ -8,22 +8,15 @@ function RequestPage() {
   const dispatch = useDispatch();
 
   const { request } = useSelector((state) => state.userReducer);
-
+  
   useEffect(() => {
     dispatch(getRequest());
   }, []);
 
   const userRequestExist = () => {
-    return (
-      <>
-        <CardRequestList />
-        <CardRequestList />
-        <CardRequestList />
-      </>
-    );
     if (request.length > 0) {
-      return request.map((user, idx) => {
-        return <CardRequestList key={user._id} user={user.sender} />;
+      return request.map((user) => {
+        return <CardRequestList key={user._id} user={user.sender} reqId={user._id} />;
       });
     } else {
       return (

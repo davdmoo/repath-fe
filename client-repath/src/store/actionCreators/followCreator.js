@@ -11,6 +11,7 @@ export const fetchFollowingSuccess = (payload) => {
 };
 
 export const fetchFollowerSuccess = (payload) => {
+  console.log(payload);
   return {
     type: FETCH_FOLLOWER_USER,
     payload,
@@ -46,7 +47,7 @@ export const fetchRequestsSuccess = (payload) => {
 export const fetchFollowing = () => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      fetch(`${baseUrl}/follows`, {
+      fetch(`${baseUrl}/friends`, {
         method: 'GET',
         headers: {
           access_token: localStorage.getItem('access_token'),
@@ -175,24 +176,25 @@ export const getRequest = () => {
       fetch(`${baseUrl}/friends/requests`, {
         method: 'GET',
         headers: {
-          access_token: localStorage.getItem('access_token'),
+          access_token: localStorage.getItem('access_token')
         },
       })
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error('Something went wrong');
-          }
-        })
-        .then((data) => {
-          dispatch(fetchRequestsSuccess(data));
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw new Error('Something went wrong');
+        }
+      })
+      .then((data) => {
+        console.log(data, "INI DATA");
+        dispatch(fetchRequestsSuccess(data));
 
-          resolve(data);
-        })
-        .catch((err) => {
-          console.log(err, `FETCH REQUEST FAILED`);
-        });
+        resolve(data);
+      })
+      .catch((err) => {
+        console.log(err, `FETCH REQUEST FAILED`);
+      });
     });
   };
 };

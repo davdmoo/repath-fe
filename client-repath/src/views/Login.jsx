@@ -10,11 +10,36 @@ import { errorToastAlert } from '../hooks/errorToastAlert';
 import { ToastContainer, toast } from 'react-toastify';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import { alpha, styled } from '@mui/material/styles';
 
 function Login() {
   const [loginForm, setLoginForm] = useState({
     email: '',
     password: '',
+  });
+
+  const CssTextField = styled(TextField)({
+    '& label.Mui-focused': {
+      color: red[50],
+    },
+    '& .MuiInput-underline:before': {
+      borderColor: red[50],
+      color: red[50],
+    },
+    '& .MuiInput-underline:after': {
+      borderColor: red[50],
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: red[50],
+      },
+      '&:hover fieldset': {
+        borderColor: red[50],
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: red[50],
+      },
+    },
   });
 
   const changeLoginFormInput = (e) => {
@@ -63,15 +88,15 @@ function Login() {
           background: '#DC2626',
           flex: 1,
           flexDirection: 'row',
-          height: '100vh',
-          width: 640,
+          height: '150vh',
+          width: '100vw',
         }}
       >
         <div>
           <img
             src="https://ik.imagekit.io/hanakar/Re-Path_D2YBYxVuS2I.png?ik-sdk-version=javascript-1.4.3&updatedAt=1642490213261"
             style={{
-              marginTop: 100,
+              marginTop: 50,
               height: 200,
               width: 200,
               justifyContent: 'center',
@@ -93,7 +118,7 @@ function Login() {
         <Box
           component="form"
           sx={{
-            '& > :not(style)': { m: 1, width: '52ch', mb: 3 },
+            '& > :not(style)': { m: 1, width: '37ch', mb: 3 },
             defaultValue: {
               color: red[50],
             },
@@ -106,23 +131,26 @@ function Login() {
             name="email"
             value={loginForm.email}
             onChange={changeLoginFormInput}
-            label="email"
-            variant="filled"
+            label="Email"
             margin="normal"
             sx={{
               input: {
                 color: red[50],
               },
             }}
+            focused
           ></TextField>
+
+          {/* <CssTextField variant="standard" label="Testing" sx={{ color: red[50] }} /> */}
 
           <TextField
             name="password"
             value={loginForm.password}
             onChange={changeLoginFormInput}
             type="password"
-            label="password"
-            variant="filled"
+            label="Password"
+            placehorder="AAAAA"
+            focused
             margin="normal"
             sx={{
               input: {

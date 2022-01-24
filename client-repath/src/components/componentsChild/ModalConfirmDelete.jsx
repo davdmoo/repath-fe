@@ -22,8 +22,8 @@ function ModalConfirmDelete({ id }) {
 
   return (
     <>
-      <IconButton onClick={handleShow} sx={{ padding: '0px 3px' }}>
-        <Delete sx={{ color: deepOrange[900] }} />
+      <IconButton onClick={handleShow} sx={{ padding: '0px 1px' }}>
+        <Delete sx={{ color: deepOrange[900], fontSize: 16 }} />
       </IconButton>
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
