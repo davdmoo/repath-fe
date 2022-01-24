@@ -17,7 +17,7 @@ function FollowingPage() {
   const userFollowingExist = () => {
     if (following.length > 0) {
       return following.map((user, idx) => {
-        if (user.following) {
+        if (user) {
           return <CardFriendList key={user._id} user={user} />;
         }
       });
@@ -48,7 +48,7 @@ function FollowingPage() {
     <>
       <Navbar />
       <div style={{ minHeight: '100vh', backgroundColor: '#fef2f2', paddingTop: '95px' }}>
-        <h1 className="pt-4 pb-3">Following (ini jadi page friendlist)</h1>
+        <h1 className="pt-4 pb-3">FRIEND LIST</h1>
         {userFollowingExist()}
       </div>
     </>

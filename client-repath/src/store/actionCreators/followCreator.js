@@ -46,7 +46,7 @@ export const fetchRequestsSuccess = (payload) => {
 export const fetchFollowing = () => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      fetch(`${baseUrl}/follows`, {
+      fetch(`${baseUrl}/friends`, {
         method: 'GET',
         headers: {
           access_token: localStorage.getItem('access_token'),
