@@ -6,7 +6,7 @@ html {
 
 .App {
   text-align: center;
-  width: 640px;
+  width: 390px;
   background-color: #fef2f2;
 }
 
@@ -291,20 +291,20 @@ html {
 
 .addfriend-name {
   font-weight: bold;
-  font-size: 24px;
-}
-
-.addfriend-firstName {
   font-size: 18px;
 }
 
+.addfriend-firstName {
+  font-size: 15px;
+}
+
 .addfriend-city {
-  font-size: 16px;
+  font-size: 15px;
   color: #9ca3af;
 }
 
 .card-left-side-addfriend {
-  width: 115px;
+  width: 110px;
   /* border-right: 2px solid #9ca3af; */
 }
 
@@ -432,22 +432,22 @@ html {
 }
 
 .content-friendrequest {
-  width: 470px;
+  width: 450px;
   text-align: left;
 }
 
 .friendrequest-name {
   /* font-weight: bold; */
-  font-size: 30px;
+  font-size: 22px;
 }
 
 .friendrequest-city {
-  font-size: 20px;
+  font-size: 18px;
   color: #6b7280;
 }
 
 .card-left-side-friendrequest {
-  width: 115px;
-  height: 115px;
+  width: 100px;
+  height: 100px;
   /* border-right: 2px solid #9ca3af; */
 }

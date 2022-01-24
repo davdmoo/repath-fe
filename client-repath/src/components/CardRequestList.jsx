@@ -28,7 +28,7 @@ function CardRequestList({ user, reqId }) {
                 )}
           </div>
           <div className="card-right-side d-flex flex-row align-items-center">
-            <div className="content-friendrequest" style={{ width: '250px', textAlign: 'left' }}>
+            <div className="content-friendrequest" style={{ width: '130px', textAlign: 'left' }}>
               <div className="friendrequest-name">
                 {user.firstName} {user.lastName}
               </div>
@@ -36,11 +36,13 @@ function CardRequestList({ user, reqId }) {
             </div>
           </div>
           <div style={{ marginRight: '10px', padding: '15px' }} className="d-flex justify-content-between align-items-center">
-            <IconButton onClick={() => handleAccFriend(reqId)}>
-              <PersonAddIcon sx={{ width: 40, height: 40, color: blue[500] }} />
+
+            <IconButton onClick={() => handleAccFriend(user._id)}>
+              <PersonAddIcon sx={{ width: 35, height: 35, color: blue[500] }} />
             </IconButton>
-            <IconButton onClick={() => handleDecFriend(reqId)}>
-              <PersonRemoveIcon sx={{ width: 40, height: 40, color: red[500] }} />
+            <IconButton onClick={() => handleDecFriend(user._id)}>
+              <PersonRemoveIcon sx={{ width: 35, height: 35, color: red[500] }} />
+
             </IconButton>
           </div>
         </div>
