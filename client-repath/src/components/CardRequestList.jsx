@@ -9,7 +9,7 @@ import { accFriendReq, delFriendReq } from '../store/actionCreators/followCreato
 
 function CardRequestList({ user, reqId }) {
   const dispatch = useDispatch();
-  
+
   const handleAccFriend = (id) => {
     dispatch(accFriendReq(id));
   };
@@ -22,10 +22,10 @@ function CardRequestList({ user, reqId }) {
         <div className="card-container-friendrequest">
           <div className="card-left-side-friendrequest d-flex">
             {user.imgUrl ? (
-                    <Avatar className="avatar-card" alt="David" src={user.imgUrl} sx={{ width: 75, height: 75 }} variant="rounded"></Avatar>
-                ) : (
-                    <Avatar className="avatar-card" alt={user.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 75, height: 75 }} variant="rounded"></Avatar>
-                )}
+              <Avatar className="avatar-card" alt="David" src={user.imgUrl} sx={{ width: 75, height: 75 }} variant="rounded"></Avatar>
+            ) : (
+              <Avatar className="avatar-card" alt={user.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 75, height: 75 }} variant="rounded"></Avatar>
+            )}
           </div>
           <div className="card-right-side d-flex flex-row align-items-center">
             <div className="content-friendrequest" style={{ width: '130px', textAlign: 'left' }}>
@@ -36,13 +36,11 @@ function CardRequestList({ user, reqId }) {
             </div>
           </div>
           <div style={{ marginRight: '10px', padding: '15px' }} className="d-flex justify-content-between align-items-center">
-
             <IconButton onClick={() => handleAccFriend(user._id)}>
               <PersonAddIcon sx={{ width: 35, height: 35, color: blue[500] }} />
             </IconButton>
             <IconButton onClick={() => handleDecFriend(user._id)}>
               <PersonRemoveIcon sx={{ width: 35, height: 35, color: red[500] }} />
-
             </IconButton>
           </div>
         </div>
