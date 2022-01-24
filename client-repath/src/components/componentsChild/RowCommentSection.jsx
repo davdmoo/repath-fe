@@ -7,10 +7,10 @@ function RowCommentSection(props) {
       <div className="comment-section-pict">
         {props.rowComment.userId.imgUrl ? (
           // <Avatar alt={props.rowComment.userId.firstName} src={props.rowComment.userId.imgUrl} sx={{ margin: '5px' }}></Avatar>
-          <Avatar className="avatar-card-textImage" alt={props.rowComment.userId.firstName} src={props.rowComment.userId.imgUrl} sx={{ width: 40, height: 40 }} variant="rounded"></Avatar>
+          <Avatar className="avatar-card-textImage" alt={props.rowComment.userId.firstName} src={props.rowComment.userId.imgUrl} sx={{ width: 30, height: 30 }} variant="rounded"></Avatar>
         ) : (
           // <Avatar alt={props.like.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ margin: '5px' }}></Avatar>
-          <Avatar className="avatar-card-textImage" alt={props.rowComment.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 40, height: 40 }} variant="rounded"></Avatar>
+          <Avatar className="avatar-card-textImage" alt={props.rowComment.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 30, height: 30 }} variant="rounded"></Avatar>
         )}
       </div>
       <div className="comment-section-description d-flex justify-content-center ">

@@ -69,8 +69,17 @@ function PostSearchMusic() {
       <div className="friendlist-page" style={{ height: '100vh', backgroundColor: '#fef2f2', paddingTop: '95px' }}>
         <div className="d-flex justify-content-center flex-column align-items-center">
           <h1 className="mt-4">What are you listening to?</h1>
-          <div className="input-group my-3" style={{ width: '400px', height: '50px' }}>
-            <input type="search" className="form-control rounded" placeholder="Search Song/Artist/Album..." aria-label="Search people..." aria-describedby="search-addon" name="title" onChange={changeSearchMusicForm} />
+          <div className="input-group my-3" style={{ width: '240px', height: '30px' }}>
+            <input
+              style={{ fontSize: '11px' }}
+              type="search"
+              className="form-control rounded"
+              placeholder="Search Song/Artist/Album..."
+              aria-label="Search people..."
+              aria-describedby="search-addon"
+              name="title"
+              onChange={changeSearchMusicForm}
+            />
             <button type="button" className="btn btn-outline-danger" onClick={doSearchMusic}>
               Search
             </button>

@@ -18,11 +18,11 @@ function Header(props) {
             backgroundColor: '#f87171',
           }}
         >
-          <div style={{ paddingTop: '115px', paddingLeft: '93px' }}>
+          <div style={{ paddingTop: '125px', paddingLeft: '60px' }}>
             {props.currentUser.imgUrl ? (
-              <Avatar alt={props.currentUser.firstName} src={props.currentUser.imgUrl} sx={{ width: 85, height: 85, fontSize: 40 }}></Avatar>
+              <Avatar alt={props.currentUser.firstName} src={props.currentUser.imgUrl} sx={{ width: 70, height: 70, fontSize: 40 }}></Avatar>
             ) : (
-              <Avatar alt={props.currentUser.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 85, height: 85, fontSize: 40 }}></Avatar>
+              <Avatar alt={props.currentUser.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 70, height: 70, fontSize: 40 }}></Avatar>
             )}
             {/* <Avatar alt="Zemy Sharp" src="/static/images/avatar/1.jpg" sx={{ width: 70, height: 70 }} /> */}
           </div>

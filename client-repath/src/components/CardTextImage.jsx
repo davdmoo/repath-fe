@@ -23,9 +23,7 @@ function CardTextImage(props) {
 
   const renderTooltip = (prop) => (
     <Tooltip id="button-tooltip" {...prop}>
-
       <div>{props.post.userId.firstName}</div>
-
     </Tooltip>
   );
 
@@ -89,17 +87,14 @@ function CardTextImage(props) {
       <Card style={{ border: '0px' }}>
         <Card.Body style={{ backgroundColor: '#fef2f2', padding: '0px' }}>
           <div className="card-container ">
-
             <div className="card-left-side d-flex">
               {props.post.userId.imgUrl ? (
-
                 <OverlayTrigger placement="bottom" overlay={renderTooltip}>
-                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src={props.post.userId.imgUrl} sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src={props.post.userId.imgUrl} sx={{ width: 45, height: 45 }} variant="rounded"></Avatar>
                 </OverlayTrigger>
               ) : (
                 <OverlayTrigger placement="bottom" overlay={renderTooltip}>
-
-                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} variant="rounded"></Avatar>
+                  <Avatar className="avatar-card" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 45, height: 45 }} variant="rounded"></Avatar>
                 </OverlayTrigger>
               )}
               <div>
@@ -108,7 +103,6 @@ function CardTextImage(props) {
                 </span>
               </div>
             </div>
-
 
             <div className="card-right-side d-flex flex-column">
               {props.post.imgUrl !== '[object Object]' ? (
@@ -130,24 +124,39 @@ function CardTextImage(props) {
                   <div className="postText-container d-flex flex-row shadow">
                     <div className="comment-section-pict">
                       {props.post.userId.imgUrl ? (
-                        <Avatar className="avatar-card-textImage" alt={props.post.userId.firstName} src={props.post.userId.imgUrl} sx={{ width: 40, height: 40 }} variant="rounded"></Avatar>
+                        <Avatar className="avatar-card-textImage" alt={props.post.userId.firstName} src={props.post.userId.imgUrl} sx={{ width: 30, height: 30 }} variant="rounded"></Avatar>
                       ) : (
-                        <Avatar className="avatar-card-textImage" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 40, height: 40 }} variant="rounded"></Avatar>
+                        <Avatar className="avatar-card-textImage" alt={props.post.userId.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 30, height: 30 }} variant="rounded"></Avatar>
                       )}
                     </div>
                     <div className="postText-description d-flex justify-content-center ">
                       <p className="postText-padding">
-                        <span className="fw-bold">{props.post.userId.firstName}: </span>
-                        {props.post.text}
+                        <span className="fw-bold" style={{ fontSize: '1.1em' }}>
+                          {props.post.userId.firstName}{' '}
+                        </span>{' '}
+                        posted:
+                        <div style={{ lineHeight: '1.1em' }}>{props.post.text}</div>
                       </p>
                     </div>
                   </div>
                   <div className="content-text-button d-flex flex-row justify-content-center">
                     <div style={{ marginTop: '9px' }}>
                       {checked ? (
-                        <Checkbox checked={checked} onChange={() => unlike(likeIdReturner(localStorage.id))} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[400] }} />} sx={{ padding: '0px 3px' }} />
+                        <Checkbox
+                          checked={checked}
+                          onChange={() => unlike(likeIdReturner(localStorage.id))}
+                          icon={<FavoriteBorder />}
+                          checkedIcon={<Favorite sx={{ color: red[400] }} />}
+                          sx={{ padding: '0px 1px', '& .MuiSvgIcon-root': { fontSize: 16 } }}
+                        />
                       ) : (
-                        <Checkbox checked={checked} onChange={() => handleLike(props.post._id)} icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: red[400] }} />} sx={{ padding: '0px 3px' }} />
+                        <Checkbox
+                          checked={checked}
+                          onChange={() => handleLike(props.post._id)}
+                          icon={<FavoriteBorder />}
+                          checkedIcon={<Favorite sx={{ color: red[400] }} />}
+                          sx={{ padding: '0px 1px', '& .MuiSvgIcon-root': { fontSize: 16 } }}
+                        />
                       )}
                     </div>
                     <div style={{ marginTop: '10px' }}>
