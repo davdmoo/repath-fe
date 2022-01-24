@@ -51,7 +51,7 @@ function FollowingPage() {
     <>
       <Navbar />
       <div style={{ minHeight: '100vh', backgroundColor: '#fef2f2', paddingTop: '95px' }}>
-        <h1 className="pt-4 pb-3">FRIEND LIST</h1>
+        <h1 className="pt-3 pb-3">Friend List</h1>
         {userFollowingExist()}
       </div>
     </>

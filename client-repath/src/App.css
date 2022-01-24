@@ -259,9 +259,9 @@ html {
 }
 
 .comment-section-description {
-  margin-left: 5px;
+  margin-left: 10px;
   margin-top: 10px;
-  padding-right: 5px;
+  padding-right: 10px;
 }
 
 /* FRIENDLIST */
@@ -375,7 +375,7 @@ html {
 .search-music-title {
   margin-top: 5px;
   margin-bottom: -6px;
-  font-size: 22px;
+  font-size: 20px;
   width: 240px;
   line-height: 1.2em;
 }
@@ -386,7 +386,8 @@ html {
 }
 
 .search-music-artist {
-  font-size: 20px;
+  font-size: 15px;
+  padding-top: 5px;
   color: #6b7280;
 }
 

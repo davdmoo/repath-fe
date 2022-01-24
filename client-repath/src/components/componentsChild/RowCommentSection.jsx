@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Avatar } from '@mui/material/';
+import moment from 'moment';
 
 function RowCommentSection(props) {
   return (
@@ -14,10 +15,15 @@ function RowCommentSection(props) {
         )}
       </div>
       <div className="comment-section-description d-flex justify-content-center ">
-        <p className="comment-section-padding">
+        <span className="comment-section-padding" style={{ paddingTop: '2px' }}>
           <span className="fw-bold">{props.rowComment.userId.firstName}: </span>
           {props.rowComment.content}
-        </p>
+          <div style={{ color: `#9ca3af` }}>
+            {moment()
+              .subtract((moment().valueOf() - moment(props.rowComment.created_at)) / 1000, 's')
+              .fromNow()}
+          </div>
+        </span>
       </div>
     </div>
   );
