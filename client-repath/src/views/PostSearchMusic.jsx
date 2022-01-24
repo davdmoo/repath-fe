@@ -71,9 +71,9 @@ function PostSearchMusic() {
   return (
     <>
       <Navbar />
-      <div className="friendlist-page" style={{ height: '100vh', backgroundColor: '#fef2f2', paddingTop: '55px' }}>
+      <div className="friendlist-page" style={{ height: '100vh', backgroundColor: '#fef2f2', paddingTop: '75px' }}>
         <div className="d-flex justify-content-center flex-column align-items-center">
-          <h1 className="mt-4">What are you listening to?</h1>
+          <h1 className="mt-5">What are you listening to?</h1>
           <div className="input-group my-3" style={{ width: '240px', height: '30px' }}>
             <input
               style={{ fontSize: '11px' }}

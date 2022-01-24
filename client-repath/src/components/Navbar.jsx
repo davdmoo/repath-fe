@@ -15,8 +15,8 @@ function Navbar() {
       <Sidebar></Sidebar>
       <div
         style={{
-          marginLeft: '20px',
-          height: '50px',
+          marginLeft: '170px',
+          height: '80px',
           width: '70px',
           backgroundImage: "url('https://ik.imagekit.io/hanakar/Re-Path_D2YBYxVuS2I.png?ik-sdk-version=javascript-1.4.3&updatedAt=1642490213261')",
           backgroundRepeat: 'no-repeat',
