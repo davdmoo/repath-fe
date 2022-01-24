@@ -17,6 +17,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { byteFormatter } from '../hooks/byteFormatter';
 import { warnToastAlert } from '../hooks/errorToastAlert';
 import { ToastContainer, toast } from 'react-toastify';
+import { red, deepOrange } from '@mui/material/colors';
 
 function EditProfile() {
   const dispatch = useDispatch();
@@ -106,7 +107,7 @@ function EditProfile() {
               src={editUserForm.imgUrl}
               sx={{
                 fontSize: 50,
-                mt: 5,
+                mt: 2,
                 width: 100,
                 height: 100,
                 mx: 'auto',
@@ -119,7 +120,7 @@ function EditProfile() {
               src="/static/images/avatar/1.jpg"
               sx={{
                 fontSize: 50,
-                mt: 5,
+                mt: 2,
                 width: 100,
                 height: 100,
                 mx: 'auto',
@@ -149,43 +150,7 @@ function EditProfile() {
             }}
           >
             {fileDataExist()}
-            {/* {editUserForm.imgUrl ? (
-              <Avatar
-                className="avatar-card"
-                alt={editUserForm.firstName}
-                src={editUserForm.imgUrl}
-                sx={{
-                  fontSize: 50,
-                  mt: 5,
-                  width: 100,
-                  height: 100,
-                  mx: 'auto',
-                }}
-              ></Avatar>
-            ) : (
-              <Avatar
-                className="avatar-card"
-                alt={editUserForm.firstName}
-                src="/static/images/avatar/1.jpg"
-                sx={{
-                  fontSize: 50,
-                  mt: 5,
-                  width: 100,
-                  height: 100,
-                  mx: 'auto',
-                }}
-              ></Avatar>
-            )} */}
-            {/* <Avatar
-              alt="Remy Sharp"
-              src="/static/images/avatar/1.jpg"
-              sx={{
-                mt: 5,
-                width: 90,
-                height: 90,
-                mx: 'auto',
-              }}
-            /> */}
+
             <div>
               <label htmlFor="icon-button-file">
                 <Input sx={{ marginTop: '10px' }} accept="image/*" id="icon-button-file" type="file" name="selectedFile" onChange={toUploadFile} />
@@ -207,33 +172,33 @@ function EditProfile() {
           >
             <Box
               sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
+                '& > :not(style)': { m: 0.5, width: '15ch' },
                 flexDirection: 'column',
                 alignSelf: 'center',
               }}
               noValidate
               autoComplete="off"
             >
-              <TextField value={editUserForm.firstName} onChange={changeEditUserInput} name="firstName" label="first name" variant="filled" size="small"></TextField>
+              <TextField value={editUserForm.firstName} sx={{ backgroundColor: `#fee2e2` }} error onChange={changeEditUserInput} name="firstName" label="First Name" variant="filled" size="small"></TextField>
 
-              <TextField value={editUserForm.lastName} onChange={changeEditUserInput} name="lastName" label="last name" variant="filled" size="small"></TextField>
+              <TextField value={editUserForm.lastName} sx={{ backgroundColor: `#fee2e2` }} error onChange={changeEditUserInput} name="lastName" label="Last Name" variant="filled" size="small"></TextField>
               <Box
                 sx={{
-                  '& > :not(style)': { width: '52ch' },
+                  '& > :not(style)': { width: '32ch' },
                   flexDirection: 'column',
                   alignSelf: 'center',
                 }}
                 noValidate
                 autoComplete="off"
               >
-                <TextField value={editUserForm.header} onChange={changeEditUserInput} name="header" label="header url" variant="filled" margin="normal" size="small"></TextField>
+                <TextField value={editUserForm.header} sx={{ backgroundColor: `#fee2e2` }} error onChange={changeEditUserInput} name="header" label="Image for Header (URL)" variant="filled" margin="normal" size="small"></TextField>
                 {/* <TextField 
 								value={editUserForm.imgUrl}
 								onChange={changeEditUserInput}
 								name="headerUrl" label="header background url" variant="filled" margin="normal" size="small"></TextField> */}
-                <TextField value={editUserForm.username} onChange={changeEditUserInput} name="username" label="username" variant="filled" margin="normal" size="small" />
-                <TextField value={editUserForm.phoneNumber} onChange={changeEditUserInput} name="phoneNumber" label="phone number" variant="filled" margin="normal" size="small" />
-                <TextField value={editUserForm.city} onChange={changeEditUserInput} name="city" label="city" variant="filled" margin="normal" size="small" />
+                <TextField value={editUserForm.username} sx={{ backgroundColor: `#fee2e2` }} error onChange={changeEditUserInput} name="username" label="username" variant="filled" margin="normal" size="small" />
+                <TextField value={editUserForm.phoneNumber} sx={{ backgroundColor: `#fee2e2` }} error onChange={changeEditUserInput} name="phoneNumber" label="phone number" variant="filled" margin="normal" size="small" />
+                <TextField value={editUserForm.city} sx={{ backgroundColor: `#fee2e2` }} error onChange={changeEditUserInput} name="city" label="city" variant="filled" margin="normal" size="small" />
               </Box>
               <Button
                 type="button"
