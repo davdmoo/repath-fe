@@ -8,7 +8,7 @@ function RequestPage() {
   const dispatch = useDispatch();
 
   const { request } = useSelector((state) => state.userReducer);
-
+  
   useEffect(() => {
     dispatch(getRequest());
   }, []);
