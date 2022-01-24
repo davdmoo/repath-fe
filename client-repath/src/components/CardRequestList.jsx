@@ -16,6 +16,7 @@ function CardRequestList({ user, reqId }) {
   const handleDecFriend = (id) => {
     dispatch(delFriendReq(id));
   };
+
   return (
     <Card style={{ border: '0px' }}>
       <Card.Body style={{ backgroundColor: '#fef2f2', padding: '0px' }}>
@@ -36,10 +37,14 @@ function CardRequestList({ user, reqId }) {
             </div>
           </div>
           <div style={{ marginRight: '10px', padding: '15px' }} className="d-flex justify-content-between align-items-center">
+
+            <IconButton onClick={() => handleAccFriend(reqId)}>
+
             <IconButton onClick={() => handleAccFriend(user._id)}>
+
               <PersonAddIcon sx={{ width: 35, height: 35, color: blue[500] }} />
             </IconButton>
-            <IconButton onClick={() => handleDecFriend(user._id)}>
+            <IconButton onClick={() => handleDecFriend(reqId)}>
               <PersonRemoveIcon sx={{ width: 35, height: 35, color: red[500] }} />
             </IconButton>
           </div>

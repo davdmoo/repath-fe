@@ -3,7 +3,7 @@ import { Avatar } from '@mui/material/';
 import { Card } from 'react-bootstrap';
 
 function CardFriendList({ user }) {
-  
+  console.log(user);
   return (
     <Card style={{ border: '0px' }}>
       <Card.Body style={{ backgroundColor: '#fef2f2', padding: '0px' }}>
