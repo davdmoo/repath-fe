@@ -1,4 +1,5 @@
 export const LOADING_USER = 'userLoading/loading';
+export const LOADING_USER_2 = 'userLoading2/loading';
 export const ERROR_USER = 'userError/error';
 export const SUCCESS_LOGIN = 'user/login';
 export const USER_EDIT_SUCCESS = 'user/editSuccess';

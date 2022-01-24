@@ -1,9 +1,22 @@
-import { LOADING_USER, AFTER_POST_USER_LOADING, ERROR_USER, SUCCESS_LOGIN, FETCH_USER_SUCCESS, USER_EDIT_SUCCESS, FETCH_FOLLOWING_USERS, FETCH_FOLLOWER_USER, FETCH_USER_BY_ID_SUCCESS, USER_FETCH_REQUEST } from '../actionTypes';
+import {
+  LOADING_USER,
+  LOADING_USER_2,
+  AFTER_POST_USER_LOADING,
+  ERROR_USER,
+  SUCCESS_LOGIN,
+  FETCH_USER_SUCCESS,
+  USER_EDIT_SUCCESS,
+  FETCH_FOLLOWING_USERS,
+  FETCH_FOLLOWER_USER,
+  FETCH_USER_BY_ID_SUCCESS,
+  USER_FETCH_REQUEST,
+} from '../actionTypes';
 
 const initialState = {
   user: {},
   users: [],
   userLoading: true,
+  userLoading2: true,
   afterPostUser: false,
   userError: null,
   following: [],
@@ -17,6 +30,12 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         userLoading: action.payload,
+      };
+
+    case LOADING_USER_2:
+      return {
+        ...state,
+        userLoading2: action.payload,
       };
 
     case AFTER_POST_USER_LOADING:

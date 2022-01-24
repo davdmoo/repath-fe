@@ -35,12 +35,18 @@ function PostSearchMusic() {
   };
 
   const doSearchMusic = () => {
+    if (searchMusicForm.title.length < 1) {
+      throw 'Please input the search field';
+    }
     dispatch(fetchMusicSearch(searchMusicForm))
       .then((data) => {
         // setArrayListMusics(data);
       })
       .then(() => {
         // console.log(arrayListMusics, 'INI ARRAY OF LIST MUSIC SETELAH DI SET');
+      })
+      .catch((err) => {
+        // console.log(err);
       });
   };
 
