@@ -181,8 +181,8 @@ function EditProfile() {
               src="/static/images/avatar/1.jpg"
               sx={{
                 mt: 5,
-                width: 100,
-                height: 100,
+                width: 90,
+                height: 90,
                 mx: 'auto',
               }}
             /> */}

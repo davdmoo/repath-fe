@@ -31,7 +31,7 @@ function CardRequestList({ user }) {
             <Avatar className="avatar-card" alt="Azmi" src="/static/images/avatar/1.jpg" sx={{ width: 75, height: 75, fontSize: 50 }} variant="rounded"></Avatar>
           </div>
           <div className="card-right-side d-flex flex-row align-items-center">
-            <div className="content-friendrequest" style={{ width: '250px', textAlign: 'left' }}>
+            <div className="content-friendrequest" style={{ width: '130px', textAlign: 'left' }}>
               <div className="friendrequest-name">
                 {/* {user.firstName} {user.lastName} */}
                 John Doe
@@ -42,10 +42,10 @@ function CardRequestList({ user }) {
           </div>
           <div style={{ marginRight: '10px', padding: '15px' }} className="d-flex justify-content-between align-items-center">
             <IconButton onClick={() => handleAccFriend(user._id)}>
-              <PersonAddIcon sx={{ width: 40, height: 40, color: blue[500] }} />
+              <PersonAddIcon sx={{ width: 35, height: 35, color: blue[500] }} />
             </IconButton>
             <IconButton onClick={() => handleDecFriend(user._id)}>
-              <PersonRemoveIcon sx={{ width: 40, height: 40, color: red[500] }} />
+              <PersonRemoveIcon sx={{ width: 35, height: 35, color: red[500] }} />
             </IconButton>
           </div>
         </div>
