@@ -37,7 +37,7 @@ function PostContent() {
       return (
         <div>
           <h2>Image Details:</h2>
-          <p style={{ margin: '0px' }}>Image Name: {selectedFile.name}</p>
+          <p style={{ margin: '0px 25px' }}>Image Name: {selectedFile.name}</p>
           <p style={{ margin: '0px' }}>File Type: {selectedFile.type}</p>
           <p style={{ marginBottom: '0px' }}>Last Modified: {selectedFile.lastModifiedDate.toDateString()}</p>
           <p style={{ marginBottom: '10px' }}>Size: {byteFormatter(selectedFile.size, 2)}</p>

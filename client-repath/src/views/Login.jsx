@@ -88,15 +88,15 @@ function Login() {
           background: '#DC2626',
           flex: 1,
           flexDirection: 'row',
-          height: '100vh',
-          width: 640,
+          height: '150vh',
+          width: '100vw',
         }}
       >
         <div>
           <img
             src="https://ik.imagekit.io/hanakar/Re-Path_D2YBYxVuS2I.png?ik-sdk-version=javascript-1.4.3&updatedAt=1642490213261"
             style={{
-              marginTop: 100,
+              marginTop: 50,
               height: 200,
               width: 200,
               justifyContent: 'center',
@@ -118,7 +118,7 @@ function Login() {
         <Box
           component="form"
           sx={{
-            '& > :not(style)': { m: 1, width: '52ch', mb: 3 },
+            '& > :not(style)': { m: 1, width: '37ch', mb: 3 },
             defaultValue: {
               color: red[50],
             },

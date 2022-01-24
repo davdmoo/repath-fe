@@ -91,13 +91,12 @@ function Sidebar() {
 
   return (
     <div>
-      <ListIcon style={{ width: '42px', height: '42px' }} sx={{ color: red[50] }} onClick={handleShow} />
+      <ListIcon style={{ width: '42px', height: '42px', marginRight: '10px' }} sx={{ color: red[50] }} onClick={handleShow} />
       <div className="sidebar-container d-flex">
         <Offcanvas style={{ marginLeft: '0vw', width: '200px', background: '#dc2626' }} show={show} onHide={handleClose}>
-        
           <div className="header-sidebar d-flex flex row" style={{ height: '15vh' }}>
             <Offcanvas.Header style={{ justifyContent: 'center', marginTop: '2vh' }}>
-              <Avatar alt="Zemy Sharp" style={{marginLeft: '1vh'}} src="/static/images/avatar/1.jpg" />
+              {currentUser.imgUrl ? <Avatar alt={currentUser.firstName} style={{ marginLeft: '1vh' }} src={currentUser.imgUrl} /> : <Avatar alt={currentUser.firstName} style={{ marginLeft: '1vh' }} src="/static/images/avatar/1.jpg" />}
               <div className="d-flex flex row">
                 <div style={{ color: '#f5f5f5', fontSize: 16, fontWeight: 'bolder', justifyContent: 'flex-end', marginLeft: '15px' }}>
                   {currentUser.firstName} {currentUser.lastName}
@@ -108,58 +107,71 @@ function Sidebar() {
             </Offcanvas.Header>
           </div>
 
-          <div className="main-sidebar d-flex flex-column" style={{ height: '75vh', alignItems: 'flex-start', marginLeft: '3vh', marginTop:'3vh' }}>
+          <div className="main-sidebar d-flex flex-column" style={{ height: '75vh', alignItems: 'flex-start', marginLeft: '3vh', marginTop: '3vh' }}>
+            <div style={{ width: '100px' }}>
+              <Button
+                className="d-flex"
+                variant="outline-light"
+                style={{ border: '0px', width: '160px' }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  toHome();
+                }}
+              >
+                <HomeIcon style={{ marginRight: '5px' }} />
+                Home
+              </Button>
+            </div>
+            <div style={{ width: '100px' }}>
+              <Button
+                className="d-flex"
+                variant="outline-light"
+                style={{ border: '0px', marginTop: '2vh', width: '160px' }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  toEditProfile();
+                }}
+              >
+                <AccountCircleIcon style={{ marginRight: '5px' }} /> Profile
+              </Button>
+            </div>
+            <div style={{ width: '100px' }}>
+              <Button
+                className="d-flex"
+                variant="outline-light"
+                style={{ border: '0px', marginTop: '2vh', width: '160px' }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  toFollowing();
+                }}
+              >
+                <GroupIcon style={{ marginRight: '5px' }} /> Friend List
+              </Button>
+            </div>
             <Button
               variant="outline-light"
-              style={{ border: '0px' }}
-              onClick={(e) => {
-                e.preventDefault();
-                toHome();
-              }}
-            >
-              <HomeIcon style={{ marginRight: '5px' }} />
-              Home
-            </Button>{' '}
-            <Button
-              variant="outline-light"
-              style={{ border: '0px', marginTop: '2vh' }}
-              onClick={(e) => {
-                e.preventDefault();
-                toEditProfile();
-              }}
-            >
-              <AccountCircleIcon style={{ marginRight: '5px' }} /> Profile
-            </Button>{' '}
-            <Button
-              variant="outline-light"
-              style={{ border: '0px', marginTop: '2vh' }}
-              onClick={(e) => {
-                e.preventDefault();
-                toFollowing();
-              }}
-            >
-              <GroupIcon style={{ marginRight: '5px' }} /> Friend List
-            </Button>{' '}
-            <Button
-              variant="outline-light"
-              style={{ border: '0px', marginTop: '2vh' }}
+              className="d-flex"
+              style={{ border: '0px', marginTop: '2vh', width: '160px' }}
               onClick={(e) => {
                 e.preventDefault();
                 toFriendRequest();
               }}
             >
               <PersonPinSharpIcon style={{ marginRight: '5px' }} /> Friend Request
-            </Button>{' '}
-            <Button
-              variant="outline-light"
-              style={{ border: '0px', marginTop: '2vh' }}
-              onClick={(e) => {
-                e.preventDefault();
-                toSearchPeople();
-              }}
-            >
-              <PersonAddIcon style={{ marginRight: '5px' }} /> Search People
-            </Button>{' '}
+            </Button>
+            <div style={{ width: '100px' }}>
+              <Button
+                variant="outline-light"
+                className="d-flex"
+                style={{ border: '0px', marginTop: '2vh', width: '160px' }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  toSearchPeople();
+                }}
+              >
+                <PersonAddIcon style={{ marginRight: '5px' }} /> Search People
+              </Button>
+            </div>
           </div>
           <div className="footer-sidebar d-flex flex-column" style={{ height: '10vh' }}>
             <Button
@@ -171,7 +183,7 @@ function Sidebar() {
               }}
             >
               <LogoutIcon style={{ marginRight: '10px' }} /> Sign Out
-            </Button>{' '}
+            </Button>
           </div>
         </Offcanvas>
       </div>
