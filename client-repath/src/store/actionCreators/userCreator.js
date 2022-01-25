@@ -231,3 +231,37 @@ export const fetchUserById = (id) => {
     });
   };
 };
+
+// =========================== Google Login ===========================
+export const setGoogleLogin = (payload) => {
+  return (dispatch, getState) => {
+    dispatch(postLoadingUser(true));
+    return new Promise((resolve, reject) => {
+      // dispatch(loadingUser(true));
+      dispatch(errorUser(null));
+      axios(`${baseUrl}/users/googleLogin`, {
+        method: 'POST',
+        data: {
+          idToken : payload.getAuthResponse().id_token
+       }
+      })
+        .then(({ data }) => {
+          console.log(data);
+          // if (data.access_token) {
+          //   localStorage.setItem('access_token', data.access_token);
+          //   localStorage.setItem('id', data.payloadClient.id);
+          //   dispatch(postLoadingUser(false));
+            resolve();
+          // }
+        })
+        .catch((err) => {
+          console.log(err, `NANI ERROR`)
+          // dispatch(postLoadingUser(false));
+          // reject(err.response.data);
+        });
+      // .finally(() => {
+      //   // dispatch(loadingUser(false));
+      // });
+    });
+  };
+};
