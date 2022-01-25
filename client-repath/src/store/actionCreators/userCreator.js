@@ -127,7 +127,6 @@ export const setRegister = (payload) => {
 // =========================== EDIT USER ===========================
 
 export const setEditUser = (payload) => {
- 
   const id = localStorage.getItem('id');
   return (dispatch, getState) => {
     dispatch(postLoadingUser(true));
@@ -228,6 +227,39 @@ export const fetchUserById = (id) => {
           console.log(err);
           reject(err);
         });
+    });
+  };
+};
+
+// =========================== Google Login ===========================
+export const setGoogleLogin = (payload) => {
+  return (dispatch, getState) => {
+    // dispatch(postLoadingUser(true));
+    return new Promise((resolve, reject) => {
+      // dispatch(loadingUser(true));
+      dispatch(errorUser(null));
+      axios(`${baseUrl}/users/googleLogin`, {
+        method: 'POST',
+        data: {
+          idToken: payload.getAuthResponse().id_token,
+        },
+      })
+        .then(({ data }) => {
+          localStorage.setItem('access_token', data.access_token);
+          localStorage.setItem('id', data.payloadUser._id);
+          // dispatch(postLoadingUser(false));
+          resolve();
+
+          // }
+        })
+        .catch((err) => {
+          console.log(err, `NANI ERROR`);
+          // dispatch(postLoadingUser(false));
+          // reject(err.response.data);
+        });
+      // .finally(() => {
+      //   // dispatch(loadingUser(false));
+      // });
     });
   };
 };
