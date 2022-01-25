@@ -50,10 +50,10 @@ function CardAddPeople({ user }) {
             <div className="card-right-side-addfriend d-flex flex-row align-items-center">
               <div className="content-addfriend d-flex flex-column" style={{ width: '160px', textAlign: 'left' }}>
                 <div className="addfriend-name" style={{ width: '350px' }}>
-                  {user.username}
+                  {user.username.substring(0,18)}
                 </div>
                 <div style={{ width: '350px' }} className="addfriend-firstName">
-                  {user.firstName + ' ' + user.lastName}
+                  {user.firstName.substring(0,10) + ' ' + user.lastName.substring(0,11)}
                   {/* <p>{user.city}</p> */}
                 </div>
                 <div style={{ width: '350px' }} className="addfriend-city">
