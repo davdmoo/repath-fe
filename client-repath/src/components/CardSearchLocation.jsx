@@ -34,9 +34,9 @@ export default function CardSearchLocation(props) {
       >
         <Card.Body style={{ backgroundColor: '#fef2f2', padding: '0px' }}>
           <div className="card-container-search-location">
-            <div style={{ width: '80px' }}>
+            <div style={{ width: '70px' }}>
               <div className="dot-card-search-location">
-                <LocationOn sx={{ color: red[50], fontSize: 40 }} />
+                <LocationOn sx={{ color: red[50], fontSize: 30, marginTop: '1vh' }} />
               </div>
             </div>
             <Stack className=" card-right-side-loc d-flex flex-row align-items-center">

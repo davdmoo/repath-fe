@@ -427,23 +427,26 @@ html {
 }
 
 .search-location-city {
-  font-size: 25px;
+  font-size: 20px;
+  padding-right: 3px;
 }
 
 .search-location-province {
-  font-size: 20px;
+  font-size: 16px;
   color: #6b7280;
+  padding-right: 3px;
 }
 
 .search-location-country {
-  font-size: 18px;
+  font-size: 15px;
   color: #6b7280;
   width: 300px;
+  padding-right: 3px;
 }
 
 .dot-card-search-location {
-  height: 55px;
-  width: 55px;
+  height: 50px;
+  width: 50px;
   background-color: #22c55e;
   border-radius: 50%;
   border: 3px solid white;
@@ -460,7 +463,7 @@ html {
 } */
 
 .card-left-side-search-location {
-  width: 115px;
+  width: 110px;
 }
 
 /* FRIEND REQUEST */
