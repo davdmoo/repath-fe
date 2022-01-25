@@ -64,7 +64,8 @@ function EditProfile() {
     newEditUser.append('username', editUserForm.username);
     newEditUser.append('phoneNumber', editUserForm.phoneNumber);
     newEditUser.append('city', editUserForm.city);
-    newEditUser.append('header', editUserForm.header);
+    if(editUserForm.header) newEditUser.append('header', editUserForm.header);
+    else newEditUser.append('header', 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80');
     newEditUser.append('imgUrl', selectedFile);
 
     dispatch(setEditUser(newEditUser))

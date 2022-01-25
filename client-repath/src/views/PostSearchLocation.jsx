@@ -19,7 +19,7 @@ function PostSearchLocation() {
   const map = useRef(null);
   const [lng, setLng] = useState(107.56667);
   const [lat, setLat] = useState(-6.95);
-  const [zoom, setZoom] = useState(11);
+  const [zoom, setZoom] = useState(14);
 
   useEffect(() => {
     dispatch(fetchLocationSearch({ location: 'jakarta' })).then((data) => {
