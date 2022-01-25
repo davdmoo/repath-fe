@@ -284,17 +284,17 @@ html {
 
 .friendlist-name {
   /* font-weight: bold; */
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .friendlist-city {
-  font-size: 16px;
+  font-size: 14px;
   color: #6b7280;
 }
 
 .card-right-side-friendlist {
   margin: 5px 0px 10px 5px;
-  width: 275px;
+  width: 205px;
 }
 
 .card-left-side-friendlist {

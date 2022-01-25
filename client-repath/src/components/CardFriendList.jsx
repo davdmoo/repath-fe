@@ -30,7 +30,7 @@ function CardFriendList({ user }) {
             )}
           </div>
           <div className="card-right-side-friendlist d-flex flex-row align-items-center">
-            <div className="content-friendlist" style={{ width: '250px', textAlign: 'left' }}>
+            <div className="content-friendlist" style={{ width: '200px', textAlign: 'left' }}>
               <div className="friendlist-name">
                 {user.firstName} {user.lastName}
               </div>
