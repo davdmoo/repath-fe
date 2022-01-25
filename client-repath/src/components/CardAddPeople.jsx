@@ -13,6 +13,7 @@ import { successToastAlert, warnToastAlert } from '../hooks/errorToastAlert';
 function CardAddPeople({ user }) {
   const dispatch = useDispatch();
   const { following } = useSelector((state) => state.userReducer);
+
   const friends = [];
   following.forEach((element) => {
     friends.push(element._id);
@@ -30,7 +31,7 @@ function CardAddPeople({ user }) {
   };
 
   useEffect(() => {
-    dispatch(fetchFollowing());
+    dispatch(fetchFollowing()).then(() => {});
   }, []);
 
   const { afterClickPostLoading } = useSelector((state) => state.postReducer);
@@ -54,11 +55,10 @@ function CardAddPeople({ user }) {
                 </div>
                 <div style={{ width: '350px' }} className="addfriend-firstName">
                   {user.firstName.substring(0,10) + ' ' + user.lastName.substring(0,11)}
+
                   {/* <p>{user.city}</p> */}
                 </div>
-                <div style={{ width: '350px' }} className="addfriend-city">
-                  {user.city}
-                </div>
+                <div className="addfriend-city">{user.city}</div>
               </div>
               <div style={{ width: '100px' }} className="d-flex justify-content-center align-items-center">
                 {user._id == localStorage.id || friends.includes(user._id) ? (

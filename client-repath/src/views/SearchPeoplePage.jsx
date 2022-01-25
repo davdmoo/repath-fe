@@ -13,7 +13,7 @@ function SearchPeoplePage() {
   const [peopleName, setPeopleName] = useState({ name: '' });
 
   useEffect(() => {
-    dispatch(fetchUsers());
+    dispatch(fetchUsers(peopleName.name));
   }, []);
 
   const changeSearch = (e) => {

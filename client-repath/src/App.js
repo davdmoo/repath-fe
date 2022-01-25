@@ -14,6 +14,8 @@ import PostSearchMusic from './views/PostSearchMusic';
 import PostSearchLocation from './views/PostSearchLocation';
 import FollowerPage from './views/FollowerPage';
 import RequestPage from './views/RequestPage';
+import TestGoogle from './views/TestGoogle';
+
 function App() {
   return (
     <div className="App">
@@ -106,6 +108,7 @@ function App() {
             </AuthGuardLogin>
           }
         />
+        <Route path="/testgoogle" element={<TestGoogle />} />
       </Routes>
     </div>
   );
