@@ -45,7 +45,12 @@ function Home() {
   }, []);
 
   if (postsError) {
-    return <ErrorGlobal />;
+    return (
+      <>
+        <Navbar />
+        <ErrorGlobal />
+      </>
+    );
   }
 
   return (
