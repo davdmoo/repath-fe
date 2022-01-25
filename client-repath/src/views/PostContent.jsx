@@ -85,7 +85,7 @@ function PostContent() {
           flex: 1,
           flexDirection: 'row',
           height: '100vh',
-          width: '100vw',
+          width: '390px',
         }}
       >
         <NavbarContent></NavbarContent>
