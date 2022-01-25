@@ -52,20 +52,6 @@ function CardRequestList({ user, reqId }) {
               </IconButton>
             </div>
           </div>
-<<<<<<< HEAD
-          <div style={{ marginRight: '10px', padding: '15px' }} className="d-flex justify-content-between align-items-center">
-
-            <IconButton onClick={() => handleAccFriend(reqId)}>
-
-            {/* <IconButton onClick={() => handleAccFriend(user._id)}> */}
-
-              <PersonAddIcon sx={{ width: 35, height: 35, color: blue[500] }} />
-            </IconButton>
-            <IconButton onClick={() => handleDecFriend(reqId)}>
-              <PersonRemoveIcon sx={{ width: 35, height: 35, color: red[500] }} />
-            </IconButton>
-          </div>
-=======
         </Card.Body>
       </Card>
       {afterClickPostLoading ? (
@@ -76,7 +62,6 @@ function CardRequestList({ user, reqId }) {
               <p>Please wait...</p>
             </div>
           </Backdrop>
->>>>>>> d5ade3940a25ad227ee694ac7d53514203891aed
         </div>
       ) : (
         <div>
