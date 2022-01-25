@@ -94,15 +94,15 @@ function Sidebar() {
       <ListIcon style={{ width: '42px', height: '42px', marginRight: '10px' }} sx={{ color: red[50] }} onClick={handleShow} />
       <div className="sidebar-container d-flex">
         <Offcanvas style={{ marginLeft: '0vw', width: '200px', background: '#dc2626' }} show={show} onHide={handleClose}>
-          <div className="header-sidebar d-flex flex row" style={{ height: '15vh' }}>
+          <div className="header-sidebar d-flex flex row" style={{ height: '15vh', padding: '10px' }}>
             <Offcanvas.Header style={{ justifyContent: 'center', marginTop: '2vh' }}>
               {currentUser.imgUrl ? <Avatar alt={currentUser.firstName} style={{ marginLeft: '1vh' }} src={currentUser.imgUrl} /> : <Avatar alt={currentUser.firstName} style={{ marginLeft: '1vh' }} src="/static/images/avatar/1.jpg" />}
               <div className="d-flex flex row">
-                <div style={{ color: '#f5f5f5', fontSize: 16, fontWeight: 'bolder', justifyContent: 'flex-end', marginLeft: '15px' }}>
-                  {currentUser.firstName} {currentUser.lastName}
+                <div style={{ color: '#f5f5f5', fontSize: 16, fontWeight: 'bolder', justifyContent: 'flex-end', marginLeft: '15px', paddingRight: '10px', paddingLeft: '10px' }}>
+                  {`${currentUser.firstName.substring(0,12)}`} {`${currentUser.lastName.substring(0,12)}...`}
                 </div>
 
-                <div style={{ color: '#f5f5f5', fontSize: 14, marginLeft: '15px' }}>{currentUser.email}</div>
+                <div style={{ color: '#f5f5f5', fontSize: 14, marginLeft: '15px', paddingRight: '10px', paddingLeft: '10px' }}>{`${currentUser.email.substring(0,16)}...`}</div>
               </div>
             </Offcanvas.Header>
           </div>

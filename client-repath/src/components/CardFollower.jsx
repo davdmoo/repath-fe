@@ -9,13 +9,13 @@ function CardFollower({ user}) {
         <div className="card-container-friendlist">
           <div className="card-left-side-friendlist d-flex">
           {user.imgUrl ? (
-              <Avatar className="avatar-card" alt="David" src={user.imgUrl} sx={{ width: 75, height: 75 }} variant="rounded"></Avatar>
+              <Avatar className="avatar-card" alt="David" src={user.imgUrl} sx={{ width: 70, height: 70 }} variant="rounded"></Avatar>
             ) : (
-              <Avatar className="avatar-card" alt={user.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 75, height: 75 }} variant="rounded"></Avatar>
+              <Avatar className="avatar-card" alt={user.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 70, height: 70 }} variant="rounded"></Avatar>
             )}
           </div>
           <div className="card-right-side d-flex flex-row align-items-center">
-            <div className="content-friendlist" style={{ width: '250px', textAlign: 'left' }}>
+            <div className="content-friendlist" style={{ width: '200px', textAlign: 'left' }}>
               <div className="friendlist-name">
               {user.firstName} {user.lastName}
               </div>
