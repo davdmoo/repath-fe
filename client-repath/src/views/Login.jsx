@@ -89,7 +89,7 @@ function Login() {
           flex: 1,
           flexDirection: 'row',
           height: '150vh',
-          width: '100vw',
+          width: '390px',
         }}
       >
         <div>

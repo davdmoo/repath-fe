@@ -1,4 +1,4 @@
-import { LOADING_USER, AFTER_POST_USER_LOADING, ERROR_USER, SUCCESS_LOGIN, USER_EDIT_SUCCESS, FETCH_USER_SUCCESS, FETCH_USER_BY_ID_SUCCESS } from '../actionTypes';
+import { LOADING_USER, LOADING_USER_2, AFTER_POST_USER_LOADING, ERROR_USER, SUCCESS_LOGIN, USER_EDIT_SUCCESS, FETCH_USER_SUCCESS, FETCH_USER_BY_ID_SUCCESS } from '../actionTypes';
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000';
@@ -6,6 +6,13 @@ const baseUrl = 'http://localhost:3000';
 export const loadingUser = (payload) => {
   return {
     type: LOADING_USER,
+    payload,
+  };
+};
+
+export const loadingUser2 = (payload) => {
+  return {
+    type: LOADING_USER_2,
     payload,
   };
 };
@@ -171,8 +178,7 @@ export const fetchUsers = (payload) => {
 
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      // dispatch(loadingProducts(true));
-      // dispatch(errorProducts(null));
+      dispatch(loadingUser2(true));
       fetch(`${baseUrl}/users?name=${payload2}`, {
         method: 'GET',
         headers: {
@@ -188,13 +194,15 @@ export const fetchUsers = (payload) => {
         })
         .then((data) => {
           dispatch(setUsers(data));
+          // dispatch(loadingUser2(false));
           resolve();
         })
         .catch((err) => {
+          // dispatch(loadingUser2(false));
           // dispatch(errorProducts(err));
         })
         .finally(() => {
-          // dispatch(loadingProducts(false));
+          dispatch(loadingUser2(false));
         });
     });
   };
