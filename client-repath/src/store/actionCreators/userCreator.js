@@ -127,6 +127,7 @@ export const setRegister = (payload) => {
 // =========================== EDIT USER ===========================
 
 export const setEditUser = (payload) => {
+ 
   const id = localStorage.getItem('id');
   return (dispatch, getState) => {
     dispatch(postLoadingUser(true));
