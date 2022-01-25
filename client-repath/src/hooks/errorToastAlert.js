@@ -23,3 +23,27 @@ export const warnToastAlert = (message, position, autoClose, hideProgressBar) =>
     progress: undefined,
   });
 };
+
+export const errorToastAlert2 = (message, position, autoClose, hideProgressBar) => {
+  return toast.error(`${message}`, {
+    position,
+    autoClose,
+    hideProgressBar,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+};
+
+export const successToastAlert = (message, position, autoClose, hideProgressBar) => {
+  return toast.success(`${message}`, {
+    position,
+    autoClose,
+    hideProgressBar,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+};

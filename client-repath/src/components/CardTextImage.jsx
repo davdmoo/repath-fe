@@ -12,6 +12,7 @@ import { Modal } from 'react-bootstrap';
 import ModalConfirmDelete from './componentsChild/ModalConfirmDelete';
 import { errorToastAlert2 } from '../hooks/errorToastAlert';
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+import moment from 'moment';
 
 function CardTextImage(props) {
   const dispatch = useDispatch();
@@ -130,13 +131,18 @@ function CardTextImage(props) {
                       )}
                     </div>
                     <div className="postText-description d-flex justify-content-center ">
-                      <p className="postText-padding">
+                      <div className="postText-padding">
                         <span className="fw-bold" style={{ fontSize: '1.1em' }}>
                           {props.post.userId.firstName}{' '}
                         </span>{' '}
                         posted:
                         <div style={{ lineHeight: '1.1em' }}>{props.post.text}</div>
-                      </p>
+                        <div style={{ color: `#9ca3af`, padding: '3px 0px' }}>
+                          {moment()
+                            .subtract((moment().valueOf() - moment(props.post.created_at)) / 1000, 's')
+                            .fromNow()}
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div className="content-text-button d-flex flex-row justify-content-center">

@@ -19,7 +19,7 @@ import { fetchUserById } from '../store/actionCreators/userCreator';
 function Home() {
   const dispatch = useDispatch();
   const { posts, postsLoading, postsError } = useSelector((state) => state.postReducer);
-  console.log(posts);
+
   const [currentUser, setcurrentUser] = useState({
     firstName: '',
     lastName: '',

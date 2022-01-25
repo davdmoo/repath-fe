@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { deletePost, likePost, unlikePost } from '../store/actionCreators/postCreator';
 import ModalConfirmDelete from './componentsChild/ModalConfirmDelete';
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+import moment from 'moment';
 
 function CardMusic(props) {
   // console.log(props.post.comments, 'PROPS.COMMENTS ON CARD MUSIC <<<<<<<<<<<<<');
@@ -107,7 +108,12 @@ function CardMusic(props) {
                 </div>
 
                 <div className="album-title">{props.post.albumName}</div>
-                <div style={{ marginTop: '10px' }}>
+                <div style={{ color: `#9ca3af`, padding: '0px 0px', fontSize: '13px' }}>
+                  {moment()
+                    .subtract((moment().valueOf() - moment(props.post.created_at)) / 1000, 's')
+                    .fromNow()}
+                </div>
+                <div style={{ marginTop: '0px' }}>
                   {props.post.likes.length > 0 ? <CardLikedPost likes={props.post.likes} /> : <div></div>}
                   {props.post.comments.length > 0 ? <CardCommentPost comments={props.post.comments} /> : <div></div>}
                 </div>
@@ -174,4 +180,3 @@ function CardMusic(props) {
 }
 
 export default CardMusic;
-

@@ -72,7 +72,12 @@ function PostSearchLocation() {
   };
 
   if (searchError) {
-    return <ErrorGlobal />;
+    return (
+      <>
+        <Navbar />
+        <ErrorGlobal />
+      </>
+    );
   }
 
   // if (searchLoading) {

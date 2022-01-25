@@ -482,12 +482,13 @@ html {
 }
 
 .friendrequest-name {
-  /* font-weight: bold; */
-  font-size: 22px;
+  line-height: 1.1em;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .friendrequest-city {
-  font-size: 18px;
+  font-size: 16px;
   color: #6b7280;
 }
 
