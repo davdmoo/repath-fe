@@ -114,7 +114,7 @@ export const setRegister = (payload) => {
         })
         .catch((err) => {
           dispatch(postLoadingUser(false));
-          // console.log(err.response.data);
+          console.log(err.response.data.message);
           reject(err.response.data);
         });
       // .finally(() => {
