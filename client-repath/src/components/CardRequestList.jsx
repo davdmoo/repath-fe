@@ -40,7 +40,7 @@ function CardRequestList({ user, reqId }) {
 
             <IconButton onClick={() => handleAccFriend(reqId)}>
 
-            <IconButton onClick={() => handleAccFriend(user._id)}>
+            {/* <IconButton onClick={() => handleAccFriend(user._id)}> */}
 
               <PersonAddIcon sx={{ width: 35, height: 35, color: blue[500] }} />
             </IconButton>
