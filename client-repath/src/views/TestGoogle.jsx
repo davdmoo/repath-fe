@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
+
 import { fetchPosts } from '../store/actionCreators/postCreator';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { setGoogleLogin } from '../store/actionCreators/userCreator';
 
+
 function TestGoogle() {
   const dispatch = useDispatch();
 
   const responseGoogle = (response) => {
+
     dispatch(setGoogleLogin(response));
   };
 
@@ -25,6 +28,7 @@ function TestGoogle() {
     setItems(items.concat(posts));
   };
 
+
   return (
     <div style={{ backgroundColor: 'blue', height: '100vh' }}>
       <h1>COBA COBA GOOGLE LOGIN</h1>
@@ -39,6 +43,7 @@ function TestGoogle() {
         </InfiniteScroll>
       </div>
     </div>
+
   );
 }
 
