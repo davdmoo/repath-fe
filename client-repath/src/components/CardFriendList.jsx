@@ -8,8 +8,9 @@ import { delFriendReq } from '../store/actionCreators/followCreator';
 
 function CardFriendList({ user }) {
   const dispatch = useDispatch()
-  
+
   const handleDelFriend = (reqId) => {
+    console.log(reqId);
     dispatch(delFriendReq(reqId))
   }
   return (
