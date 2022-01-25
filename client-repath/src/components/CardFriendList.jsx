@@ -3,19 +3,18 @@ import { Avatar } from '@mui/material/';
 import { Card } from 'react-bootstrap';
 
 function CardFriendList({ user }) {
-  console.log(user);
   return (
     <Card style={{ border: '0px' }}>
       <Card.Body style={{ backgroundColor: '#fef2f2', padding: '0px' }}>
         <div className="card-container-friendlist">
-          <div className="card-left-side-friendlist d-flex">
+          <div className="card-left-side-friendlist d-flex align-items-center">
             {user.imgUrl ? (
-              <Avatar className="avatar-card" alt="David" src={user.imgUrl} sx={{ width: 75, height: 75 }} variant="rounded"></Avatar>
+              <Avatar className="avatar-card" alt="David" src={user.imgUrl} sx={{ width: 60, height: 60 }} variant="rounded"></Avatar>
             ) : (
-              <Avatar className="avatar-card" alt={user.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 75, height: 75 }} variant="rounded"></Avatar>
+              <Avatar className="avatar-card" alt={user.firstName} src="/static/images/avatar/1.jpg" sx={{ width: 60, height: 60 }} variant="rounded"></Avatar>
             )}
           </div>
-          <div className="card-right-side d-flex flex-row align-items-center">
+          <div className="card-right-side-friendlist d-flex flex-row align-items-center">
             <div className="content-friendlist" style={{ width: '250px', textAlign: 'left' }}>
               <div className="friendlist-name">
                 {user.firstName} {user.lastName}

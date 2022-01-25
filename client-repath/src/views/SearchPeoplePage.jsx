@@ -3,10 +3,12 @@ import CardAddPeople from '../components/CardAddPeople';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import { fetchUsers } from '../store/actionCreators/userCreator';
+import Loader from '../components/componentsChild/Loader';
 
 function SearchPeoplePage() {
   const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.userReducer);
+
+  const { users, userLoading2 } = useSelector((state) => state.userReducer);
   const [peopleName, setPeopleName] = useState({ name: '' });
 
   useEffect(() => {
@@ -27,7 +29,9 @@ function SearchPeoplePage() {
   };
 
   const userSearchExist = () => {
-    if (users.length > 0) {
+    if (userLoading2) {
+      return <Loader />;
+    } else if (users.length > 0) {
       return users.map((user, idx) => {
         return <CardAddPeople key={user._id} user={user} />;
       });

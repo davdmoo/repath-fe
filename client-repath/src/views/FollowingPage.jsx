@@ -4,18 +4,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import CardFriendList from '../components/CardFriendList';
 import { fetchFollowing } from '../store/actionCreators/followCreator';
+import Loader from '../components/componentsChild/Loader';
 
 function FollowingPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { following } = useSelector((state) => state.userReducer);
+  const { following, userLoading } = useSelector((state) => state.userReducer);
 
   useEffect(() => {
     dispatch(fetchFollowing());
   }, []);
 
   const userFollowingExist = () => {
-    if (following.length > 0) {
+    if (userLoading) {
+      return <Loader />;
+    } else if (following.length > 0) {
       return following.map((user, idx) => {
         if (user) {
           return <CardFriendList key={user._id} user={user} />;
@@ -48,7 +51,7 @@ function FollowingPage() {
     <>
       <Navbar />
       <div style={{ minHeight: '100vh', backgroundColor: '#fef2f2', paddingTop: '95px' }}>
-        <h1 className="pt-4 pb-3">FRIEND LIST</h1>
+        <h1 className="pt-3 pb-3">Friend List</h1>
         {userFollowingExist()}
       </div>
     </>

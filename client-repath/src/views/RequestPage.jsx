@@ -3,25 +3,28 @@ import Navbar from '../components/Navbar';
 import { getRequest } from '../store/actionCreators/followCreator';
 import { useDispatch, useSelector } from 'react-redux';
 import CardRequestList from '../components/CardRequestList';
+import Loader from '../components/componentsChild/Loader';
 
 function RequestPage() {
   const dispatch = useDispatch();
 
-  const { request } = useSelector((state) => state.userReducer);
-  
+  const { request, userLoading } = useSelector((state) => state.userReducer);
+
   useEffect(() => {
     dispatch(getRequest());
   }, []);
 
   const userRequestExist = () => {
-    if (request.length > 0) {
+    if (userLoading) {
+      return <Loader />;
+    } else if (request.length > 0) {
       return request.map((user) => {
         return <CardRequestList key={user._id} user={user.sender} reqId={user._id} />;
       });
     } else {
       return (
         <div>
-          <h4 style={{ paddingTop: '200px' }}>There are no friend request.</h4>
+          <h4 style={{ paddingTop: '150px' }}>There is no friend request.</h4>
         </div>
       );
     }
