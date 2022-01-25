@@ -4,6 +4,7 @@ import { getRequest } from '../store/actionCreators/followCreator';
 import { useDispatch, useSelector } from 'react-redux';
 import CardRequestList from '../components/CardRequestList';
 import Loader from '../components/componentsChild/Loader';
+import { ToastContainer, toast } from 'react-toastify';
 
 function RequestPage() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function RequestPage() {
   };
   return (
     <>
+      <ToastContainer />
       <Navbar />
       <div style={{ minHeight: '100vh', backgroundColor: '#fef2f2', paddingTop: '105px' }}>
         <h1 className="pt-2 pb-3">Friend Request</h1>

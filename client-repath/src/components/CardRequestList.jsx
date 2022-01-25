@@ -8,15 +8,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { accFriendReq, delFriendReq } from '../store/actionCreators/followCreator';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import { errorToastAlert2, warnToastAlert } from '../hooks/errorToastAlert';
 
 function CardRequestList({ user, reqId }) {
   const dispatch = useDispatch();
 
   const handleAccFriend = (id) => {
-    dispatch(accFriendReq(id));
+    dispatch(accFriendReq(id)).then(() => {
+      errorToastAlert2('Success accepted friend', 'top-center', 3000, false);
+    });
   };
   const handleDecFriend = (id) => {
-    dispatch(delFriendReq(id));
+    dispatch(delFriendReq(id)).then(() => {
+      errorToastAlert2('Success declined friend', 'top-center', 3000, false);
+    });
   };
 
   const { afterClickPostLoading } = useSelector((state) => state.postReducer);

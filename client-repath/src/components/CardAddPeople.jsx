@@ -8,17 +8,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { followUser, addFriend, fetchFollowing } from '../store/actionCreators/followCreator';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import { successToastAlert, warnToastAlert } from '../hooks/errorToastAlert';
 
 function CardAddPeople({ user }) {
   const dispatch = useDispatch();
-  const {following} = useSelector((state) => state.userReducer)
-  const friends = []
-  following.forEach(element => {
-    friends.push(element._id)
+  const { following } = useSelector((state) => state.userReducer);
+  const friends = [];
+  following.forEach((element) => {
+    friends.push(element._id);
   });
-  
+
   const handleAddFriend = (userId) => {
-    dispatch(addFriend(userId));
+    dispatch(addFriend(userId))
+      .then(() => {
+        successToastAlert(`Sending friend request to ${user.username}`, 'top-center', 3000, true);
+      })
+      .catch((err) => {
+        warnToastAlert(`You've already sent request to ${user.username}`, 'top-center', 3000, true);
+        // console.log(err);
+      });
   };
 
   useEffect(() => {

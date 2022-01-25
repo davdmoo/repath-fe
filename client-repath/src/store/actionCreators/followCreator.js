@@ -111,7 +111,7 @@ export const fetchFollower = () => {
 
 export const addFriend = (userId) => {
   return (dispatch, getState) => {
-    dispatch(postLoadingAfterClick(true));
+    // dispatch(postLoadingAfterClick(true));
     return new Promise((resolve, reject) => {
       axios({
         method: 'POST',
@@ -121,14 +121,14 @@ export const addFriend = (userId) => {
         },
       })
         .then(({ data }) => {
-          dispatch(postLoadingAfterClick(false));
+          // dispatch(postLoadingAfterClick(false));
           dispatch(getRequest());
           resolve();
         })
         .catch((err) => {
-          dispatch(postLoadingAfterClick(false));
-          console.log(err.response.data);
-          reject(err);
+          // dispatch(postLoadingAfterClick(false));
+          // console.log(err.response.data);
+          reject(err.response.data);
         });
     });
   };

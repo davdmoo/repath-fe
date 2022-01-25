@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import { fetchUsers } from '../store/actionCreators/userCreator';
 import Loader from '../components/componentsChild/Loader';
+import { ToastContainer, toast } from 'react-toastify';
 
 function SearchPeoplePage() {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ function SearchPeoplePage() {
 
   return (
     <>
+      <ToastContainer theme="colored" style={{ marginTop: '14vh' }} />
       <Navbar />
       <div style={{ height: '100vh', backgroundColor: '#fef2f2', paddingTop: '95px' }}>
         <div className="d-flex justify-content-center">
