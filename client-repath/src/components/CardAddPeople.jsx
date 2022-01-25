@@ -29,9 +29,14 @@ function CardAddPeople({ user }) {
       });
   };
 
-  useEffect(() => {
-    dispatch(fetchFollowing());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchFollowing()).then(() => {
+  //     // console.log(following);
+  //     // console.log(friends);
+  //     console.log(friends.includes(user._id));
+  //     console.log(user._id);
+  //   });
+  // }, []);
 
   const { afterClickPostLoading } = useSelector((state) => state.postReducer);
 
