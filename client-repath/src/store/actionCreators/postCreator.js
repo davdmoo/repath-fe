@@ -47,12 +47,12 @@ export const setDeletePost = (payload) => {
   };
 };
 
-export const fetchPosts = (skip) => {
+export const fetchPosts = () => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       dispatch(loadingPosts(true));
       dispatch(errorPosts(null));
-      fetch(`${baseUrl}/posts?skip=${skip}`, {
+      fetch(`${baseUrl}/posts`, {
         method: 'GET',
         headers: {
           access_token: localStorage.getItem('access_token'),

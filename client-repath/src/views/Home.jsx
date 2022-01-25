@@ -15,7 +15,6 @@ import Loader from '../components/componentsChild/Loader';
 import ErrorGlobal from '../components/componentsChild/ErrorGlobal';
 import { ToastContainer, toast } from 'react-toastify';
 import { fetchUserById } from '../store/actionCreators/userCreator';
-import InfiniteScroll from 'react-infinite-scroll-component';
 
 function Home() {
   const dispatch = useDispatch();
@@ -41,47 +40,9 @@ function Home() {
     });
   }, []);
 
-  // =========================================================================
-  const [hasMore, setHasMore] = useState(true);
-  const [skip, setSkip] = useState(0);
-  const [items, setItems] = useState([]);
-
   useEffect(() => {
-    dispatch(fetchPosts(skip)).then(() => {
-      setItems(posts);
-    });
+    dispatch(fetchPosts());
   }, []);
-
-  useEffect(() => {
-    console.log('MASUK 1', skip);
-    setSkip(skip + 3);
-  }, [dispatch, posts]);
-
-  // useEffect(() => {
-  //   dispatch(fetchPosts(skip)).then((data) => {
-  //     // setItems(items.concat(posts));
-
-  //     setItems([...items, ...posts]);
-  //   });
-  // }, [dispatch]);
-
-  const fetchMoreData = () => {
-    dispatch(fetchPosts(skip)).then((data) => {
-      // setItems(items.concat(data));
-      setItems([...items, ...posts]);
-      console.log(data, '<<<<<<<<<<<<< INI DATA');
-      console.log(items, '<<<<<<<<<<<<< INI ITEMS');
-      console.log(posts, '<<<<<<<<<<<<<<<<< INI POSTS');
-
-      // if (data) {
-      if (data.length === 0) {
-        setHasMore(false);
-      }
-      // }
-    });
-  };
-
-  // =========================================================================
 
   if (postsError) {
     return (
@@ -93,32 +54,25 @@ function Home() {
   }
 
   return (
-    <div style={{ height: '150%' }}>
+    <>
       <div>
         <ToastContainer />
       </div>
       <Navbar />
       <Header currentUser={currentUser} />
 
-      <div style={{ height: '150vh', overflowY: 'hidden' }}>
-        <InfiniteScroll dataLength={items.length} next={fetchMoreData} hasMore={hasMore} loader={<Loader />}>
-          {items.map((post) => {
-            return post.type === 'location' ? <CardLocation key={post._id} post={post} /> : post.type === 'text' ? <CardTextImage key={post._id} post={post} /> : <CardMusic key={post._id} post={post} />;
-          })}
-          {/* {postsLoading ? (
-            <div>
-              <Loader />
-            </div>
-          ) : (
-            items.map((post) => {
-              return post.type === 'location' ? <CardLocation key={post._id} post={post} /> : post.type === 'text' ? <CardTextImage key={post._id} post={post} /> : <CardMusic key={post._id} post={post} />;
-            })
-          )} */}
-        </InfiniteScroll>
-      </div>
+      {postsLoading ? (
+        <div>
+          <Loader />
+        </div>
+      ) : (
+        posts.map((post) => {
+          return post.type === 'location' ? <CardLocation key={post._id} post={post} /> : post.type === 'text' ? <CardTextImage key={post._id} post={post} /> : <CardMusic key={post._id} post={post} />;
+        })
+      )}
 
       <ButtonPopUp />
-    </div>
+    </>
   );
 }
 
