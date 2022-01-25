@@ -171,6 +171,7 @@ export const delFriendReq = (reqId) => {
         },
       })
         .then(({ data }) => {
+          console.log(data);
           dispatch(postLoadingAfterClick(false));
           dispatch(getRequest());
           resolve();

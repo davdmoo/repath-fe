@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
 import { Avatar } from '@mui/material/';
 import { Card } from 'react-bootstrap';
+import { red } from '@mui/material/colors';
+import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
+import { useDispatch } from 'react-redux';
+import { delFriendReq } from '../store/actionCreators/followCreator';
 
 function CardFriendList({ user }) {
+  const dispatch = useDispatch()
+
+  const handleDelFriend = (reqId) => {
+    dispatch(delFriendReq(reqId))
+  }
   return (
     <Card style={{ border: '0px' }}>
       <Card.Body style={{ backgroundColor: '#fef2f2', padding: '0px' }}>
@@ -21,6 +30,9 @@ function CardFriendList({ user }) {
               </div>
               <div className="friendlist-city">{user.city}</div>
             </div>
+          </div>
+          <div style={{ width: '100px' }} className="d-flex justify-content-center align-items-center">
+                <PersonRemoveIcon onClick={() => handleDelFriend(user._id)} sx={{ width: 35, height: 35, color: red[500] }} />
           </div>
         </div>
       </Card.Body>
