@@ -1,22 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
-import {setGoogleLogin} from '../store/actionCreators/userCreator'
+
+import { fetchPosts } from '../store/actionCreators/postCreator';
+
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { setGoogleLogin } from '../store/actionCreators/userCreator';
+
 
 function TestGoogle() {
   const dispatch = useDispatch();
 
   const responseGoogle = (response) => {
-    console.log(response);
+
     dispatch(setGoogleLogin(response));
   };
-  
+
+  const { posts, postsLoading, postsError } = useSelector((state) => state.postReducer);
+
+  useEffect(() => {
+    // dispatch(fetchPosts());
+  }, []);
+
+  const [items, setItems] = useState(posts);
+
+  const fetchMoreData = () => {
+    setItems(items.concat(posts));
+  };
+
 
   return (
-    <>
+    <div style={{ backgroundColor: 'blue', height: '100vh' }}>
       <h1>COBA COBA GOOGLE LOGIN</h1>
-      <GoogleLogin clientId="306277501455-3tep6b17k5avj734itbeqju5g6asoind.apps.googleusercontent.com" buttonText="Login" onSuccess={responseGoogle} onFailure={responseGoogle} cookiePolicy={'single_host_origin'} />
-    </>
+      <GoogleLogin clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com" buttonText="Login" onSuccess={responseGoogle} onFailure={responseGoogle} cookiePolicy={'single_host_origin'} />
+      <div style={{ height: '100%', overflowY: 'hidden' }}>
+        <InfiniteScroll dataLength={items.length} next={fetchMoreData} hasMore={true} loader={<h4>Loading...</h4>}>
+          {items.map((i, index) => (
+            <div key={index}>
+              div - #{index} {i._id}
+            </div>
+          ))}
+        </InfiniteScroll>
+      </div>
+    </div>
+
   );
 }
 

@@ -55,7 +55,7 @@ export default function CardSearchLocation(props) {
         </Card.Body>
       </Card>
 
-      <Modal show={show} onHide={handleClose} centered>
+      <Modal show={show} onHide={handleClose} centered size="sm">
         <Modal.Header closeButton>
           <Modal.Title>Location</Modal.Title>
         </Modal.Header>

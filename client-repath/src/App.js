@@ -108,7 +108,7 @@ function App() {
             </AuthGuardLogin>
           }
         />
-        <Route path="/testgoogle" element={<TestGoogle />} />
+        {/* <Route path="/testgoogle" element={<TestGoogle />} /> */}
       </Routes>
     </div>
   );

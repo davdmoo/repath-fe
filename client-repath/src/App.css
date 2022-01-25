@@ -109,7 +109,7 @@ html {
 .album-title {
   color: #9ca3af;
   font-size: 0.75em;
-  width: 200px;
+  width: 150px;
 }
 
 .content-image-album {
@@ -441,7 +441,7 @@ html {
   font-size: 15px;
   color: #6b7280;
   width: 300px;
-  padding-right: 3px;
+  padding-right: 20px;
 }
 
 .dot-card-search-location {
