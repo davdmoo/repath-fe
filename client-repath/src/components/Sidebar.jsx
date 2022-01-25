@@ -99,10 +99,10 @@ function Sidebar() {
               {currentUser.imgUrl ? <Avatar alt={currentUser.firstName} style={{ marginLeft: '1vh' }} src={currentUser.imgUrl} /> : <Avatar alt={currentUser.firstName} style={{ marginLeft: '1vh' }} src="/static/images/avatar/1.jpg" />}
               <div className="d-flex flex row">
                 <div style={{ color: '#f5f5f5', fontSize: 16, fontWeight: 'bolder', justifyContent: 'flex-end', marginLeft: '15px', paddingRight: '10px', paddingLeft: '10px' }}>
-                  {`${currentUser.firstName.substring(0,12)}`} {`${currentUser.lastName.substring(0,12)}...`}
+                  {`${currentUser.firstName.substring(0,12)}`} {`${currentUser.lastName.substring(0,12)}`}
                 </div>
 
-                <div style={{ color: '#f5f5f5', fontSize: 14, marginLeft: '15px', paddingRight: '10px', paddingLeft: '10px' }}>{`${currentUser.email.substring(0,16)}...`}</div>
+                <div style={{ color: '#f5f5f5', fontSize: 14, marginLeft: '15px', paddingRight: '10px', paddingLeft: '10px' }}>{`${currentUser.email.substring(0,16)}`}</div>
               </div>
             </Offcanvas.Header>
           </div>
