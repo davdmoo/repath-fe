@@ -11,45 +11,21 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 function CardAddPeople({ user }) {
   const dispatch = useDispatch();
-
-  const doFollow = (followId) => {
-    dispatch(followUser(followId));
-    console.log(followId, `<<<<<<<<<<<<<<<<<Follow`);
-  };
-
+  const {following} = useSelector((state) => state.userReducer)
+  const friends = []
+  following.forEach(element => {
+    friends.push(element._id)
+  });
+  
   const handleAddFriend = (userId) => {
     dispatch(addFriend(userId));
-    // console.log(userId);
   };
 
   useEffect(() => {
     dispatch(fetchFollowing());
   }, []);
 
-  // const { following } = useSelector((state) => state.userReducer);
-  // console.log(following);
-
   const { afterClickPostLoading } = useSelector((state) => state.postReducer);
-
-  // const showButtonAddFriend = () => {
-  //   if (user._id == localStorage.id) {
-  //     return <div> A</div>;
-  //   } else {
-  //     for (let i = 0; i < following.length; i++) {
-  //       // console.log(i);
-  //       // console.log(following[1]._id, user._id);
-  //       if (following[i]._id == user._id) {
-  //         return <div>B</div>;
-  //       } else if (following[i]._id !== user._id) {
-  //         return (
-  //           <IconButton onClick={() => handleAddFriend(user._id)}>
-  //             <PersonAdd sx={{ width: 35, height: 35, color: blue[500] }} />
-  //           </IconButton>
-  //         );
-  //       }
-  //     }
-  //   }
-  // };
 
   return (
     <>
@@ -77,8 +53,7 @@ function CardAddPeople({ user }) {
                 </div>
               </div>
               <div style={{ width: '100px' }} className="d-flex justify-content-center align-items-center">
-                {/* {showButtonAddFriend()} */}
-                {user._id == localStorage.id ? (
+                {user._id == localStorage.id || friends.includes(user._id) ? (
                   <div></div>
                 ) : (
                   <IconButton onClick={() => handleAddFriend(user._id)}>
