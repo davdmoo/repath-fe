@@ -8,7 +8,7 @@ import { delFriendReq } from '../store/actionCreators/followCreator';
 
 function CardFriendList({ user }) {
   const dispatch = useDispatch()
-
+  
   const handleDelFriend = (reqId) => {
     dispatch(delFriendReq(reqId))
   }
@@ -32,7 +32,7 @@ function CardFriendList({ user }) {
             </div>
           </div>
           <div style={{ width: '100px' }} className="d-flex justify-content-center align-items-center">
-                <PersonRemoveIcon onClick={() => handleDelFriend(user._id)} sx={{ width: 35, height: 35, color: red[500] }} />
+                <PersonRemoveIcon onClick={() => handleDelFriend(user.phoneNumber)} sx={{ width: 35, height: 35, color: red[500] }} />
           </div>
         </div>
       </Card.Body>
