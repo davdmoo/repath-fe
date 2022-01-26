@@ -17,7 +17,7 @@ import moment from 'moment';
 function CardTextImage(props) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
-
+  console.log(props.post.imgUrl)
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -79,10 +79,6 @@ function CardTextImage(props) {
     }
   }
 
-  // const doDelete = (postId) => {
-  //   dispatch(deletePost(postId));
-  // };
-
   return (
     <>
       <Card style={{ border: '0px' }}>
@@ -106,7 +102,9 @@ function CardTextImage(props) {
             </div>
 
             <div className="card-right-side d-flex flex-column">
-              {props.post.imgUrl !== '[object Object]' ? (
+              {props.post.imgUrl == "[object Object]" || !props.post.imgUrl ? (
+                <div></div>
+              ) : (
                 <div
                   style={{
                     height: '250px',
@@ -117,8 +115,6 @@ function CardTextImage(props) {
                     marginRight: '20px',
                   }}
                 ></div>
-              ) : (
-                <div></div>
               )}
               <div className="content-section-wrapper d-flex flex-column">
                 <div className="content-text d-flex flex-row">
@@ -201,21 +197,6 @@ function CardTextImage(props) {
           </div>
         </Card.Body>
       </Card>
-
-      {/* <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Delete post</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Are you sure want to delete your selected post?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="outlined" sx={{ marginRight: '10px' }} color="warning">
-            Cancel
-          </Button>
-          <Button variant="contained" color="error" startIcon={<Delete />}>
-            Delete
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
     </>
   );
 }

@@ -12,7 +12,7 @@ import ListIcon from '@mui/icons-material/List';
 import { red } from '@mui/material/colors';
 import PersonPinSharpIcon from '@mui/icons-material/PersonPinSharp';
 import { useDispatch } from 'react-redux';
-
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import { fetchUserById } from '../store/actionCreators/userCreator';
 import { Container } from '@mui/material';
 
@@ -60,34 +60,9 @@ function Sidebar() {
     localStorage.clear();
     navigate('/login');
   };
-
-  // useEffect(() => {
-  //   const id = localStorage.getItem('id')
-  //   fetch(`${baseUrl}/users/${id}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       access_token: localStorage.getItem('access_token'),
-  //     },
-  //   })
-  //     .then((response) => {
-
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         throw new Error('Something went wrong');
-  //       }
-
-  //     })
-  //     .then((data) => {
-  //       toEditProfile = () => {
-  //         navigate('/profile');
-  //       };
-  //       console.log(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     })
-  // })
+  const toLikedPosts = () => {
+    navigate('/likes');
+  };
 
   return (
     <div>
@@ -133,6 +108,19 @@ function Sidebar() {
                 }}
               >
                 <AccountCircleIcon style={{ marginRight: '5px' }} /> Profile
+              </Button>
+            </div>
+            <div style={{ width: '100px' }}>
+              <Button
+                className="d-flex"
+                variant="outline-light"
+                style={{ border: '0px', marginTop: '2vh', width: '160px' }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  toLikedPosts();
+                }}
+              >
+                <VolunteerActivismIcon style={{ marginRight: '5px' }} /> Liked Posts
               </Button>
             </div>
             <div style={{ width: '100px' }}>
