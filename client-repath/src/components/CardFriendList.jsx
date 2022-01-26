@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { delFriendReq, delOneFriend } from '../store/actionCreators/followCreator';
 
 function CardFriendList({ user }) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const handleDelFriend = (reqId) => {
     dispatch(delOneFriend(reqId));
