@@ -1,5 +1,6 @@
-import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, AFTER_POST_LOADING, AFTER_CLICK_POST_LOADING, FETCH_AFTER_LIKE } from '../actionTypes';
+import { POSTS_FETCH_SUCCESS, FETCH_SCROLLS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, AFTER_POST_LOADING, AFTER_CLICK_POST_LOADING, FETCH_AFTER_LIKE, FETCH_AFTER_COMMENT, FETCH_AFTER_UNLIKE } from '../actionTypes';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 const baseUrl = 'http://localhost:3000';
 
@@ -38,6 +39,27 @@ export const fetchAfterLike = (payload) => {
   };
 };
 
+export const fetchAfterUnlike = (payload) => {
+  return {
+    type: FETCH_AFTER_UNLIKE,
+    payload,
+  };
+};
+
+export const fetchAfterComment = (payload) => {
+  return {
+    type: FETCH_AFTER_COMMENT,
+    payload,
+  };
+};
+
+export const fetchScrolls = (payload) => {
+  return {
+    type: FETCH_SCROLLS,
+    payload,
+  };
+};
+
 // =========================== FETCH POST TIMELINE ===========================
 
 export const setPosts = (payload) => {
@@ -55,36 +77,40 @@ export const setDeletePost = (payload) => {
 };
 
 export const fetchPosts = (skip) => {
-  console.log(skip, '<<<<<<<<<< INI SKIP');
   return (dispatch, getState) => {
-    return new Promise((resolve, reject) => {
-      dispatch(loadingPosts(true));
-      dispatch(errorPosts(null));
-      fetch(`${baseUrl}/posts?skip=${skip}`, {
-        method: 'GET',
-        headers: {
-          access_token: localStorage.getItem('access_token'),
-        },
+    dispatch(loadingPosts(true));
+    dispatch(errorPosts(null));
+    fetch(`${baseUrl}/posts?skip=${skip}`, {
+      method: 'GET',
+      headers: {
+        access_token: localStorage.getItem('access_token'),
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Something went wrong');
+        }
       })
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error('Something went wrong');
-          }
-        })
-        .then((data) => {
-          dispatch(setPosts(data));
-          resolve(data);
-        })
-        .catch((err) => {
-          dispatch(errorPosts(err));
-          reject();
-        })
-        .finally(() => {
-          dispatch(loadingPosts(false));
-        });
-    });
+      .then((data) => {
+        dispatch(setPosts(data));
+        if (data.length == 0) {
+          dispatch({
+            type: 'HAS_MORE',
+            payload: false,
+          });
+        }
+        // dispatch(fetchScrolls());
+        // resolve(data);
+      })
+      .catch((err) => {
+        // dispatch(errorPosts(err));
+        // reject();
+      })
+      .finally(() => {
+        // dispatch(loadingPosts(false));
+      });
   };
 };
 
@@ -283,9 +309,7 @@ export const likePost = (id) => {
         },
       })
         .then((data) => {
-          // dispatch(fetchPostsAfterLikeUnlike());
-          console.log(data, 'INI DATA AFTER LIKE <<<<<<<<<<<<<');
-          dispatch(fetchAfterLike());
+          dispatch(fetchAfterLike(data));
           resolve();
         })
         .catch((err) => {
@@ -306,7 +330,8 @@ export const unlikePost = (id) => {
         },
       })
         .then((data) => {
-          dispatch(fetchPostsAfterLikeUnlike());
+          dispatch(fetchAfterUnlike(data));
+          // dispatch(fetchPostsAfterLikeUnlike(data));
           resolve();
         })
         .catch((err) => {
@@ -329,8 +354,8 @@ export const commentPost = ({ id, content }) => {
         data: { content },
       })
         .then((data) => {
-          // console.log(data);
-          dispatch(fetchPostsAfterLikeUnlike());
+          dispatch(fetchAfterComment(data));
+
           dispatch(postLoadingAfterClick(false));
           resolve();
         })

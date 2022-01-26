@@ -16,6 +16,7 @@ function ModalConfirmDelete({ id }) {
 
   const doDelete = (postId) => {
     dispatch(deletePost(postId)).then(() => {
+      setShow(false);
       warnToastAlert('Success deleted post!', 'top-center', 3000, false);
     });
   };

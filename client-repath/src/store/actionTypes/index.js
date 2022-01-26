@@ -31,3 +31,7 @@ export const FETCH_FOLLOWER_USER = 'users/fetchFollowers';
 export const FETCH_USER_BY_ID_SUCCESS = 'users/fetchByIdSuccess';
 
 export const FETCH_AFTER_LIKE = 'post/fetchAfterLike';
+export const FETCH_AFTER_COMMENT = 'post/fetchAfterComment';
+export const FETCH_AFTER_UNLIKE = 'post/fetchAfterUnlike';
+
+export const FETCH_SCROLLS = 'post/fetchScrolls';
