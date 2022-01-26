@@ -1,4 +1,4 @@
-import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, AFTER_POST_LOADING, AFTER_CLICK_POST_LOADING, LIKED_POSTS_FETCH_SUCCESS } from '../actionTypes';
+import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, AFTER_POST_LOADING, AFTER_CLICK_POST_LOADING, LIKED_POSTS_FETCH_SUCCESS, FETCH_AFTER_LIKE } from '../actionTypes';
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000';
@@ -290,8 +290,7 @@ export const likePost = (id) => {
         },
       })
         .then((data) => {
-          // dispatch(fetchPostsAfterLikeUnlike());
-          console.log(data, 'INI DATA AFTER LIKE <<<<<<<<<<<<<');
+          dispatch(fetchPostsAfterLikeUnlike());
           dispatch(fetchAfterLike());
           resolve();
         })
@@ -302,7 +301,7 @@ export const likePost = (id) => {
   };
 };
 
-export const unlikePost = (id) => {
+export const unlikePost = (id) => { 
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       axios({
