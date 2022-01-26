@@ -1,4 +1,4 @@
-import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, AFTER_POST_LOADING, AFTER_CLICK_POST_LOADING } from '../actionTypes';
+import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, AFTER_POST_LOADING, AFTER_CLICK_POST_LOADING, LIKED_POSTS_FETCH_SUCCESS } from '../actionTypes';
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000';
@@ -108,6 +108,13 @@ export const fetchPostsAfterLikeUnlike = () => {
     });
   };
 };
+
+export const setLikedPosts = (payload) => {
+  return {
+    type: LIKED_POSTS_FETCH_SUCCESS,
+    payload,
+  };
+}
 
 // =========================== POST TEXT X IMAGE ===========================
 
@@ -331,3 +338,36 @@ export const commentPost = ({ id, content }) => {
     });
   };
 };
+
+export const fetchLikedPosts = () => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      dispatch(loadingPosts(true));
+      dispatch(errorPosts(null));
+      fetch(`${baseUrl}/posts/likes`, {
+        method: 'GET',
+        headers: {
+          access_token: localStorage.getItem('access_token'),
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Something went wrong');
+          }
+        })
+        .then((data) => {
+          dispatch(setLikedPosts(data));
+          resolve();
+        })
+        .catch((err) => {
+          dispatch(errorPosts(err));
+          reject();
+        })
+        .finally(() => {
+          dispatch(loadingPosts(false));
+        });
+    });
+  };
+}

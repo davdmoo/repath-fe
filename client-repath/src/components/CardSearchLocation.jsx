@@ -28,7 +28,6 @@ export default function CardSearchLocation(props) {
         role="button"
         onClick={(e) => {
           e.preventDefault();
-          // toPostLocation(props.location);
           handleShow();
         }}
       >

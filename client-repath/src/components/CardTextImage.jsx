@@ -17,7 +17,7 @@ import moment from 'moment';
 function CardTextImage(props) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
-
+  
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -78,10 +78,6 @@ function CardTextImage(props) {
       return false;
     }
   }
-
-  // const doDelete = (postId) => {
-  //   dispatch(deletePost(postId));
-  // };
 
   return (
     <>
@@ -201,21 +197,6 @@ function CardTextImage(props) {
           </div>
         </Card.Body>
       </Card>
-
-      {/* <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Delete post</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Are you sure want to delete your selected post?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="outlined" sx={{ marginRight: '10px' }} color="warning">
-            Cancel
-          </Button>
-          <Button variant="contained" color="error" startIcon={<Delete />}>
-            Delete
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
     </>
   );
 }

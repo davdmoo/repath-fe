@@ -1,32 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Avatar } from '@mui/material/';
 import { Card } from 'react-bootstrap';
 import { red } from '@mui/material/colors';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { delFriendReq } from '../store/actionCreators/followCreator';
-import { followUser, addFriend, fetchFollowing } from '../store/actionCreators/followCreator';
 
 function CardFriendList({ user }) {
-<<<<<<< HEAD
   const dispatch = useDispatch()
 
   const handleDelFriend = (reqId) => {
-    console.log(reqId);
     dispatch(delFriendReq(reqId))
   }
-=======
-  const dispatch = useDispatch();
-
-  const handleDelFriend = (reqId) => {
-    dispatch(delFriendReq(reqId));
-  };
-
-  // const { following } = useSelector((state) => state.userReducer);
-  // useEffect(() => {
-  //   dispatch(fetchFollowing());
-  // }, []);
->>>>>>> 06078969686b5f9219527b29048fe6b2fe5fafc9
   return (
     <Card style={{ border: '0px' }}>
       <Card.Body style={{ backgroundColor: '#fef2f2', padding: '0px' }}>
@@ -39,7 +24,7 @@ function CardFriendList({ user }) {
             )}
           </div>
           <div className="card-right-side-friendlist d-flex flex-row align-items-center">
-            <div className="content-friendlist" style={{ width: '200px', textAlign: 'left' }}>
+            <div className="content-friendlist" style={{ width: '250px', textAlign: 'left' }}>
               <div className="friendlist-name">
                 {user.firstName} {user.lastName}
               </div>
@@ -47,7 +32,7 @@ function CardFriendList({ user }) {
             </div>
           </div>
           <div style={{ width: '100px' }} className="d-flex justify-content-center align-items-center">
-            <PersonRemoveIcon onClick={() => handleDelFriend(user.phoneNumber)} sx={{ width: 35, height: 35, color: red[500] }} />
+                <PersonRemoveIcon onClick={() => handleDelFriend(user.phoneNumber)} sx={{ width: 35, height: 35, color: red[500] }} />
           </div>
         </div>
       </Card.Body>
