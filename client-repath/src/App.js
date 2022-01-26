@@ -15,6 +15,7 @@ import PostSearchLocation from './views/PostSearchLocation';
 import FollowerPage from './views/FollowerPage';
 import RequestPage from './views/RequestPage';
 import TestGoogle from './views/TestGoogle';
+import SandboxInfinite from './views/SandboxInfinite';
 
 function App() {
   return (
@@ -108,7 +109,7 @@ function App() {
             </AuthGuardLogin>
           }
         />
-        {/* <Route path="/testgoogle" element={<TestGoogle />} /> */}
+        <Route path="/testgoogle" element={<SandboxInfinite />} />
       </Routes>
     </div>
   );

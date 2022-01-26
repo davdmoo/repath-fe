@@ -15,7 +15,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { fetchUserById } from '../store/actionCreators/userCreator';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-function Home() {
+function SandboxInfinite() {
   const dispatch = useDispatch();
   const { posts, postsLoading, postsError, allPosts } = useSelector((state) => state.postReducer);
 
@@ -47,18 +47,19 @@ function Home() {
   useEffect(() => {
     // console.log("MASUK 1", skip);
     setSkip(items.length);
-    console.log(skip);
+    // console.log(skip, '<<<<<<<< INI SKIP DI SANDBOX');
   }, [dispatch, posts]);
 
   useEffect(() => {
     dispatch(fetchPosts(skip)).then((data) => {
+      // console.log(data);
       // setItems(items.concat(data));
       setItems([...items, ...data]);
     });
   }, [dispatch]);
 
   const fetchMoreData = (e) => {
-    dispatch(fetchPosts(skip)).then((data) => {
+    dispatch(fetchPosts(items.length)).then((data) => {
       // setItems(items.concat(data));
       setItems([...items, ...data]);
 
@@ -86,7 +87,7 @@ function Home() {
       <Navbar />
       <Header currentUser={currentUser} />
 
-      <div style={{ height: '100vh', overflowY: 'scroll' }}>
+      <div style={{ minHeight: '100vh', overflowY: 'hidden' }}>
         <InfiniteScroll dataLength={items.length} next={fetchMoreData} hasMore={hasMore} loader={<Loader />}>
           {items.map((post) => {
             return post.type === 'location' ? <CardLocation key={post._id} post={post} /> : post.type === 'text' ? <CardTextImage key={post._id} post={post} /> : <CardMusic key={post._id} post={post} />;
@@ -108,4 +109,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default SandboxInfinite;
