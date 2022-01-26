@@ -16,6 +16,7 @@ import ErrorGlobal from '../components/componentsChild/ErrorGlobal';
 import { ToastContainer, toast } from 'react-toastify';
 import { fetchUserById } from '../store/actionCreators/userCreator';
 import {useNavigate} from 'react-router-dom'
+import ErrorCardHome from '../components/componentsChild/ErrorCardHome';
 
 function Home() {
   const dispatch = useDispatch();
@@ -77,11 +78,20 @@ function Home() {
         <Navbar />
         <Header currentUser={currentUser} />
         <div className="d-flex justify-content-center mt-5" style={{backgroundColor:"#fef2f2", height:"60vh"}}>
-          <div >
+          {/* <div >
               <h3>There's no posts on your timeline.</h3>
-              <h5>Click <a href="" onClick={toPost}>here</a> to post something</h5>
-              <h5>Or Click  <a href="" onClick={toFriend}>here</a> to find new friends</h5>
-          </div>
+              <h5 style={{marginTop: '2vh'}}>Click <a style={{color:'red', textDecoration: 'none'}} href=""  
+              onClick={(e) => {
+                e.preventDefault();
+                toPost();
+              }}>here</a> to post something</h5>
+              <h5 style={{marginTop: '2vh'}}>Or Click <a style={{color:'red', textDecoration: 'none'}} href=""  
+              onClick={(e) => {
+                e.preventDefault();
+                toFriend();
+              }}>here</a> to find new friends</h5>
+          </div> */}
+        <ErrorCardHome />
         </div>
         <ButtonPopUp />
      </>

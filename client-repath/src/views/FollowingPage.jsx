@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import CardFriendList from '../components/CardFriendList';
 import { fetchFollowing } from '../store/actionCreators/followCreator';
 import Loader from '../components/componentsChild/Loader';
+import PeopleIcon from '@mui/icons-material/People';
 
 function FollowingPage() {
   const dispatch = useDispatch();
@@ -51,7 +52,8 @@ function FollowingPage() {
     <>
       <Navbar />
       <div style={{ minHeight: '100vh', backgroundColor: '#fef2f2', paddingTop: '95px' }}>
-        <h1 className="pt-3 pb-3">Friend List</h1>
+       
+        <h1 className="pt-3 pb-3"><PeopleIcon style={{width: '40px', height:'40px', marginRight: '5px'}}></PeopleIcon> Friend List</h1>
         {userFollowingExist()}
       </div>
     </>

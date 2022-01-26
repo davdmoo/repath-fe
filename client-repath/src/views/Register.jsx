@@ -44,10 +44,11 @@ function Register() {
       })
       .catch((err) => {
 
-          console.log(err, `ERR REGISTER`);
+          // console.log(err, `ERR REGISTER`);
         if (err.message === 'Error, expected `email` to be unique. Value: '+ '`'+registerForm.email+'`') errorToastAlert('Email must be unique, Please input another email');
 
         else errorToastAlert('Please fill out the entire form')
+      
       });
   };
 

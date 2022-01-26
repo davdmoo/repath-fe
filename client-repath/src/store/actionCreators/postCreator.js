@@ -55,7 +55,7 @@ export const setDeletePost = (payload) => {
 };
 
 export const fetchPosts = (skip) => {
-  console.log(skip, '<<<<<<<<<< INI SKIP');
+  // console.log(skip, '<<<<<<<<<< INI SKIP');
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       dispatch(loadingPosts(true));

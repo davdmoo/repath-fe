@@ -10,6 +10,7 @@ import { fetchUserById } from '../store/actionCreators/userCreator';
 import LikedCardTextImage from '../components/LikedCardTextImage';
 import LikedCardMusic from '../components/LikedCardMusic';
 import LikedCardLocation from '../components/LikedCardLocation';
+import ErrorCardLikes from '../components/componentsChild/ErrorCardLikes';
 
 function LikedPage() {
   const dispatch = useDispatch();
@@ -52,11 +53,7 @@ function LikedPage() {
      <div style={{height:"100vh"}}>
         <Navbar />
         <div className="d-flex justify-content-center" style={{backgroundColor:"#fef2f2",  paddingTop: "100px"}}>
-          <div >
-              <h3>There's no liked posts on your timeline.</h3>
-              {/* <h5>Click <a href="" onClick={toPost}>here</a> to post something</h5>
-              <h5>Or Click  <a href="" onClick={toFriend}>here</a> to find new friends</h5> */}
-          </div>
+            <ErrorCardLikes />
         </div>
      </div>
     )
