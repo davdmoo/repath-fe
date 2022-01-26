@@ -15,7 +15,8 @@ function TestGoogle() {
   return (
     <>
       <h1>COBA COBA GOOGLE LOGIN</h1>
-      <GoogleLogin clientId="306277501455-3tep6b17k5avj734itbeqju5g6asoind.apps.googleusercontent.com" buttonText="Login" onSuccess={responseGoogle} onFailure={responseGoogle} cookiePolicy={'single_host_origin'} />
+      <GoogleLogin clientId="
+      " buttonText="Login" onSuccess={responseGoogle} onFailure={responseGoogle} cookiePolicy={'single_host_origin'} />
     </>
   );
 }
