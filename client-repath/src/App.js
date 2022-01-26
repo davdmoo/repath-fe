@@ -109,7 +109,9 @@ function App() {
             </AuthGuardLogin>
           }
         />
-        <Route path="/testgoogle" element={<SandboxInfinite />} />
+
+        {/* <Route path="/testgoogle" element={<TestGoogle />} /> */}
+
       </Routes>
     </div>
   );
