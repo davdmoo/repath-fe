@@ -71,12 +71,12 @@ function Home() {
         <div className="d-flex justify-content-center mt-5" style={{backgroundColor:"#fef2f2", height:"60vh"}}>
           <div >
               <h3>There's no posts on your timeline.</h3>
-              <h5 style={{marginTop: '2vh'}}>Click <a href=""  
+              <h5 style={{marginTop: '2vh'}}>Click <a style={{color:'red'}} href=""  
               onClick={(e) => {
                 e.preventDefault();
                 toPost();
               }}>here</a> to post something</h5>
-              <h5 style={{marginTop: '2vh'}}>Or Click <a href=""  
+              <h5 style={{marginTop: '2vh'}}>Or Click <a style={{color:'red'}} href=""  
               onClick={(e) => {
                 e.preventDefault();
                 toFriend();
