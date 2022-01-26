@@ -108,7 +108,7 @@ export const setRegister = (payload) => {
           // console.log(data, '<<<<<<<<<< INI DATA SETELAH REGISTER');
           // if (!data.message) {
           dispatch(postLoadingUser(false));
-          resolve();
+          resolve(data);
           // }
           // console.log('OK ADD NEW PRODUCT');
         })

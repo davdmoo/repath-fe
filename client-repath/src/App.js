@@ -15,6 +15,7 @@ import PostSearchLocation from './views/PostSearchLocation';
 import FollowerPage from './views/FollowerPage';
 import RequestPage from './views/RequestPage';
 import TestGoogle from './views/TestGoogle';
+import LikedPage from './views/LikedPost';
 import SandboxInfinite from './views/SandboxInfinite';
 
 function App() {
@@ -26,6 +27,14 @@ function App() {
           element={
             <AuthGuardLogin>
               <Home />
+            </AuthGuardLogin>
+          }
+        />
+        <Route
+          path="/likes"
+          element={
+            <AuthGuardLogin>
+              <LikedPage />
             </AuthGuardLogin>
           }
         />
@@ -109,7 +118,9 @@ function App() {
             </AuthGuardLogin>
           }
         />
-        <Route path="/testgoogle" element={<SandboxInfinite />} />
+
+        {/* <Route path="/testgoogle" element={<TestGoogle />} /> */}
+
       </Routes>
     </div>
   );

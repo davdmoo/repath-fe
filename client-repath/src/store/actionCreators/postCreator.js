@@ -1,4 +1,16 @@
-import { POSTS_FETCH_SUCCESS, FETCH_SCROLLS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, AFTER_POST_LOADING, AFTER_CLICK_POST_LOADING, FETCH_AFTER_LIKE, FETCH_AFTER_COMMENT, FETCH_AFTER_UNLIKE } from '../actionTypes';
+import {
+  POSTS_FETCH_SUCCESS,
+  FETCH_SCROLLS,
+  POSTS_DELETE_SUCCESS,
+  LOADING_POSTS,
+  ERROR_POSTS,
+  AFTER_POST_LOADING,
+  AFTER_CLICK_POST_LOADING,
+  FETCH_AFTER_LIKE,
+  FETCH_AFTER_COMMENT,
+  FETCH_AFTER_UNLIKE,
+  LIKED_POSTS_FETCH_SUCCESS,
+} from '../actionTypes';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -140,6 +152,13 @@ export const fetchPostsAfterLikeUnlike = () => {
           reject();
         });
     });
+  };
+};
+
+export const setLikedPosts = (payload) => {
+  return {
+    type: LIKED_POSTS_FETCH_SUCCESS,
+    payload,
   };
 };
 
@@ -362,6 +381,39 @@ export const commentPost = ({ id, content }) => {
         .catch((err) => {
           dispatch(postLoadingAfterClick(false));
           reject(err);
+        });
+    });
+  };
+};
+
+export const fetchLikedPosts = () => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      dispatch(loadingPosts(true));
+      dispatch(errorPosts(null));
+      fetch(`${baseUrl}/posts/likes`, {
+        method: 'GET',
+        headers: {
+          access_token: localStorage.getItem('access_token'),
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Something went wrong');
+          }
+        })
+        .then((data) => {
+          dispatch(setLikedPosts(data));
+          resolve();
+        })
+        .catch((err) => {
+          dispatch(errorPosts(err));
+          reject();
+        })
+        .finally(() => {
+          dispatch(loadingPosts(false));
         });
     });
   };

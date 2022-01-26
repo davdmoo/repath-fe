@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CardRequestList from '../components/CardRequestList';
 import Loader from '../components/componentsChild/Loader';
 import { ToastContainer, toast } from 'react-toastify';
+import PersonPinSharpIcon from '@mui/icons-material/PersonPinSharp';
 
 function RequestPage() {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ function RequestPage() {
       <ToastContainer />
       <Navbar />
       <div style={{ minHeight: '100vh', backgroundColor: '#fef2f2', paddingTop: '105px' }}>
-        <h1 className="pt-2 pb-3">Friend Request</h1>
+        <h1 className="pt-2 pb-3"> <PersonPinSharpIcon style={{width: '40px', height:'40px', marginRight: '5px'}}></PersonPinSharpIcon> Friend Request</h1>
         {userRequestExist()}
       </div>
     </>

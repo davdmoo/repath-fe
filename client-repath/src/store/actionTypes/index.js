@@ -10,6 +10,7 @@ export const AFTER_POST_USER_LOADING = 'userLoading/postLoading';
 export const AFTER_CLICK_POST_LOADING = 'afterClickLoading/postLoading';
 
 export const POSTS_FETCH_SUCCESS = 'posts/fetchSuccess';
+export const LIKED_POSTS_FETCH_SUCCESS = 'posts/fetchLikedPosts'
 export const POSTS_DELETE_SUCCESS = 'posts/delete';
 export const LOADING_POSTS = 'postsLoading/loading';
 export const ERROR_POSTS = 'postsError/error';
