@@ -7,6 +7,7 @@ import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import moment from 'moment';
 
 function LikedCardTextImage(props) {
+  console.log(props);
   const renderTooltip = (prop) => (
     <Tooltip id="button-tooltip" {...prop}>
       <div>{props.post.userId.firstName}</div>
@@ -36,7 +37,7 @@ function LikedCardTextImage(props) {
             </div>
 
             <div className="card-right-side d-flex flex-column">
-              {props.post.imgUrl !== '[object Object]' ? (
+              {props.post.imgUrl ? (
                 <div
                   style={{
                     height: '250px',
