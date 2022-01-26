@@ -1,4 +1,4 @@
-import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, AFTER_POST_LOADING, AFTER_CLICK_POST_LOADING } from '../actionTypes';
+import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, AFTER_POST_LOADING, AFTER_CLICK_POST_LOADING, FETCH_AFTER_LIKE } from '../actionTypes';
 
 const initialState = {
   posts: [],
@@ -69,10 +69,18 @@ function postReducer(state = initialState, action) {
       };
 
     case AFTER_CLICK_POST_LOADING:
+      // console.log(posts);
       return {
         ...state,
         afterClickPostLoading: action.payload,
       };
+
+    // case FETCH_AFTER_LIKE:
+    //   // let temp = posts;
+    //   return {
+    //     ...state,
+    //     posts: action.payload,
+    //   };
 
     default:
       return state;

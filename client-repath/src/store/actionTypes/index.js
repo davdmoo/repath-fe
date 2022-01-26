@@ -29,3 +29,5 @@ export const AFTER_POST_LOADING = 'afterPost/loading';
 export const FETCH_FOLLOWER_USER = 'users/fetchFollowers';
 
 export const FETCH_USER_BY_ID_SUCCESS = 'users/fetchByIdSuccess';
+
+export const FETCH_AFTER_LIKE = 'post/fetchAfterLike';
