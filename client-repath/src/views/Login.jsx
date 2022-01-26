@@ -11,12 +11,20 @@ import { ToastContainer, toast } from 'react-toastify';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { alpha, styled } from '@mui/material/styles';
+import { setGoogleLogin } from '../store/actionCreators/userCreator';
+import { GoogleLogin } from 'react-google-login';
 
 function Login() {
   const [loginForm, setLoginForm] = useState({
     email: '',
     password: '',
   });
+
+  const responseGoogle = (response) => {
+    dispatch(setGoogleLogin(response)).then(() => {
+      navigate('/');
+    });
+  };
 
   const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -96,7 +104,7 @@ function Login() {
           <img
             src="https://ik.imagekit.io/hanakar/Re-Path_D2YBYxVuS2I.png?ik-sdk-version=javascript-1.4.3&updatedAt=1642490213261"
             style={{
-              marginTop: 50,
+              marginTop: 10,
               height: 200,
               width: 200,
               justifyContent: 'center',
@@ -105,7 +113,7 @@ function Login() {
             }}
           ></img>
         </div>
-        <div style={{ marginBottom: 50 }}>
+        <div style={{ marginBottom: 20 }}>
           <h5
             style={{
               color: '#f5f5f5',
@@ -212,6 +220,10 @@ function Login() {
           >
             Register
           </Button>
+        </div>
+        <div style={{ marginTop: '20px' }}>
+          <span style={{ color: 'white' }}> <span style={{margin:"5px"}}>Or</span>  <GoogleLogin clientId="471327112485-267mc9216cmhnf1k5fnhh6a3d6qdaccl.apps.googleusercontent.com" buttonText="Login" onSuccess={responseGoogle} onFailure={responseGoogle} cookiePolicy={'single_host_origin'} /><span style={{margin:"5px"}}>with Google</span></span>{' '}
+          
         </div>
       </div>
       {afterPostUser ? (
