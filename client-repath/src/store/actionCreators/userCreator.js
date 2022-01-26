@@ -108,13 +108,13 @@ export const setRegister = (payload) => {
           // console.log(data, '<<<<<<<<<< INI DATA SETELAH REGISTER');
           // if (!data.message) {
           dispatch(postLoadingUser(false));
-          resolve();
+          resolve(data);
           // }
           // console.log('OK ADD NEW PRODUCT');
         })
         .catch((err) => {
           dispatch(postLoadingUser(false));
-          // console.log(err.response.data);
+          console.log(err.response.data.message);
           reject(err.response.data);
         });
       // .finally(() => {
@@ -127,7 +127,6 @@ export const setRegister = (payload) => {
 // =========================== EDIT USER ===========================
 
 export const setEditUser = (payload) => {
- 
   const id = localStorage.getItem('id');
   return (dispatch, getState) => {
     dispatch(postLoadingUser(true));
@@ -231,3 +230,40 @@ export const fetchUserById = (id) => {
     });
   };
 };
+
+// =========================== Google Login ===========================
+export const setGoogleLogin = (payload) => {
+  return (dispatch, getState) => {
+
+    // dispatch(postLoadingUser(true));
+
+    return new Promise((resolve, reject) => {
+      // dispatch(loadingUser(true));
+      dispatch(errorUser(null));
+      axios(`${baseUrl}/users/googleLogin`, {
+        method: 'POST',
+        data: {
+
+          idToken: payload.getAuthResponse().id_token,
+        },
+      })
+        .then(({ data }) => {
+          localStorage.setItem('access_token', data.access_token);
+          localStorage.setItem('id', data.payloadUser._id);
+          // dispatch(postLoadingUser(false));
+          resolve();
+
+          // }
+        })
+        .catch((err) => {
+       
+          // dispatch(postLoadingUser(false));
+          // reject(err.response.data);
+        });
+      // .finally(() => {
+      //   // dispatch(loadingUser(false));
+      // });
+    });
+  };
+};
+

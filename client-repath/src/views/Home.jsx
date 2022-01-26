@@ -15,6 +15,7 @@ import Loader from '../components/componentsChild/Loader';
 import ErrorGlobal from '../components/componentsChild/ErrorGlobal';
 import { ToastContainer, toast } from 'react-toastify';
 import { fetchUserById } from '../store/actionCreators/userCreator';
+import {useNavigate} from 'react-router-dom'
 
 function Home() {
   const dispatch = useDispatch();
@@ -44,6 +45,15 @@ function Home() {
     dispatch(fetchPosts());
   }, []);
 
+  const navigate = useNavigate();
+  const toPost = ()=>{
+    navigate('/content')
+  }
+
+  const toFriend = ()=>{
+    navigate('/search-people')
+  }
+
   if (postsError) {
     return (
       <>
@@ -51,6 +61,22 @@ function Home() {
         <ErrorGlobal />
       </>
     );
+  }
+
+  if(posts.length < 1){
+    return (
+     <>
+        <Navbar />
+        <Header currentUser={currentUser} />
+        <div className="d-flex justify-content-center mt-5" style={{backgroundColor:"#fef2f2", height:"60vh"}}>
+          <div >
+              <h3>There's no posts on your timeline.</h3>
+              <h5>Click <a href="" onClick={toPost}>here</a> to post something</h5>
+              <h5>Or Click  <a href="" onClick={toFriend}>here</a> to find new friends</h5>
+          </div>
+        </div>
+     </>
+    )
   }
 
   return (

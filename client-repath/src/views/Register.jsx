@@ -43,7 +43,11 @@ function Register() {
         navigate('/login');
       })
       .catch((err) => {
-        if (err.message) errorToastAlert('Please fill out the entire form');
+
+          console.log(err, `ERR REGISTER`);
+        if (err.message === 'Error, expected `email` to be unique. Value: '+ '`'+registerForm.email+'`') errorToastAlert('Email must be unique, Please input another email');
+
+        else errorToastAlert('Please fill out the entire form')
       });
   };
 

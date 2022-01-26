@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, AFTER_POST_LOADING, AFTER_CLICK_POST_LOADING, LIKED_POSTS_FETCH_SUCCESS } from '../actionTypes';
+=======
+import { POSTS_FETCH_SUCCESS, POSTS_DELETE_SUCCESS, LOADING_POSTS, ERROR_POSTS, AFTER_POST_LOADING, AFTER_CLICK_POST_LOADING, FETCH_AFTER_LIKE } from '../actionTypes';
+>>>>>>> b388d509f2790f6d8fcc670e8476111e839efe75
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000';
@@ -31,6 +35,13 @@ export const postLoadingAfterClick = (payload) => {
   };
 };
 
+export const fetchAfterLike = (payload) => {
+  return {
+    type: FETCH_AFTER_LIKE,
+    payload,
+  };
+};
+
 // =========================== FETCH POST TIMELINE ===========================
 
 export const setPosts = (payload) => {
@@ -47,12 +58,13 @@ export const setDeletePost = (payload) => {
   };
 };
 
-export const fetchPosts = () => {
+export const fetchPosts = (skip) => {
+  console.log(skip, '<<<<<<<<<< INI SKIP');
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       dispatch(loadingPosts(true));
       dispatch(errorPosts(null));
-      fetch(`${baseUrl}/posts`, {
+      fetch(`${baseUrl}/posts?skip=${skip}`, {
         method: 'GET',
         headers: {
           access_token: localStorage.getItem('access_token'),
@@ -67,7 +79,7 @@ export const fetchPosts = () => {
         })
         .then((data) => {
           dispatch(setPosts(data));
-          resolve();
+          resolve(data);
         })
         .catch((err) => {
           dispatch(errorPosts(err));
@@ -282,7 +294,9 @@ export const likePost = (id) => {
         },
       })
         .then((data) => {
-          dispatch(fetchPostsAfterLikeUnlike());
+          // dispatch(fetchPostsAfterLikeUnlike());
+          console.log(data, 'INI DATA AFTER LIKE <<<<<<<<<<<<<');
+          dispatch(fetchAfterLike());
           resolve();
         })
         .catch((err) => {

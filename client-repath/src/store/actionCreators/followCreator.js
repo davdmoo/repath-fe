@@ -96,7 +96,6 @@ export const fetchFollower = () => {
           }
         })
         .then((data) => {
-          console.log(data, `AAAAA`);
           dispatch(fetchFollowerSuccess(data));
 
           resolve(data);
@@ -171,9 +170,33 @@ export const delFriendReq = (reqId) => {
         },
       })
         .then(({ data }) => {
-          console.log(data);
           dispatch(postLoadingAfterClick(false));
           dispatch(getRequest());
+          resolve();
+        })
+        .catch((err) => {
+          dispatch(postLoadingAfterClick(false));
+          console.log(err);
+          reject(err);
+        });
+    });
+  };
+};
+
+export const delOneFriend = (reqId) => {
+  return (dispatch, getState) => {
+    dispatch(postLoadingAfterClick(true));
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'DELETE',
+        url: `${baseUrl}/friends/${reqId}`,
+        headers: {
+          access_token: localStorage.access_token,
+        },
+      })
+        .then(({ data }) => {
+          dispatch(postLoadingAfterClick(false));
+          dispatch(fetchFollowing());
           resolve();
         })
         .catch((err) => {
