@@ -222,8 +222,10 @@ function Login() {
           </Button>
         </div>
         <div style={{ marginTop: '20px' }}>
+
           <span style={{ color: 'white' }}> <span style={{margin:"5px"}}>Or</span>  <GoogleLogin clientId="471327112485-267mc9216cmhnf1k5fnhh6a3d6qdaccl.apps.googleusercontent.com" buttonText="Login" onSuccess={responseGoogle} onFailure={responseGoogle} cookiePolicy={'single_host_origin'} /><span style={{margin:"5px"}}>with Google</span></span>{' '}
           
+
         </div>
       </div>
       {afterPostUser ? (

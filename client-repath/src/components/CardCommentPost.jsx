@@ -6,7 +6,9 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 
 function CardCommentPost(props) {
+
   const [open, setOpen] = React.useState(false);
+
 
   const handleClick = () => {
     setOpen(!open);
