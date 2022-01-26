@@ -47,23 +47,38 @@ function LikedPage() {
       </>
     );
   }
-
+  if(likedPosts.length < 1){
+    return (
+     <div style={{height:"100vh"}}>
+        <Navbar />
+        <div className="d-flex justify-content-center" style={{backgroundColor:"#fef2f2",  paddingTop: "100px"}}>
+          <div >
+              <h3>There's no liked posts on your timeline.</h3>
+              {/* <h5>Click <a href="" onClick={toPost}>here</a> to post something</h5>
+              <h5>Or Click  <a href="" onClick={toFriend}>here</a> to find new friends</h5> */}
+          </div>
+        </div>
+     </div>
+    )
+  }
   return (
     <>
       <div>
         <ToastContainer />
       </div>
       <Navbar />
-      <Header currentUser={currentUser} />
+      {/* <Header currentUser={currentUser} /> */}
 
       {postsLoading ? (
         <div>
           <Loader />
         </div>
       ) : (
-        likedPosts.map((post) => {
-          return post.type === 'location' ? <LikedCardLocation key={post._id} post={post} /> : post.type === 'text' ? <LikedCardTextImage key={post._id} post={post} /> : <LikedCardMusic key={post._id} post={post} />;
-        })
+        <div style={{paddingTop: "95px"}}>
+          {likedPosts.map((post) => {
+            return post.type === 'location' ? <LikedCardLocation key={post._id} post={post} /> : post.type === 'text' ? <LikedCardTextImage key={post._id} post={post} /> : <LikedCardMusic key={post._id} post={post} />;
+          })}
+        </div>
       )}
     </>
   );

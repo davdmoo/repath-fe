@@ -63,7 +63,15 @@ function Home() {
     );
   }
 
-  if(posts.length < 1){
+  if(postsLoading){
+    return (
+      <div>
+        <Navbar />
+        <Header currentUser={currentUser} />
+          <Loader />
+      </div>
+    )
+  }else if(posts.length < 1){
     return (
      <>
         <Navbar />
@@ -75,9 +83,11 @@ function Home() {
               <h5>Or Click  <a href="" onClick={toFriend}>here</a> to find new friends</h5>
           </div>
         </div>
+        <ButtonPopUp />
      </>
     )
   }
+
 
   return (
     <>
