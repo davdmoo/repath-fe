@@ -27,11 +27,9 @@ function postReducer(state = initialState, action) {
   switch (action.type) {
     case POSTS_FETCH_SUCCESS:
       console.log(state.posts, '<<<<<<<< INI STATE POST');
-      // state.allPosts = action.payload;
       return {
         ...state,
-        posts: [...state.posts, ...action.payload],
-        // allPosts: action.payload,
+        posts: [...action.payload],
       };
 
     case POSTS_DELETE_SUCCESS:

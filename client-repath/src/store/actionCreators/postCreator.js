@@ -106,7 +106,13 @@ export const fetchPosts = (skip) => {
         }
       })
       .then((data) => {
-        dispatch(setPosts(data));
+        if (skip == 0) {
+          dispatch(setPosts(data));
+        } else {
+          let temp = getState().postReducer.posts;
+          let newPosts = [...temp, ...data];
+          dispatch(setPosts(newPosts));
+        }
         if (data.length == 0) {
           dispatch({
             type: 'HAS_MORE',
@@ -261,11 +267,6 @@ export const postMusic = (payload) => {
           }
         })
         .then((data) => {
-          // dispatch(fetchMusicListSuccess(data));
-          // setArrayListMusics(data);
-          // console.log(arrayListMusics, '<<<<<<<<<< INI ARRAY MUSIC LIST');
-
-          // dispatch(setPosts(data));
           dispatch(loadingAfterPost(false));
           resolve();
         })

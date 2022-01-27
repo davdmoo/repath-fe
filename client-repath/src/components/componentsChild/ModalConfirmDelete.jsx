@@ -32,20 +32,6 @@ function ModalConfirmDelete({ id }) {
         </Modal.Header>
         <Modal.Body>Are you sure want to delete your selected post?</Modal.Body>
         <Modal.Footer>
-          {/* <Button onClick={handleClose} variant="outlined" sx={{ marginRight: '10px' }} color="warning">
-            Cancel
-          </Button> */}
-          {/* <Button
-            onClick={(e) => {
-              e.preventDefault();
-              doDelete(id);
-            }}
-            variant="contained"
-            color="error"
-            startIcon={<Delete />}
-          >
-            Delete
-          </Button> */}
           <Button variant="outline-warning" onClick={handleClose}>
             Cancel
           </Button>

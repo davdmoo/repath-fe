@@ -23,6 +23,7 @@ import ErrorCardHome from '../components/componentsChild/ErrorCardHome';
 function Home() {
   const dispatch = useDispatch();
   const { posts, postsLoading, postsError, allPosts, hasMore } = useSelector((state) => state.postReducer);
+  console.log(hasMore);
 
   const [currentUser, setcurrentUser] = useState({
     firstName: '',
@@ -49,13 +50,17 @@ function Home() {
   const [skip, setSkip] = useState(0);
   const [items, setItems] = useState([]);
 
-  // window.onbeforeunload = function () {
-  //   window.scrollTo(0, 0);
-  // };
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  };
 
   useEffect(() => {
+    dispatch({
+      type: 'HAS_MORE',
+      payload: true,
+    });
     dispatch(fetchPosts(0));
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     setItems(posts);
@@ -83,39 +88,39 @@ function Home() {
     );
   }
 
-  if (postsLoading) {
-    return (
-      <div>
-        <Navbar />
-        <Header currentUser={currentUser} />
-        <Loader />
-      </div>
-    );
-  } else if (posts.length < 1) {
-    return (
-      <>
-        <Navbar />
-        <Header currentUser={currentUser} />
-        <div className="d-flex justify-content-center mt-5" style={{ backgroundColor: '#fef2f2', height: '60vh' }}>
-          {/* <div >
-              <h3>There's no posts on your timeline.</h3>
-              <h5 style={{marginTop: '2vh'}}>Click <a style={{color:'red', textDecoration: 'none'}} href=""  
-              onClick={(e) => {
-                e.preventDefault();
-                toPost();
-              }}>here</a> to post something</h5>
-              <h5 style={{marginTop: '2vh'}}>Or Click <a style={{color:'red', textDecoration: 'none'}} href=""  
-              onClick={(e) => {
-                e.preventDefault();
-                toFriend();
-              }}>here</a> to find new friends</h5>
-          </div> */}
-          <ErrorCardHome />
-        </div>
-        <ButtonPopUp />
-      </>
-    );
-  }
+  // if (postsLoading) {
+  //   return (
+  //     <div>
+  //       <Navbar />
+  //       <Header currentUser={currentUser} />
+  //       <Loader />
+  //     </div>
+  //   );
+  // } else if (posts.length < 1) {
+  //   return (
+  //     <>
+  //       <Navbar />
+  //       <Header currentUser={currentUser} />
+  //       <div className="d-flex justify-content-center mt-5" style={{ backgroundColor: '#fef2f2', height: '60vh' }}>
+  //         {/* <div >
+  //             <h3>There's no posts on your timeline.</h3>
+  //             <h5 style={{marginTop: '2vh'}}>Click <a style={{color:'red', textDecoration: 'none'}} href=""
+  //             onClick={(e) => {
+  //               e.preventDefault();
+  //               toPost();
+  //             }}>here</a> to post something</h5>
+  //             <h5 style={{marginTop: '2vh'}}>Or Click <a style={{color:'red', textDecoration: 'none'}} href=""
+  //             onClick={(e) => {
+  //               e.preventDefault();
+  //               toFriend();
+  //             }}>here</a> to find new friends</h5>
+  //         </div> */}
+  //         <ErrorCardHome />
+  //       </div>
+  //       <ButtonPopUp />
+  //     </>
+  //   );
+  // }
 
   return (
     <div>

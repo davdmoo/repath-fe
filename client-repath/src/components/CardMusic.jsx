@@ -117,20 +117,6 @@ function CardMusic(props) {
                   {props.post.likes.length > 0 ? <CardLikedPost likes={props.post.likes} /> : <div></div>}
                   {props.post.comments.length > 0 ? <CardCommentPost comments={props.post.comments} /> : <div></div>}
                 </div>
-                {/* {props.post.likes.length > 0 ? (
-                  props.post.likes.map((like) => {
-                    return <CardLikedPost key={like._id} like={like} />;
-                  })
-                ) : (
-                  <div></div>
-                )} */}
-                {/* {props.post.comments.length > 0 ? (
-                  props.post.comments.map((comment) => {
-                    return <CardCommentPost key={comment._id} comment={comment} />;
-                  })
-                ) : (
-                  <div></div>
-                )} */}
               </div>
               <div style={{ height: '60px' }}>
                 <div style={{ marginBottom: '30px' }}>
@@ -157,19 +143,11 @@ function CardMusic(props) {
                 </div>
                 {props.post.userId._id == localStorage.id ? (
                   <div style={{ paddingTop: '5px' }}>
-                    {/* <IconButton onClick={() => doDelete(props.post._id)} sx={{ padding: '0px 3px' }}>
-                      <Delete sx={{ color: deepOrange[900] }} />
-                    </IconButton> */}
                     <ModalConfirmDelete id={props.post._id} />
                   </div>
                 ) : (
                   <div></div>
                 )}
-                {/* <div style={{ paddingTop: '5px' }}>
-                  <IconButton onClick={() => doDelete(props.post._id)} sx={{ padding: '0px 3px' }}>
-                    <Delete sx={{ color: red[500] }} />
-                  </IconButton>
-                </div> */}
               </div>
             </div>
           </div>

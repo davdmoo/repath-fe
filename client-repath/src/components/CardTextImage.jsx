@@ -17,7 +17,7 @@ import moment from 'moment';
 function CardTextImage(props) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
-  console.log(props.post.imgUrl)
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -102,7 +102,7 @@ function CardTextImage(props) {
             </div>
 
             <div className="card-right-side d-flex flex-column">
-              {props.post.imgUrl == "[object Object]" || !props.post.imgUrl ? (
+              {props.post.imgUrl == '[object Object]' || !props.post.imgUrl ? (
                 <div></div>
               ) : (
                 <div
